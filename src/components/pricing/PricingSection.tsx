@@ -15,13 +15,15 @@ const plans = [
     name: 'Basic',
     users: 10,
     price: 39,
-    tag: '30 Days Free Trial',
+    tag: '14 Days Free Trial',
     features: [
       'Everything in Basic',
       'Access to standard templates & UI blocks',
       'Collaboration tools',
       'CMS collections',
-      'Basic analytics'
+      'Basic analytics',
+      'Standard integrations',
+      'Priority email support'
     ]
   },
   {
@@ -95,32 +97,63 @@ export function PricingSection() {
     <section className="py-20 px-6 max-w-6xl mx-auto bg-white min-h-screen">
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex items-center justify-center gap-3">
-          <span className="relative inline-block">
-            <span className="text-black">Pay</span>
-            <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[2px] bg-red-500 transform -rotate-12"></span>
+        <h1 className="font-bold text-gray-900 mb-6 flex items-center justify-center gap-2 whitespace-nowrap" style={{ fontFamily: 'Geist, sans-serif', fontSize: '92px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
+          <span className="relative inline-block text-[#1a1a1a]">
+            Pay
+            {/* Red marker scribble */}
+            <svg
+              className="absolute left-[-5%] top-1/2 w-[110%] h-10 -translate-y-1/2 pointer-events-none"
+              viewBox="0 0 100 40"
+              preserveAspectRatio="none"
+              style={{ transform: 'rotate(-2deg)' }}
+            >
+              <path d="M 2,20 Q 30,17 60,19 T 98,18" stroke="#dc2626" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <path d="M 5,25 Q 40,23 70,26 T 95,24" stroke="#dc2626" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+              <path d="M 0,29 Q 45,28 80,30 T 100,29" stroke="#dc2626" strokeWidth="2" fill="none" strokeLinecap="round" />
+            </svg>
           </span>
-          <span className="border-2 border-dashed border-gray-300 px-4 py-1 text-blue-500">Invest</span>
-          <span>in</span>
+          <div className="relative inline-flex items-center justify-center mx-6" style={{ width: '275px', height: '88px' }}>
+            {/* Outer dashed lines with exact 12px overcrossing corners */}
+            <svg
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              width="313"
+              height="122"
+              viewBox="0 0 313 122"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Horizontal lines */}
+              <line x1="0" y1="8" x2="313" y2="8" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="12 12" />
+              <line x1="0" y1="114" x2="313" y2="114" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="12 12" />
+              {/* Vertical lines */}
+              <line x1="8" y1="0" x2="8" y2="122" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="12 12" />
+              <line x1="305" y1="0" x2="305" y2="122" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="12 12" />
+            </svg>
+
+            <div className="bg-[#f0f5ff] w-full h-full flex items-center justify-center z-10 relative">
+              <span className="transform translate-y-[-4px]" style={{ backgroundImage: 'linear-gradient(90deg, #3562F1 0%, #3B82F6 50%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>Invest</span>
+            </div>
+          </div>
+          <span className="text-black transform translate-y-[-4px]" style={{ fontSize: '64px', letterSpacing: '-1px' }}>in</span>
         </h1>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="text-gray-900 mb-4 text-center" style={{ fontFamily: 'Geist, sans-serif', fontSize: '65px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
           What Matters Most for Your Business
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-gray-600 max-w-4xl mx-auto" style={{ fontSize: '24px', lineHeight: '32px', letterSpacing: '-0.3px', fontWeight: 400 }}>
           Our pricing is designed to deliver maximum value, giving your business
           access to powerful solutions without unnecessary costs
         </p>
-        
+
         {/* Toggle */}
-        <div className="mt-8 inline-flex bg-gray-50 rounded-lg p-1 border border-gray-100">
-          <button 
-            className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${billing === 'monthly' ? 'bg-white shadow text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
+        <div className="mt-10 inline-flex bg-[#f3f4f6] rounded-xl p-1.5 border border-gray-200 shadow-sm">
+          <button
+            className={`px-8 py-2.5 rounded-lg text-sm font-semibold transition-all ${billing === 'monthly' ? 'bg-white shadow text-[#1e1b4b]' : 'text-[#3730a3] hover:text-[#1e1b4b]'}`}
             onClick={() => setBilling('monthly')}
           >
             Monthly
           </button>
-          <button 
-            className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${billing === 'yearly' ? 'bg-white shadow text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
+          <button
+            className={`px-8 py-2.5 rounded-lg text-sm font-semibold transition-all ${billing === 'yearly' ? 'bg-white shadow text-[#1e1b4b]' : 'text-[#3730a3] hover:text-[#1e1b4b]'}`}
             onClick={() => setBilling('yearly')}
           >
             Yearly
@@ -129,27 +162,27 @@ export function PricingSection() {
       </div>
 
       {/* Slider */}
-      <div className="mb-12 max-w-4xl mx-auto">
-        <div className="relative w-full h-2 bg-gray-100 rounded-full flex items-center">
-          <div 
-            className="absolute h-full bg-blue-500 rounded-full" 
+      <div className="mb-12 mx-auto px-4" style={{ width: '100%', maxWidth: '1211.5px' }}>
+        <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
+          <div
+            className="absolute h-full bg-blue-500 rounded-full"
             style={{ width: `${((users - 10) / 40) * 100}%` }}
           />
-          <input 
-            type="range" 
-            min="10" 
-            max="50" 
+          <input
+            type="range"
+            min="10"
+            max="50"
             step="1"
             value={users}
             onChange={handleSliderChange}
-            className="absolute w-full opacity-0 cursor-pointer h-8"
+            className="absolute w-full h-full opacity-0 cursor-pointer z-10"
           />
-          <div 
-            className="absolute w-6 h-6 bg-white border-4 border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none"
+          <div
+            className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20"
             style={{ left: `${((users - 10) / 40) * 100}%` }}
           />
         </div>
-        <div className="text-sm font-bold text-gray-900 mt-4" style={{ marginLeft: `calc(${((users - 10) / 40) * 100}% - 24px)` }}>
+        <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${((users - 10) / 40) * 100}% - 24px)` }}>
           {users >= 50 ? '50+ users' : `${users} users`}
         </div>
       </div>
@@ -160,29 +193,36 @@ export function PricingSection() {
           {plans.map((plan) => {
             const isSelected = selectedPlan.id === plan.id;
             return (
-              <div 
+              <div
                 key={plan.id}
                 onClick={() => setUsers(plan.users)}
-                className={`cursor-pointer rounded-2xl p-6 transition-all border ${
-                  isSelected 
-                    ? 'bg-gradient-to-r from-blue-400 to-blue-500 border-transparent shadow-lg text-white transform md:scale-[1.02]' 
+                className={`cursor-pointer rounded-4xl p-6 transition-all border ${isSelected
+                  ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
+                  : plan.id === 'enterprise'
+                    ? 'border-transparent bg-transparent hover:border-blue-300 hover:bg-white text-gray-900'
                     : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
-                } flex items-center justify-between`}
+                  } flex items-center justify-between`}
+                style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
               >
                 <div className="flex items-center gap-4">
-                  <h3 className="text-xl font-semibold">{plan.name}</h3>
+                  <h3 className="text-xl font-semibold" style={{ fontFamily: 'Geist, sans-serif' }}>{plan.name}</h3>
                   {plan.tag && (
-                    <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap ${
-                      isSelected ? 'bg-white/20 text-white font-medium' : 'bg-blue-50 text-blue-500 font-medium'
-                    }`}>
+                    <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.id === 'basic'
+                      ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
+                      : plan.id === 'standard'
+                        ? 'bg-[#e0f2fe] text-[#0ea5e9]'
+                        : plan.id === 'advanced'
+                          ? 'bg-[#fae8ff] text-[#c026d3]'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}>
                       {plan.tag}
                     </span>
                   )}
                 </div>
                 <div className="text-right">
                   {typeof plan.price === 'number' ? (
-                    <div className="text-3xl font-bold">
-                      ${billing === 'yearly' ? Math.floor(plan.price * 0.8) : plan.price}<span className={`text-base font-normal ${isSelected ? 'text-blue-50' : 'text-gray-500'}`}>/month</span>
+                    <div className="text-3xl font-medium">
+                      ${billing === 'yearly' ? Math.floor(plan.price * 0.8) : plan.price}<span className={`font-normal ${isSelected ? 'text-white/80' : 'text-black-500'}`}>/month</span>
                     </div>
                   ) : (
                     <Link href="#contact" className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
@@ -193,22 +233,22 @@ export function PricingSection() {
               </div>
             );
           })}
-          
+
           <div className="pt-4">
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-sm">
+            <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm">
               Choose Plan
             </button>
           </div>
         </div>
 
         {/* Features Box */}
-        <div className="w-full lg:w-96 bg-white border border-gray-200 rounded-3xl p-8 shadow-sm h-fit">
+        <div className="w-full lg:w-[400px] bg-white border border-gray-200 rounded-[28px] p-9 shadow-sm flex flex-col">
           <h3 className="text-xl font-medium text-gray-900 mb-6">Includes:</h3>
-          <ul className="space-y-4">
+          <ul className="flex flex-col justify-between flex-1 h-full">
             {selectedPlan.features.map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-3 text-sm text-gray-600">
-                <div className="shrink-0 mt-0.5"><CheckIcon /></div>
-                {feature}
+              <li key={idx} className="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span className="flex-1">{feature}</span>
+                <div className="shrink-0"><CheckIcon /></div>
               </li>
             ))}
           </ul>
