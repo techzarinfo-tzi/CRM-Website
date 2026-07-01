@@ -67,7 +67,7 @@ export function MainPosts() {
 
       {/* Pagination */}
       <div className="flex items-center justify-center mt-16 gap-2">
-        <button className="w-10 h-10 rounded-full bg-[#3b82f6] text-white flex items-center justify-center font-medium transition-colors">
+        <button className="w-10 h-10 rounded-full text-white flex items-center justify-center font-medium transition-colors" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
           1
         </button>
         <button className="w-10 h-10 rounded-full hover:bg-gray-100 text-gray-700 flex items-center justify-center font-medium transition-colors">

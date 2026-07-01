@@ -36,7 +36,7 @@ export function Footer() {
         <div className="text-center max-w-4xl mb-8">
           <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-8">
             <span className="inline-block align-middle mr-3">
-              <Image src="/images/footer logo.png" alt="Footer Logo" width={75} height={50} className="h-10 w-auto object-contain" />
+              <Image src="/images/footer logo.png" alt="Footer Logo" width={75} height={50} className="h-10 w-auto object-contain" style={{ width: "auto", height: "auto" }} />
             </span>
             CRM is your all-in-one platform for managing<br />
             clients, automating workflows and accelerating<br />
@@ -64,7 +64,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Company</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">About Us</Link></li>
+              <li><Link href="/about" className="text-white/80 hover:text-white transition-colors text-sm">About Us</Link></li>
               <li><Link href="/contact" className="text-white/80 hover:text-white transition-colors text-sm">Contact Us</Link></li>
               <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Blog</Link></li>
               <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Privacy Policy</Link></li>

@@ -5,13 +5,14 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-20 py-4 bg-white border-b border-gray-100 shadow-sm">
       {/* Logo */}
-      <Link href="/">
+      <Link href="/" className="relative h-8 w-28 block">
         <Image
           src="/images/TZI-Logo.png"
           alt="TZI Logo"
-          width={72}
-          height={30}
+          width={112}
+          height={32}
           priority
+          className="object-contain object-left"
           style={{ width: "auto", height: "auto" }}
         />
       </Link>
@@ -32,13 +33,26 @@ export function Navbar() {
         <li>
           <Link href="#" className="hover:text-blue-500 transition-colors">Integrations</Link>
         </li>
-        <li>
-          <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
+        <li className="relative group">
+          <button className="flex items-center gap-1 hover:text-blue-500 transition-colors py-4">
             Company
             <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
+          
+          <div className="absolute top-full left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div className="bg-[#f4f7fe] rounded-[20px] p-5 flex flex-col gap-5 shadow-lg min-w-[180px]">
+              <Link href="/about" className="flex items-center gap-3 text-gray-900 hover:text-blue-500 transition-colors text-[16px] font-medium">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                About Us
+              </Link>
+              <Link href="/contact" className="flex items-center gap-3 text-gray-900 hover:text-blue-500 transition-colors text-[16px] font-medium">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Contact Us
+              </Link>
+            </div>
+          </div>
         </li>
         <li>
           <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
@@ -58,7 +72,8 @@ export function Navbar() {
         </Link>
         <Link
           href="#"
-          className="px-5 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors"
+          className="px-5 py-2.5 text-sm font-semibold text-white rounded-lg transition-all hover:shadow-lg hover:opacity-95"
+          style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
         >
           Schedule a Demo
         </Link>

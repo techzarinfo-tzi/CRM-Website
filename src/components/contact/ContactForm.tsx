@@ -120,7 +120,7 @@ export function ContactForm() {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
             <p className="text-gray-600 mb-8">Thank you for getting in touch. Our team will contact you shortly.</p>
-            <button type="button" onClick={() => setSuccess(false)} className="bg-[#3ab3fb] hover:bg-[#2c9be0] text-white font-medium px-8 py-3 rounded-full transition-colors">
+            <button type="button" onClick={() => setSuccess(false)} className="text-white font-medium px-8 py-3 rounded-full transition-colors hover:shadow-lg hover:opacity-95" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
               Send another message
             </button>
           </div>
@@ -174,7 +174,7 @@ export function ContactForm() {
               <textarea name="requirements" required rows={4} className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all resize-none font-medium text-gray-800"></textarea>
             </div>
 
-            <button type="submit" disabled={loading} className="mt-2 mx-auto bg-[#3ab3fb] hover:bg-[#2c9be0] text-white font-medium px-10 py-3 rounded-full transition-all hover:shadow-lg disabled:opacity-70 disabled:hover:shadow-none">
+            <button type="submit" disabled={loading} className="mt-2 mx-auto text-white font-medium px-10 py-3 rounded-full transition-all hover:shadow-lg hover:opacity-95 disabled:opacity-70 disabled:hover:shadow-none" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
               {loading ? "Sending..." : "Send Message"}
             </button>
           </form>

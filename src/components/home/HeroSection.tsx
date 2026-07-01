@@ -53,6 +53,7 @@ export default function HeroSection() {
                 width={90}
                 height={90}
                 className="object-contain drop-shadow-md"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
           </div>
