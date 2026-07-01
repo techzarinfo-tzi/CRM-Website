@@ -225,7 +225,7 @@ export function PricingSection() {
                       ${billing === 'yearly' ? Math.floor(plan.price * 0.8) : plan.price}<span className={`font-normal ${isSelected ? 'text-white/80' : 'text-black-500'}`}>/month</span>
                     </div>
                   ) : (
-                    <Link href="#contact" className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
+                    <Link href="/contact" className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
                       {plan.price}
                     </Link>
                   )}
