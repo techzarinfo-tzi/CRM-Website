@@ -29,6 +29,9 @@ export function Navbar() {
           </button>
         </li>
         <li>
+          <Link href="#" className="hover:text-blue-500 transition-colors">Integrations</Link>
+        </li>
+        <li>
           <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
             Company
             <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,7 +40,7 @@ export function Navbar() {
           </button>
         </li>
         <li>
-          <Link href="#" className="hover:text-blue-500 transition-colors">Blog</Link>
+          <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
         </li>
         <li>
           <Link href="/pricing" className="hover:text-blue-500 transition-colors">Pricing</Link>
@@ -56,7 +59,7 @@ export function Navbar() {
           href="#"
           className="px-5 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors"
         >
-          Product Tour
+          Schedule a Demo
         </Link>
       </div>
     </nav>
