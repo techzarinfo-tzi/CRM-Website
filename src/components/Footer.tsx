@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import logo from "@/src/assets/images/TZI.png";
 
 const SocialIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -36,16 +34,14 @@ export function Footer() {
         {/* Top Section */}
         <div className="text-center max-w-4xl mb-8">
           <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-8">
-            <span className="inline-block align-middle mr-2 bg-white rounded p-1">
-              <Image src={logo} alt="TZI" width={60} height={24} className="h-6 w-auto" />
-            </span>
+            <span className="font-extrabold mr-2">TZI</span>
             CRM is your all-in-one platform for managing clients, automating workflows and accelerating business growth.
           </h2>
           <Link
             href="#free-trial"
             className="inline-block bg-white text-[#378ce7] font-semibold text-sm px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
           >
-            Start Your 30 Days Free Trial
+            Start Your 14 Days Free Trial
           </Link>
         </div>
 

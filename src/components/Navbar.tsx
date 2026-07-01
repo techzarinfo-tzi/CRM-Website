@@ -31,7 +31,7 @@ export function Navbar() {
                 alt="TZI Logo"
                 width={80}
                 height={32}
-                className="w-auto h-8"
+                className="w-auto h-10"
               />
             </Link>
           </div>

@@ -7,80 +7,15 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen bg-white overflow-hidden">
 
-      {/* ── Corner plus markers ── */}
-      <span className="absolute top-[62px] left-[52px] text-gray-300 text-xl select-none pointer-events-none">✛</span>
-      <span className="absolute top-[62px] right-[52px] text-gray-300 text-xl select-none pointer-events-none">✛</span>
-      <span className="absolute bottom-[160px] left-[52px] text-gray-300 text-xl select-none pointer-events-none">✛</span>
-      <span className="absolute bottom-[160px] right-[52px] text-gray-300 text-xl select-none pointer-events-none">✛</span>
-
-      {/* ── Dashed border frame ── */}
-      <div className="absolute top-[62px] left-[60px] right-[60px] bottom-[160px] border border-dashed border-gray-200 pointer-events-none" />
-
-      {/* ════════════════════════
-          NAVBAR
-      ════════════════════════ */}
-      <nav className="relative z-20 flex items-center justify-between px-20 py-4 border-b border-transparent">
-        {/* Logo */}
-        <Link href="/">
-          <Image
-            src="/images/TZI-Logo.png"
-            alt="TZI Logo"
-            width={72}
-            height={30}
-            priority
-          />
-        </Link>
-
-        {/* Nav links */}
-        <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
-          <li>
-            <Link href="#" className="hover:text-blue-500 transition-colors">Features</Link>
-          </li>
-          <li>
-            <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
-              Solutions
-              <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </li>
-          <li>
-            <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
-              Company
-              <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </li>
-          <li>
-            <Link href="#" className="hover:text-blue-500 transition-colors">Blog</Link>
-          </li>
-          <li>
-            <Link href="#" className="hover:text-blue-500 transition-colors">Pricing</Link>
-          </li>
-        </ul>
-
-        {/* CTA buttons */}
-        <div className="flex items-center gap-2">
-          <Link
-            href="#"
-            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors"
-          >
-            Free Trial
-          </Link>
-          <Link
-            href="#"
-            className="px-5 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors"
-          >
-            Product Tour
-          </Link>
-        </div>
-      </nav>
-
       {/* ════════════════════════
           HERO BODY
       ════════════════════════ */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 pt-8 pb-16">
+
+        {/* ── Frame: wraps only the text content above, stops before the dashboard screenshot ── */}
+        <div className="relative w-full flex flex-col items-center">
+          {/* Dashed border frame */}
+          <div className="absolute -top-6 left-[8%] right-[8%] -bottom-6 border border-dashed border-gray-200 pointer-events-none" />
 
         {/* Trust badge */}
         <div className="inline-flex items-center border border-gray-200 rounded-full px-5 py-1.5 text-xs text-gray-500 mb-8 bg-white shadow-sm">
@@ -105,13 +40,13 @@ export default function HeroSection() {
                 Conversions
               </h1>
             </div>
-            {/* 3D Chat image — top-right of box */}
-            <div className="absolute -top-10 -right-14">
+            {/* 3D Chat image — offset clear of the headline text above and to the right */}
+            <div className="absolute -top-2 -right-16 sm:-right-20">
               <Image
                 src="/images/3D_Chat.png"
                 alt="3D Chat"
-                width={90}
-                height={90}
+                width={80}
+                height={80}
                 className="object-contain drop-shadow-md"
               />
             </div>
@@ -135,8 +70,9 @@ export default function HeroSection() {
             href="#"
             className="text-sm font-semibold text-gray-700 hover:text-blue-500 transition-colors"
           >
-            Start Your 30 Days Free Trial
+            Start Your 14 Days Free Trial
           </Link>
+        </div>
         </div>
 
         {/* Dashboard screenshot */}
