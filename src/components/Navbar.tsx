@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between px-20 py-4 bg-white border-b border-gray-100 shadow-sm">
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-20 py-4 bg-white">
       {/* Logo */}
       <Link href="/" className="relative h-8 w-28 block">
         <Image
@@ -31,7 +31,7 @@ export function Navbar() {
           </button>
         </li>
         <li>
-          <Link href="#" className="hover:text-blue-500 transition-colors">Integrations</Link>
+          <Link href="/integrations" className="hover:text-blue-500 transition-colors">Integrations</Link>
         </li>
         <li className="relative group">
           <button className="flex items-center gap-1 hover:text-blue-500 transition-colors py-4">
