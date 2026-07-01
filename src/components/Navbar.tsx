@@ -1,87 +1,68 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/src/assets/images/TZI.png";
-
-const ChevronDownIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="m6 9 6 6 6-6" />
-  </svg>
-);
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <Image
-                src={logo}
-                alt="TZI Logo"
-                width={80}
-                height={32}
-                className="w-auto h-10"
-              />
-            </Link>
-          </div>
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-20 py-4 bg-white border-b border-gray-100 shadow-sm">
+      {/* Logo */}
+      <Link href="/">
+        <Image
+          src="/images/TZI-Logo.png"
+          alt="TZI Logo"
+          width={72}
+          height={30}
+          priority
+          style={{ width: "auto", height: "auto" }}
+        />
+      </Link>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="#features" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">
-              Features
-            </Link>
-            <div className="flex items-center gap-1 cursor-pointer group">
-              <span className="text-gray-700 group-hover:text-blue-600 font-medium text-sm transition-colors">
-                Solutions
-              </span>
-              <span className="text-gray-500 group-hover:text-blue-600 transition-colors">
-                <ChevronDownIcon />
-              </span>
-            </div>
-            <div className="flex items-center gap-1 cursor-pointer group">
-              <span className="text-gray-700 group-hover:text-blue-600 font-medium text-sm transition-colors">
-                Company
-              </span>
-              <span className="text-gray-500 group-hover:text-blue-600 transition-colors">
-                <ChevronDownIcon />
-              </span>
-            </div>
-            <Link href="#blog" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">
-              Blog
-            </Link>
-            <Link href="#pricing" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">
-              Pricing
-            </Link>
-          </nav>
+      {/* Nav links */}
+      <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+        <li>
+          <Link href="#" className="hover:text-blue-500 transition-colors">Features</Link>
+        </li>
+        <li>
+          <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
+            Solutions
+            <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <Link href="#" className="hover:text-blue-500 transition-colors">Integrations</Link>
+        </li>
+        <li>
+          <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
+            Company
+            <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
+        </li>
+        <li>
+          <Link href="/pricing" className="hover:text-blue-500 transition-colors">Pricing</Link>
+        </li>
+      </ul>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="#free-trial"
-              className="text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg px-4 py-2 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-            >
-              Free Trial
-            </Link>
-            <Link
-              href="#product-tour"
-              className="text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-400 rounded-lg px-4 py-2 shadow-sm shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all"
-            >
-              Product Tour
-            </Link>
-          </div>
-        </div>
+      {/* CTA buttons */}
+      <div className="flex items-center gap-2">
+        <Link
+          href="#"
+          className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors"
+        >
+          Free Trial
+        </Link>
+        <Link
+          href="#"
+          className="px-5 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors"
+        >
+          Schedule a Demo
+        </Link>
       </div>
-    </header>
+    </nav>
   );
 }
