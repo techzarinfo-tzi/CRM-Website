@@ -1,0 +1,401 @@
+<svg width="375" height="332" viewBox="0 0 375 332" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+  @keyframes pair-zoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
+  .strand-part {
+    animation: pair-zoom 1.5s ease-in-out infinite;
+  }
+</style>
+
+
+<g class="strand-part" style="transform-origin: 21.2898px 326.954px; animation-delay: 0s;">
+  <circle cx="21.2898" cy="326.954" r="3" transform="rotate(-131 21.2898 326.954)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 30.77505px 327.352px; animation-delay: 0.6000000000000001s;">
+  <rect x="19.4417" y="326.352" width="22.6667" height="2" transform="rotate(-131 19.4417 326.352)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 4.23223px 307.332px; animation-delay: 0.1s;">
+  <circle cx="4.23223" cy="307.332" r="3" transform="rotate(-131 4.23223 307.332)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 26.9673px 316.719px; animation-delay: 0.2s;">
+  <circle cx="26.9673" cy="316.719" r="3" transform="rotate(-131 26.9673 316.719)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 31.569300000000002px 316.714px; animation-delay: 0.7000000000000001s;">
+  <rect x="24.7693" y="315.714" width="13.6" height="2" transform="rotate(-131 24.7693 315.714)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 15.1583px 303.134px; animation-delay: 0.30000000000000004s;">
+  <circle cx="15.1583" cy="303.134" r="3" transform="rotate(-131 15.1583 303.134)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 32.6451px 306.483px; animation-delay: 0.4s;">
+  <circle cx="32.6451" cy="306.483" r="3" transform="rotate(-131 32.6451 306.483)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 32.363865000000004px 306.076px; animation-delay: 0.8s;">
+  <rect x="30.0972" y="305.076" width="4.53333" height="2" transform="rotate(-131 30.0972 305.076)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 26.0845px 298.936px; animation-delay: 0.5s;">
+  <circle cx="26.0845" cy="298.936" r="3" transform="rotate(-131 26.0845 298.936)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 39.6351px 297.757px; animation-delay: 0.6000000000000001s;">
+  <circle cx="39.6351" cy="297.757" r="3" transform="rotate(-131 39.6351 297.757)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 36.912666665px 297.149px; animation-delay: 0.9s;">
+  <rect x="36.9121" y="296.149" width="0.00113333" height="2" transform="rotate(-131 36.9121 296.149)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 35.6981px 293.228px; animation-delay: 0.7000000000000001s;">
+  <circle cx="35.6981" cy="293.228" r="3" transform="rotate(-131 35.6981 293.228)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 49.2486px 292.05px; animation-delay: 0.8s;">
+  <circle cx="49.2486" cy="292.05" r="3" transform="rotate(-131 49.2486 292.05)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 48.967365px 291.643px; animation-delay: 0s;">
+  <rect x="46.7007" y="290.643" width="4.53333" height="2" transform="rotate(-131 46.7007 290.643)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 42.688px 284.503px; animation-delay: 0.9s;">
+  <circle cx="42.688" cy="284.503" r="3" transform="rotate(-131 42.688 284.503)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 60.1746px 287.852px; animation-delay: 0s;">
+  <circle cx="60.1746" cy="287.852" r="3" transform="rotate(-131 60.1746 287.852)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 64.7766px 287.848px; animation-delay: 0.1s;">
+  <rect x="57.9766" y="286.848" width="13.6" height="2" transform="rotate(-131 57.9766 286.848)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 48.3655px 274.267px; animation-delay: 0.1s;">
+  <circle cx="48.3655" cy="274.267" r="3" transform="rotate(-131 48.3655 274.267)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 71.1006px 283.654px; animation-delay: 0.2s;">
+  <circle cx="71.1006" cy="283.654" r="3" transform="rotate(-131 71.1006 283.654)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 80.58574999999999px 284.052px; animation-delay: 0.2s;">
+  <rect x="69.2524" y="283.052" width="22.6667" height="2" transform="rotate(-131 69.2524 283.052)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 54.043px 264.032px; animation-delay: 0.30000000000000004s;">
+  <circle cx="54.043" cy="264.032" r="3" transform="rotate(-131 54.043 264.032)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 76.7781px 273.419px; animation-delay: 0.4s;">
+  <circle cx="76.7781" cy="273.419" r="3" transform="rotate(-131 76.7781 273.419)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 81.3801px 273.414px; animation-delay: 0.30000000000000004s;">
+  <rect x="74.5801" y="272.414" width="13.6" height="2" transform="rotate(-131 74.5801 272.414)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 64.969px 259.834px; animation-delay: 0.5s;">
+  <circle cx="64.969" cy="259.834" r="3" transform="rotate(-131 64.969 259.834)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 82.4559px 263.183px; animation-delay: 0.6000000000000001s;">
+  <circle cx="82.4559" cy="263.183" r="3" transform="rotate(-131 82.4559 263.183)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 82.174665px 262.776px; animation-delay: 0.4s;">
+  <rect x="79.908" y="261.776" width="4.53333" height="2" transform="rotate(-131 79.908 261.776)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 75.8953px 255.636px; animation-delay: 0.7000000000000001s;">
+  <circle cx="75.8953" cy="255.636" r="3" transform="rotate(-131 75.8953 255.636)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 89.4459px 254.458px; animation-delay: 0.8s;">
+  <circle cx="89.4459" cy="254.458" r="3" transform="rotate(-131 89.4459 254.458)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 86.72346666499999px 253.849px; animation-delay: 0.5s;">
+  <rect x="86.7229" y="252.849" width="0.00113333" height="2" transform="rotate(-131 86.7229 252.849)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 85.5088px 249.928px; animation-delay: 0.9s;">
+  <circle cx="85.5088" cy="249.928" r="3" transform="rotate(-131 85.5088 249.928)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 99.0594px 248.75px; animation-delay: 0s;">
+  <circle cx="99.0594" cy="248.75" r="3" transform="rotate(-131 99.0594 248.75)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 98.778165px 248.343px; animation-delay: 0.6000000000000001s;">
+  <rect x="96.5115" y="247.343" width="4.53333" height="2" transform="rotate(-131 96.5115 247.343)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 92.4988px 241.203px; animation-delay: 0.1s;">
+  <circle cx="92.4988" cy="241.203" r="3" transform="rotate(-131 92.4988 241.203)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 109.985px 244.552px; animation-delay: 0.2s;">
+  <circle cx="109.985" cy="244.552" r="3" transform="rotate(-131 109.985 244.552)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 114.587px 244.548px; animation-delay: 0.7000000000000001s;">
+  <rect x="107.787" y="243.548" width="13.6" height="2" transform="rotate(-131 107.787 243.548)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 98.1763px 230.967px; animation-delay: 0.30000000000000004s;">
+  <circle cx="98.1763" cy="230.967" r="3" transform="rotate(-131 98.1763 230.967)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 120.911px 240.354px; animation-delay: 0.4s;">
+  <circle cx="120.911" cy="240.354" r="3" transform="rotate(-131 120.911 240.354)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 130.39635px 240.752px; animation-delay: 0.8s;">
+  <rect x="119.063" y="239.752" width="22.6667" height="2" transform="rotate(-131 119.063 239.752)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 103.854px 220.732px; animation-delay: 0.5s;">
+  <circle cx="103.854" cy="220.732" r="3" transform="rotate(-131 103.854 220.732)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 126.589px 230.119px; animation-delay: 0.6000000000000001s;">
+  <circle cx="126.589" cy="230.119" r="3" transform="rotate(-131 126.589 230.119)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 131.191px 230.115px; animation-delay: 0.9s;">
+  <rect x="124.391" y="229.115" width="13.6" height="2" transform="rotate(-131 124.391 229.115)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 114.78px 216.534px; animation-delay: 0.7000000000000001s;">
+  <circle cx="114.78" cy="216.534" r="3" transform="rotate(-131 114.78 216.534)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 132.267px 219.883px; animation-delay: 0.8s;">
+  <circle cx="132.267" cy="219.883" r="3" transform="rotate(-131 132.267 219.883)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 131.98566499999998px 219.477px; animation-delay: 0s;">
+  <rect x="129.719" y="218.477" width="4.53333" height="2" transform="rotate(-131 129.719 218.477)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 125.706px 212.336px; animation-delay: 0.9s;">
+  <circle cx="125.706" cy="212.336" r="3" transform="rotate(-131 125.706 212.336)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 139.257px 211.158px; animation-delay: 0s;">
+  <circle cx="139.257" cy="211.158" r="3" transform="rotate(-131 139.257 211.158)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 136.534566665px 210.549px; animation-delay: 0.1s;">
+  <rect x="136.534" y="209.549" width="0.00113333" height="2" transform="rotate(-131 136.534 209.549)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 135.32px 206.629px; animation-delay: 0.1s;">
+  <circle cx="135.32" cy="206.629" r="3" transform="rotate(-131 135.32 206.629)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 148.87px 205.45px; animation-delay: 0.2s;">
+  <circle cx="148.87" cy="205.45" r="3" transform="rotate(-131 148.87 205.45)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 148.588665px 205.043px; animation-delay: 0.2s;">
+  <rect x="146.322" y="204.043" width="4.53333" height="2" transform="rotate(-131 146.322 204.043)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 142.31px 197.903px; animation-delay: 0.30000000000000004s;">
+  <circle cx="142.31" cy="197.903" r="3" transform="rotate(-131 142.31 197.903)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 159.796px 201.252px; animation-delay: 0.4s;">
+  <circle cx="159.796" cy="201.252" r="3" transform="rotate(-131 159.796 201.252)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 164.39800000000002px 201.248px; animation-delay: 0.30000000000000004s;">
+  <rect x="157.598" y="200.248" width="13.6" height="2" transform="rotate(-131 157.598 200.248)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 147.987px 187.667px; animation-delay: 0.5s;">
+  <circle cx="147.987" cy="187.667" r="3" transform="rotate(-131 147.987 187.667)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 170.722px 197.054px; animation-delay: 0.6000000000000001s;">
+  <circle cx="170.722" cy="197.054" r="3" transform="rotate(-131 170.722 197.054)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 180.20735px 197.453px; animation-delay: 0.4s;">
+  <rect x="168.874" y="196.453" width="22.6667" height="2" transform="rotate(-131 168.874 196.453)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 153.665px 177.432px; animation-delay: 0.7000000000000001s;">
+  <circle cx="153.665" cy="177.432" r="3" transform="rotate(-131 153.665 177.432)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 176.4px 186.819px; animation-delay: 0.8s;">
+  <circle cx="176.4" cy="186.819" r="3" transform="rotate(-131 176.4 186.819)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 181.002px 186.815px; animation-delay: 0.5s;">
+  <rect x="174.202" y="185.815" width="13.6" height="2" transform="rotate(-131 174.202 185.815)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 164.591px 173.234px; animation-delay: 0.9s;">
+  <circle cx="164.591" cy="173.234" r="3" transform="rotate(-131 164.591 173.234)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 182.077px 176.583px; animation-delay: 0s;">
+  <circle cx="182.077" cy="176.583" r="3" transform="rotate(-131 182.077 176.583)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 181.796665px 176.177px; animation-delay: 0.6000000000000001s;">
+  <rect x="179.53" y="175.177" width="4.53333" height="2" transform="rotate(-131 179.53 175.177)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 175.517px 169.036px; animation-delay: 0.1s;">
+  <circle cx="175.517" cy="169.036" r="3" transform="rotate(-131 175.517 169.036)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 189.067px 167.858px; animation-delay: 0.2s;">
+  <circle cx="189.067" cy="167.858" r="3" transform="rotate(-131 189.067 167.858)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 186.344566665px 167.25px; animation-delay: 0.7000000000000001s;">
+  <rect x="186.344" y="166.25" width="0.00113333" height="2" transform="rotate(-131 186.344 166.25)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 185.13px 163.329px; animation-delay: 0.30000000000000004s;">
+  <circle cx="185.13" cy="163.329" r="3" transform="rotate(-131 185.13 163.329)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 198.681px 162.15px; animation-delay: 0.4s;">
+  <circle cx="198.681" cy="162.15" r="3" transform="rotate(-131 198.681 162.15)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 198.399665px 161.743px; animation-delay: 0.8s;">
+  <rect x="196.133" y="160.743" width="4.53333" height="2" transform="rotate(-131 196.133 160.743)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 192.12px 154.603px; animation-delay: 0.5s;">
+  <circle cx="192.12" cy="154.603" r="3" transform="rotate(-131 192.12 154.603)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 209.607px 157.952px; animation-delay: 0.6000000000000001s;">
+  <circle cx="209.607" cy="157.952" r="3" transform="rotate(-131 209.607 157.952)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 214.209px 157.948px; animation-delay: 0.9s;">
+  <rect x="207.409" y="156.948" width="13.6" height="2" transform="rotate(-131 207.409 156.948)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 197.798px 144.368px; animation-delay: 0.7000000000000001s;">
+  <circle cx="197.798" cy="144.368" r="3" transform="rotate(-131 197.798 144.368)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 220.533px 153.755px; animation-delay: 0.8s;">
+  <circle cx="220.533" cy="153.755" r="3" transform="rotate(-131 220.533 153.755)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 230.01835px 154.153px; animation-delay: 0s;">
+  <rect x="218.685" y="153.153" width="22.6667" height="2" transform="rotate(-131 218.685 153.153)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 203.476px 134.132px; animation-delay: 0.9s;">
+  <circle cx="203.476" cy="134.132" r="3" transform="rotate(-131 203.476 134.132)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 226.211px 143.519px; animation-delay: 0s;">
+  <circle cx="226.211" cy="143.519" r="3" transform="rotate(-131 226.211 143.519)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 230.81300000000002px 143.515px; animation-delay: 0.1s;">
+  <rect x="224.013" y="142.515" width="13.6" height="2" transform="rotate(-131 224.013 142.515)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 214.402px 129.934px; animation-delay: 0.1s;">
+  <circle cx="214.402" cy="129.934" r="3" transform="rotate(-131 214.402 129.934)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 231.888px 133.283px; animation-delay: 0.2s;">
+  <circle cx="231.888" cy="133.283" r="3" transform="rotate(-131 231.888 133.283)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 231.606665px 132.877px; animation-delay: 0.2s;">
+  <rect x="229.34" y="131.877" width="4.53333" height="2" transform="rotate(-131 229.34 131.877)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 225.328px 125.736px; animation-delay: 0.30000000000000004s;">
+  <circle cx="225.328" cy="125.736" r="3" transform="rotate(-131 225.328 125.736)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 238.878px 124.558px; animation-delay: 0.4s;">
+  <circle cx="238.878" cy="124.558" r="3" transform="rotate(-131 238.878 124.558)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 236.156566665px 123.95px; animation-delay: 0.30000000000000004s;">
+  <rect x="236.156" y="122.95" width="0.00113333" height="2" transform="rotate(-131 236.156 122.95)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 234.941px 120.029px; animation-delay: 0.5s;">
+  <circle cx="234.941" cy="120.029" r="3" transform="rotate(-131 234.941 120.029)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 248.492px 118.85px; animation-delay: 0.6000000000000001s;">
+  <circle cx="248.492" cy="118.85" r="3" transform="rotate(-131 248.492 118.85)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 248.21066499999998px 118.443px; animation-delay: 0.4s;">
+  <rect x="245.944" y="117.443" width="4.53333" height="2" transform="rotate(-131 245.944 117.443)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 241.931px 111.303px; animation-delay: 0.7000000000000001s;">
+  <circle cx="241.931" cy="111.303" r="3" transform="rotate(-131 241.931 111.303)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 259.418px 114.652px; animation-delay: 0.8s;">
+  <circle cx="259.418" cy="114.652" r="3" transform="rotate(-131 259.418 114.652)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 264.02000000000004px 114.648px; animation-delay: 0.5s;">
+  <rect x="257.22" y="113.648" width="13.6" height="2" transform="rotate(-131 257.22 113.648)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 247.609px 101.068px; animation-delay: 0.9s;">
+  <circle cx="247.609" cy="101.068" r="3" transform="rotate(-131 247.609 101.068)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 270.344px 110.455px; animation-delay: 0s;">
+  <circle cx="270.344" cy="110.455" r="3" transform="rotate(-131 270.344 110.455)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 279.82935px 110.853px; animation-delay: 0.6000000000000001s;">
+  <rect x="268.496" y="109.853" width="22.6667" height="2" transform="rotate(-131 268.496 109.853)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 253.286px 90.8321px; animation-delay: 0.1s;">
+  <circle cx="253.286" cy="90.8321" r="3" transform="rotate(-131 253.286 90.8321)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 276.022px 100.219px; animation-delay: 0.2s;">
+  <circle cx="276.022" cy="100.219" r="3" transform="rotate(-131 276.022 100.219)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 280.623px 100.2148px; animation-delay: 0.7000000000000001s;">
+  <rect x="273.823" y="99.2148" width="13.6" height="2" transform="rotate(-131 273.823 99.2148)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 264.212px 86.6344px; animation-delay: 0.30000000000000004s;">
+  <circle cx="264.212" cy="86.6344" r="3" transform="rotate(-131 264.212 86.6344)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 281.699px 89.9836px; animation-delay: 0.4s;">
+  <circle cx="281.699" cy="89.9836" r="3" transform="rotate(-131 281.699 89.9836)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 281.417665px 89.5769px; animation-delay: 0.8s;">
+  <rect x="279.151" y="88.5769" width="4.53333" height="2" transform="rotate(-131 279.151 88.5769)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 275.138px 82.4365px; animation-delay: 0.5s;">
+  <circle cx="275.138" cy="82.4365" r="3" transform="rotate(-131 275.138 82.4365)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 288.689px 81.2579px; animation-delay: 0.6000000000000001s;">
+  <circle cx="288.689" cy="81.2579" r="3" transform="rotate(-131 288.689 81.2579)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 285.966566665px 80.6498px; animation-delay: 0.9s;">
+  <rect x="285.966" y="79.6498" width="0.00113333" height="2" transform="rotate(-131 285.966 79.6498)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 284.752px 76.7289px; animation-delay: 0.7000000000000001s;">
+  <circle cx="284.752" cy="76.7289" r="3" transform="rotate(-131 284.752 76.7289)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 298.303px 75.5503px; animation-delay: 0.8s;">
+  <circle cx="298.303" cy="75.5503" r="3" transform="rotate(-131 298.303 75.5503)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 298.021665px 75.1436px; animation-delay: 0s;">
+  <rect x="295.755" y="74.1436" width="4.53333" height="2" transform="rotate(-131 295.755 74.1436)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 291.742px 68.0032px; animation-delay: 0.9s;">
+  <circle cx="291.742" cy="68.0032" r="3" transform="rotate(-131 291.742 68.0032)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 309.229px 71.3525px; animation-delay: 0s;">
+  <circle cx="309.229" cy="71.3525" r="3" transform="rotate(-131 309.229 71.3525)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 313.831px 71.3483px; animation-delay: 0.1s;">
+  <rect x="307.031" y="70.3483" width="13.6" height="2" transform="rotate(-131 307.031 70.3483)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 297.42px 57.7678px; animation-delay: 0.1s;">
+  <circle cx="297.42" cy="57.7678" r="3" transform="rotate(-131 297.42 57.7678)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 320.155px 67.1547px; animation-delay: 0.2s;">
+  <circle cx="320.155" cy="67.1547" r="3" transform="rotate(-131 320.155 67.1547)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 329.64035px 67.5529px; animation-delay: 0.2s;">
+  <rect x="318.307" y="66.5529" width="22.6667" height="2" transform="rotate(-131 318.307 66.5529)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 303.097px 47.5322px; animation-delay: 0.30000000000000004s;">
+  <circle cx="303.097" cy="47.5322" r="3" transform="rotate(-131 303.097 47.5322)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 325.832px 56.9192px; animation-delay: 0.4s;">
+  <circle cx="325.832" cy="56.9192" r="3" transform="rotate(-131 325.832 56.9192)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 330.434px 56.9149px; animation-delay: 0.30000000000000004s;">
+  <rect x="323.634" y="55.9149" width="13.6" height="2" transform="rotate(-131 323.634 55.9149)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 314.023px 43.3345px; animation-delay: 0.5s;">
+  <circle cx="314.023" cy="43.3345" r="3" transform="rotate(-131 314.023 43.3345)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 331.51px 46.6837px; animation-delay: 0.6000000000000001s;">
+  <circle cx="331.51" cy="46.6837" r="3" transform="rotate(-131 331.51 46.6837)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 331.228665px 46.277px; animation-delay: 0.4s;">
+  <rect x="328.962" y="45.277" width="4.53333" height="2" transform="rotate(-131 328.962 45.277)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 324.95px 39.1366px; animation-delay: 0.7000000000000001s;">
+  <circle cx="324.95" cy="39.1366" r="3" transform="rotate(-131 324.95 39.1366)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 338.5px 37.958px; animation-delay: 0.8s;">
+  <circle cx="338.5" cy="37.958" r="3" transform="rotate(-131 338.5 37.958)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 335.777566665px 37.3499px; animation-delay: 0.5s;">
+  <rect x="335.777" y="36.3499" width="0.00113333" height="2" transform="rotate(-131 335.777 36.3499)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 334.563px 33.4289px; animation-delay: 0.9s;">
+  <circle cx="334.563" cy="33.4289" r="3" transform="rotate(-131 334.563 33.4289)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 348.114px 32.2504px; animation-delay: 0s;">
+  <circle cx="348.114" cy="32.2504" r="3" transform="rotate(-131 348.114 32.2504)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 347.83266499999996px 31.8436px; animation-delay: 0.6000000000000001s;">
+  <rect x="345.566" y="30.8436" width="4.53333" height="2" transform="rotate(-131 345.566 30.8436)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 341.553px 24.7032px; animation-delay: 0.1s;">
+  <circle cx="341.553" cy="24.7032" r="3" transform="rotate(-131 341.553 24.7032)" fill="#3B82F6" />
+</g>
+<g class="strand-part" style="transform-origin: 359.04px 28.0526px; animation-delay: 0.2s;">
+  <circle cx="359.04" cy="28.0526" r="3" transform="rotate(-131 359.04 28.0526)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 363.642px 28.0483px; animation-delay: 0.7000000000000001s;">
+  <rect x="356.842" y="27.0483" width="13.6" height="2" transform="rotate(-131 356.842 27.0483)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 347.231px 14.4679px; animation-delay: 0.30000000000000004s;">
+  <circle cx="347.231" cy="14.4679" r="3" transform="rotate(-131 347.231 14.4679)" fill="#3A9FF7" />
+</g>
+<g class="strand-part" style="transform-origin: 369.966px 23.8547px; animation-delay: 0.4s;">
+  <circle cx="369.966" cy="23.8547" r="3" transform="rotate(-131 369.966 23.8547)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 379.45035px 24.2529px; animation-delay: 0.8s;">
+  <rect x="368.117" y="23.2529" width="22.6667" height="2" transform="rotate(-131 368.117 23.2529)" fill="#38BDF8" />
+</g>
+<g class="strand-part" style="transform-origin: 352.908px 4.23229px; animation-delay: 0.5s;">
+  <circle cx="352.908" cy="4.23229" r="3" transform="rotate(-131 352.908 4.23229)" fill="#38BDF8" />
+</g>
+</svg>
