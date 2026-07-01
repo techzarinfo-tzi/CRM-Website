@@ -80,7 +80,6 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="invisible font-semibold text-lg mb-4">Social</h3> {/* Invisible header to align with others */}
             <ul className="space-y-3">
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="whatsapp" /> Whatsapp</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="linkedin" /> Linkedin</Link></li>
