@@ -10,8 +10,8 @@ export default function HelpPage() {
     <div className="bg-white">
       <HelpHero />
       <HelpContactOptions />
-      <HelpSupportServices />
-      <HelpCTA />
+      {/* <HelpSupportServices /> */}
+      {/* <HelpCTA /> */}
 
       <div className="py-16">
         <VoiceOfSuccess />
