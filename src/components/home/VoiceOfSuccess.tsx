@@ -158,7 +158,7 @@ export default function VoiceOfSuccess() {
                 </span>
               </div>
               <p className="mt-3 text-xs sm:text-sm font-medium text-gray-800 leading-relaxed">
-                Hi! I&apos;m Zia. Based on feedback from clients, here are the key areas where this CRM can make the biggest impact:
+                Hi! I&apos;m Ziya. Based on feedback from clients, here are the key areas where this CRM can make the biggest impact:
               </p>
               <ul className="mt-3 space-y-1.5 text-xs sm:text-sm text-gray-500">
                 <li className="flex items-start gap-1.5">
