@@ -2,8 +2,8 @@
 
 <style>
   @keyframes pair-zoom {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.25); }
+    0%, 100% { opacity: 0.85; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.08); }
   }
   .strand-part {
     animation: pair-zoom 1.5s ease-in-out infinite;

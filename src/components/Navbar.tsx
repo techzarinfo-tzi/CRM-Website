@@ -1,26 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
+  const pathname = usePathname() || "";
+  const isActive = (path: string) => pathname === path || pathname.startsWith(path + '/');
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between px-20 py-4 bg-white">
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-6 lg:px-20 py-4 bg-white">
       {/* Logo */}
-      <Link href="/" className="relative h-8 w-28 block">
+      <Link href="/" className="relative block">
         <Image
           src="/images/TZI-Logo.png"
           alt="TZI Logo"
-          width={112}
-          height={32}
+          width={140}
+          height={140}
           priority
-          className="object-contain object-left"
-          style={{ width: "auto", height: "auto" }}
+          className="w-[110px] h-auto object-contain object-left"
         />
       </Link>
 
       {/* Nav links */}
       <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
         <li>
-          <Link href="#" className="hover:text-blue-500 transition-colors">Features</Link>
+          <Link href="#" className={`${isActive("/features") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Features</Link>
         </li>
         <li>
           <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
@@ -31,16 +35,16 @@ export function Navbar() {
           </button>
         </li>
         <li>
-          <Link href="/integrations" className="hover:text-blue-500 transition-colors">Integrations</Link>
+          <Link href="/integrations" className={`${isActive("/integrations") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Integrations</Link>
         </li>
         <li className="relative group">
-          <button className="flex items-center gap-1 hover:text-blue-500 transition-colors py-4">
+          <button className={`flex items-center gap-1 ${pathname.includes("/about") || pathname.includes("/contact") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors py-4`}>
             Company
             <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          
+
           <div className="absolute top-full left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div className="bg-[#f4f7fe] rounded-[20px] p-5 flex flex-col gap-5 shadow-lg min-w-[180px]">
               <Link href="/about" className="flex items-center gap-3 text-gray-900 hover:text-blue-500 transition-colors text-[16px] font-medium">
@@ -55,24 +59,24 @@ export function Navbar() {
           </div>
         </li>
         <li>
-          <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
+          <Link href="/help" className={`${isActive("/help") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Help</Link>
         </li>
         <li>
-          <Link href="/pricing" className="hover:text-blue-500 transition-colors">Pricing</Link>
+          <Link href="/pricing" className={`${isActive("/pricing") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Pricing</Link>
         </li>
       </ul>
 
       {/* CTA buttons */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <Link
           href="#"
-          className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors"
+          className="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all"
         >
           Free Trial
         </Link>
         <Link
           href="#"
-          className="px-5 py-2.5 text-sm font-semibold text-white rounded-lg transition-all hover:shadow-lg hover:opacity-95"
+          className="px-5 py-2.5 text-sm font-semibold text-white rounded-xl transition-all hover:shadow-lg hover:opacity-95"
           style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
         >
           Schedule a Demo
@@ -81,3 +85,4 @@ export function Navbar() {
     </nav>
   );
 }
+

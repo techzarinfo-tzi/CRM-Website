@@ -38,11 +38,11 @@ export default function IntegrationsDashboard() {
 
   return (
     <section className="relative bg-white pt-16 sm:pt-24 lg:pt-32 pb-16 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ── Heading ── */}
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
-            Meet the Integrations That <br className="hidden sm:block" /> Powers <span className="text-blue-500">TZI CRM</span>
+        <div className="mb-4">
+          <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-medium text-[#1A1A1A] leading-tight tracking-tight">
+            Meet the <span className="text-[#3B82F6]">Integrations</span> That Powers <br className="hidden sm:block" /> TZI CRM
           </h2>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function IntegrationsDashboard() {
       {/* ── Illustration: full-bleed background, edge-to-edge of the viewport ── */}
       <div
         ref={sectionRef}
-        className="relative mt-16 sm:mt-24 w-screen left-1/2 -translate-x-1/2 aspect-[548/393] sm:aspect-[1600/720]"
+        className="relative mt-4 sm:mt-8 w-screen left-1/2 -translate-x-1/2 aspect-[548/393] sm:aspect-[1600/720]"
         style={{
           background:
             "radial-gradient(ellipse 60% 85% at center, #eff6ff 0%, #f0f9ff 35%, #ffffff 65%)",
@@ -102,12 +102,13 @@ export default function IntegrationsDashboard() {
 
       {/* ── Footer text and button ── */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 text-center">
-        <p className="max-w-2xl mx-auto text-[16px] sm:text-[18px] text-gray-500 leading-relaxed mb-8">
+        <p className="max-w-4xl mx-auto text-[16px] sm:text-[18px] text-gray-700 leading-relaxed mb-8">
           Don't see your preferred business tool? No problem. We can integrate the applications your business already uses with our TZI CRM, ensuring a seamless workflow tailored to your operational needs.
         </p>
         <Link 
           href="/contact" 
-          className="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-600 transition-colors shadow-sm"
+          className="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all hover:opacity-95"
+          style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
         >
           Talk To Our Experts
         </Link>

@@ -28,6 +28,7 @@ export function AboutDNA() {
               height={480}
               className="absolute inset-0 w-full h-full object-contain drop-shadow-sm"
               priority
+              unoptimized
             />
           </div>
         </div>
@@ -46,7 +47,7 @@ export function AboutDNA() {
 
           <Link
             href="/contact"
-            className="bg-white text-[#2a4db5] font-semibold text-[15px] px-7 py-3 rounded-[10px] shadow-md hover:shadow-lg hover:bg-gray-50 transition-all"
+            className="bg-white text-[#170F49] font-semibold text-[15px] px-7 py-3 rounded-[10px] shadow-md hover:shadow-lg hover:bg-gray-50 transition-all"
           >
             See Our DNA in Action
           </Link>

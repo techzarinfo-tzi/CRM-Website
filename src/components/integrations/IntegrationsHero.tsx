@@ -11,7 +11,12 @@ export default function IntegrationsHero() {
           <div className="flex-1">
             <h1 className="text-[40px] sm:text-[52px] md:text-[60px] font-bold text-[#1A1A1A] leading-[1.1] tracking-tight">
               One System.<br />
-              <span className="text-[#3B82F6]">Infinite Connections.</span>
+              <span 
+                className="text-transparent bg-clip-text inline-block" 
+                style={{ backgroundImage: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
+              >
+                Infinite Connections.
+              </span>
             </h1>
           </div>
           

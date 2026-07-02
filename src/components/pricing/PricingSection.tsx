@@ -97,7 +97,7 @@ export function PricingSection() {
     <section className="py-20 px-6 max-w-6xl mx-auto bg-white min-h-screen">
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="font-bold text-gray-900 mb-6 flex items-center justify-center gap-2 whitespace-nowrap" style={{ fontFamily: 'Geist, sans-serif', fontSize: '92px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
+        <h1 className="font-bold text-gray-900 mb-6 flex items-center justify-center gap-2 whitespace-nowrap" style={{ fontSize: '92px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
           <span className="relative inline-block text-[#1a1a1a]">
             Pay
             {/* Red marker scribble */}
@@ -136,7 +136,7 @@ export function PricingSection() {
           </div>
           <span className="text-black transform translate-y-[-4px]" style={{ fontSize: '64px', letterSpacing: '-1px' }}>in</span>
         </h1>
-        <h2 className="text-gray-900 mb-4 text-center" style={{ fontFamily: 'Geist, sans-serif', fontSize: '65px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
+        <h2 className="text-gray-900 mb-4 text-center" style={{ fontSize: '65px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
           What Matters Most for Your Business
         </h2>
         <p className="text-gray-600 max-w-4xl mx-auto" style={{ fontSize: '24px', lineHeight: '32px', letterSpacing: '-0.3px', fontWeight: 400 }}>
@@ -205,7 +205,7 @@ export function PricingSection() {
                 style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
               >
                 <div className="flex items-center gap-4">
-                  <h3 className="text-xl font-semibold" style={{ fontFamily: 'Geist, sans-serif' }}>{plan.name}</h3>
+                  <h3 className="text-xl font-semibold">{plan.name}</h3>
                   {plan.tag && (
                     <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.id === 'basic'
                       ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
