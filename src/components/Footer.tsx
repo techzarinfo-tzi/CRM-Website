@@ -54,7 +54,7 @@ export function Footer() {
             href="#free-trial"
             className="inline-block bg-white text-[#31373D] font-inter font-bold text-[15px] px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
           >
-            Start Your 30 Days Free Trial
+            Start Your 14 Days Free Trial
           </Link>
         </div>
 
@@ -83,7 +83,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li><Link href="tel:+919952885799" className="text-white/80 hover:text-white transition-colors text-sm">+91 9952885799</Link></li>
               <li><Link href="mailto:sales@techzarinfo.com" className="text-white/80 hover:text-white transition-colors text-sm">sales@techzarinfo.com</Link></li>
-              <li><span className="text-white/80 text-sm block leading-relaxed">No.3D, M.S Tower , 4th Floor,<br/>Convent Rd, Cantonment,<br/>Tiruchirappalli- 620001.</span></li>
+              <li><span className="text-white/80 text-sm block leading-relaxed">No.3D, M.S Tower , 4th Floor,<br />Convent Rd, Cantonment,<br />Tiruchirappalli- 620001.</span></li>
             </ul>
           </div>
           <div>

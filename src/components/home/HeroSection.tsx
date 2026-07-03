@@ -17,63 +17,63 @@ export default function HeroSection() {
           {/* Dashed border frame */}
           <div className="absolute -top-6 left-[8%] right-[8%] -bottom-6 border border-dashed border-gray-200 pointer-events-none" />
 
-        {/* Trust badge */}
-        <div className="inline-flex items-center border border-gray-200 rounded-full px-5 py-1.5 text-xs text-gray-500 mb-8 bg-white shadow-sm">
-          Trusted by 100+ growing organizations
-        </div>
+          {/* Trust badge */}
+          <div className="inline-flex items-center border border-gray-200 rounded-full px-5 py-1.5 text-xs text-gray-500 mb-8 bg-white shadow-sm">
+            Trusted by 100+ growing organizations
+          </div>
 
-        {/* Headline row 1 */}
-        <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-gray-900 leading-[1.05] tracking-tight">
-          Transform All Conversations
-        </h1>
-
-        {/* Headline row 2 — "into [Conversions]" */}
-        <div className="flex items-center justify-center gap-4 mt-1">
+          {/* Headline row 1 */}
           <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-gray-900 leading-[1.05] tracking-tight">
-            into
+            Transform All Conversations
           </h1>
 
-          {/* Dashed box around "Conversions" + floating 3D Chat */}
-          <div className="relative">
-            <div className="border-2 border-dashed border-gray-300 rounded-sm px-3 py-1">
-              <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-blue-500 leading-[1.05] tracking-tight">
-                Conversions
-              </h1>
-            </div>
-            {/* 3D Chat image — offset clear of the headline text above and to the right */}
-            <div className="absolute -top-2 -right-16 sm:-right-20">
-              <Image
-                src="/images/3D_Chat.png"
-                alt="3D Chat"
-                width={80}
-                height={80}
-                className="object-contain drop-shadow-md"
-                style={{ width: "auto", height: "auto" }}
-              />
+          {/* Headline row 2 — "into [Conversions]" */}
+          <div className="flex items-center justify-center gap-4 mt-1">
+            <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-gray-900 leading-[1.05] tracking-tight">
+              into
+            </h1>
+
+            {/* Dashed box around "Conversions" + floating 3D Chat */}
+            <div className="relative">
+              <div className="border-2 border-dashed border-gray-300 rounded-sm px-3 py-1">
+                <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-blue-500 leading-[1.05] tracking-tight">
+                  Conversions
+                </h1>
+              </div>
+              {/* 3D Chat image — offset clear of the headline text above and to the right */}
+              <div className="absolute -top-2 -right-16 sm:-right-20">
+                <Image
+                  src="/images/3D_Chat.png"
+                  alt="3D Chat"
+                  width={80}
+                  height={80}
+                  className="object-contain drop-shadow-md"
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Sub-headline */}
-        <p className="mt-6 text-lg text-gray-500 max-w-lg leading-relaxed">
-          Track every lead, streamline follow-ups, and close deals faster than ever.
-        </p>
+          {/* Sub-headline */}
+          <p className="mt-6 text-lg text-gray-500 max-w-lg leading-relaxed">
+            Track every lead, streamline follow-ups, and close deals faster than ever.
+          </p>
 
-        {/* CTA buttons */}
-        <div className="flex items-center gap-5 mt-8">
-          <Link
-            href="#"
-            className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg text-sm transition-colors shadow-sm"
-          >
-            Get a Quote
-          </Link>
-          <Link
-            href="#"
-            className="text-sm font-semibold text-gray-700 hover:text-blue-500 transition-colors"
-          >
-            Start Your 30 Days Free Trial
-          </Link>
-        </div>
+          {/* CTA buttons */}
+          <div className="flex items-center gap-5 mt-8">
+            <Link
+              href="#"
+              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg text-sm transition-colors shadow-sm"
+            >
+              Get a Quote
+            </Link>
+            <Link
+              href="#"
+              className="text-sm font-semibold text-gray-700 hover:text-blue-500 transition-colors"
+            >
+              Start Your 14 Days Free Trial
+            </Link>
+          </div>
         </div>
 
         {/* Dashboard screenshot */}
