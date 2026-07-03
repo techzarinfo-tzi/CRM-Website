@@ -54,7 +54,7 @@ export default function MeetTheMinds() {
       {/* ════════════════════════
           WHAT MAKES TZI CRM STAND OUT
       ════════════════════════ */}
-      <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+      <section id="features" className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* ── Left: heading, intro, feature list ── */}

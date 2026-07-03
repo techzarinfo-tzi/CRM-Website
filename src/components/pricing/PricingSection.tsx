@@ -165,7 +165,7 @@ export function PricingSection() {
       <div className="mb-12 mx-auto px-4" style={{ width: '100%', maxWidth: '1211.5px' }}>
         <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
           <div
-            className="absolute h-full bg-blue-500 rounded-full"
+            className="absolute h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
             style={{ width: `${((users - 10) / 40) * 100}%` }}
           />
           <input
@@ -178,7 +178,7 @@ export function PricingSection() {
             className="absolute w-full h-full opacity-0 cursor-pointer z-10"
           />
           <div
-            className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20"
+            className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20 transition-all duration-300 ease-in-out"
             style={{ left: `${((users - 10) / 40) * 100}%` }}
           />
         </div>
