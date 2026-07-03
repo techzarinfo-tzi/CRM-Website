@@ -35,7 +35,7 @@ export default function ThirdEye() {
                   Win Rate Optimization
                 </h3>
                 <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                  Utilize deal-loss insights to strengthen your sales approach, improve close rates and drive sustainable growth.
+                  Turn your losses into future revenue opportunities. Utilize deal-loss insights to strengthen your sales approach, improve close rates, and drive sustainable growth.
                 </p>
               </div>
               <Image
@@ -51,7 +51,7 @@ export default function ThirdEye() {
                 Root Cause Analysis
               </h3>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                Gain visibility into customer rejections, pricing concerns, competitor influence and other factors affecting your sales outcomes.
+                Know exactly why deals were lost. Gain visibility into customer rejections, pricing concerns, competitor influence, and other factors affecting your sales outcomes.
               </p>
             </div>
 
@@ -74,7 +74,7 @@ export default function ThirdEye() {
                 Sales Cycle Gap Detection
               </h3>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                Streamline your sales process, eliminate delays and improve your deal closures.
+                Identify stages where opportunities frequently fall or drop off. Streamline your sales process, eliminate delays and improve your deal closures.
               </p>
               <div className="relative mt-6 flex-1 min-h-[220px] sm:min-h-[260px]">
                 <Image
@@ -92,7 +92,7 @@ export default function ThirdEye() {
                 Loss Pattern Detection
               </h3>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                Identify recurring sales obstacles across your pipeline.
+                Identify recurring sales obstacles across your pipeline. Analyze historical deal data to uncover trends, bottlenecks, and areas that need improvement.
               </p>
               <div className="relative mt-6 flex-1 min-h-[220px] sm:min-h-[260px]">
                 <Image

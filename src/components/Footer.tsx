@@ -48,13 +48,13 @@ export function Footer() {
                 className="object-contain"
               />
             </span>
-            CRM is your all-in-one platform for managing clients, automating workflows and accelerating business growth.
+            CRM is your all-in-one platform for managing clients, automating workflows, and accelerating business growth.
           </h2>
           <Link
             href="#free-trial"
             className="inline-block bg-white text-[#31373D] font-inter font-bold text-[15px] px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
           >
-            Start Your 14 Days Free Trial
+            Start Your 30 Days Free Trial
           </Link>
         </div>
 

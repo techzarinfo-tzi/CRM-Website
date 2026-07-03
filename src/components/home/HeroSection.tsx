@@ -56,7 +56,7 @@ export default function HeroSection() {
 
         {/* Sub-headline */}
         <p className="mt-6 text-lg text-gray-500 max-w-lg leading-relaxed">
-          Track every lead, automate follow-ups and close deals faster than ever
+          Track every lead, streamline follow-ups, and close deals faster than ever.
         </p>
 
         {/* CTA buttons */}
@@ -71,7 +71,7 @@ export default function HeroSection() {
             href="#"
             className="text-sm font-semibold text-gray-700 hover:text-blue-500 transition-colors"
           >
-            Start Your 14 Days Free Trial
+            Start Your 30 Days Free Trial
           </Link>
         </div>
         </div>

@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export default function IntegrationsHero() {
   return (
-    <section className="bg-white pt-16 sm:pt-24 pb-12 overflow-hidden">
+    <section className="bg-white pt-8 sm:pt-12 pb-6 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Top Text Section: Side by side on large screens */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-16 mb-12 sm:mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-8 mb-6 sm:mb-8">
           {/* Heading */}
           <div className="flex-1">
             <h1 className="text-[40px] sm:text-[52px] md:text-[60px] font-bold text-[#1A1A1A] leading-[1.1] tracking-tight">

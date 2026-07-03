@@ -8,11 +8,11 @@ export function ContactInfo() {
         Relationship Starts<br />
         with a <span className="text-[#3b82f6]">Conversation</span>
       </h1>
-      <p className="text-gray-600 text-[17px] mb-12 max-w-[480px] leading-relaxed">
-        Your business is unique and your CRM should be too. Tell us about your requirements and our CRM experts will help you find the right solution.
+      <p className="text-gray-600 text-[17px] mb-6 max-w-[480px] leading-relaxed">
+        Your business is unique, and your CRM should be too. Tell us about your requirements, and our CRM experts will help you find the right solution.
       </p>
 
-      <div className="flex flex-col gap-8 mb-16">
+      <div className="flex flex-col gap-8 mb-8">
         <div className="flex items-center gap-5">
           <div className="w-10 h-10 flex items-center justify-center shrink-0">
             <Image src="/images/contactus/icon1.svg" alt="Private and secure" width={40} height={40} className="w-full h-full object-contain" />

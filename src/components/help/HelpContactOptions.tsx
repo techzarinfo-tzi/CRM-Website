@@ -23,11 +23,11 @@ export default function HelpContactOptions() {
   ];
 
   return (
-    <section className="bg-white py-12 sm:py-16">
+    <section className="bg-white py-6 sm:py-8">
       <div className="mx-auto max-w-[1243px] px-4 sm:px-6 lg:px-8">
 
         {/* Heading */}
-        <div className="mb-12 text-left">
+        <div className="mb-6 text-left">
           <h2 className="text-[46px] font-medium text-[#1A1A1A] leading-[58px] tracking-[-1.2px] mb-4">
             Choose the Way You Need <span className="text-[#3B82F6]">Help</span>
           </h2>

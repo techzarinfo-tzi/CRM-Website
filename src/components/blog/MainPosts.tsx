@@ -72,7 +72,7 @@ export function MainPosts() {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center mt-16 gap-2">
+      <div className="flex items-center justify-center mt-8 gap-2">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <button
             key={page}

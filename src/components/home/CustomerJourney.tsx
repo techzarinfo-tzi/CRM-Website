@@ -64,7 +64,7 @@ export default function CustomerJourney() {
             <span className="text-blue-500">Customer Journey</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed">
-            TZI CRM solutions help businesses streamline customer interactions, organize sales activities and improve team productivity.
+            Our TZI CRM solutions help businesses streamline customer interactions, organize sales activities, and improve team productivity. With powerful sales CRM software, your team can efficiently manage and track the entire sales journey.
           </p>
         </div>
 

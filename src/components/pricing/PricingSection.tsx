@@ -15,7 +15,7 @@ const plans = [
     name: 'Basic',
     users: 10,
     price: 39,
-    tag: '14 Days Free Trial',
+    tag: 'Startups',
     features: [
       'Everything in Basic',
       'Access to standard templates & UI blocks',
@@ -31,7 +31,7 @@ const plans = [
     name: 'Standard',
     users: 20,
     price: 49,
-    tag: 'Go to Plan',
+    tag: 'Small & Medium Businesses',
     features: [
       'Everything in Basic',
       'Access to standard templates & UI blocks',
@@ -47,7 +47,7 @@ const plans = [
     name: 'Advanced',
     users: 30,
     price: 79,
-    tag: 'All features unlocked',
+    tag: 'Large Enterprises',
     features: [
       'Everything in Standard',
       'Access to advanced templates',
@@ -94,9 +94,9 @@ export function PricingSection() {
   };
 
   return (
-    <section className="py-20 px-6 max-w-6xl mx-auto bg-white min-h-screen">
+    <section className="py-10 px-6 max-w-6xl mx-auto bg-white min-h-screen">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-8">
         <h1 className="font-bold text-gray-900 mb-6 flex items-center justify-center gap-2 whitespace-nowrap" style={{ fontSize: '92px', lineHeight: '80px', letterSpacing: '-3.6px' }}>
           <span className="relative inline-block text-[#1a1a1a]">
             Pay
@@ -162,7 +162,7 @@ export function PricingSection() {
       </div>
 
       {/* Slider */}
-      <div className="mb-12 mx-auto px-4" style={{ width: '100%', maxWidth: '1211.5px' }}>
+      <div className="mb-6 mx-auto px-4" style={{ width: '100%', maxWidth: '1211.5px' }}>
         <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
           <div
             className="absolute h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"

@@ -11,7 +11,7 @@ const tabs = [
     label: "Client Details",
     title: "Client Details",
     description:
-      "Get complete customer information, lead history and ongoing deal updates instantly with text on chatbots.",
+      "Get complete customer information, lead history, and ongoing deal updates instantly with text on chatbots.",
     image: clientDetails,
   },
   {
@@ -40,7 +40,7 @@ export default function AiPowered() {
         {/* ── Heading ── */}
         <div className="max-w-2xl">
           <h2 className="text-[28px] sm:text-[36px] md:text-[40px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
-            Our <span className="text-blue-500">AI Powered</span> CRM make Every Task Smarter
+            Our <span className="text-blue-500">AI Powered</span> CRM Make Every Task Smarter
           </h2>
           <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed">
             Need information about a specific client? Our AI-driven CRM comes with an intelligent chatbot that helps you instantly access client details without searching through multiple screens.

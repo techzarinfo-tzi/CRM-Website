@@ -5,6 +5,8 @@ import HelpContactOptions from "@/src/components/help/HelpContactOptions";
 import HelpSupportServices from "@/src/components/help/HelpSupportServices";
 import HelpCTA from "@/src/components/help/HelpCTA";
 
+
+
 export default function HelpPage() {
   return (
     <div className="bg-white">
@@ -13,11 +15,11 @@ export default function HelpPage() {
       {/* <HelpSupportServices /> */}
       {/* <HelpCTA /> */}
 
-      <div className="py-16">
+      <div className="py-8">
         <VoiceOfSuccess />
       </div>
 
-      <div className="py-16">
+      <div className="py-8">
         <AboutFAQ />
       </div>
     </div>

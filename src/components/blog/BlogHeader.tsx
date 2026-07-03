@@ -1,6 +1,6 @@
 export function BlogHeader() {
   return (
-    <div className="flex flex-col lg:flex-row mb-16 gap-16">
+    <div className="flex flex-col lg:flex-row mb-8 gap-8">
       <div className="lg:w-2/3">
         <h1 className="text-4xl md:text-5xl font-medium leading-tight text-gray-900">
           Your Destination for <br />

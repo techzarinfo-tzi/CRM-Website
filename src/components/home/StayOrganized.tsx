@@ -14,7 +14,7 @@ export default function StayOrganized() {
             <span className="text-blue-500">Stay Organized</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-gray-500 leading-relaxed">
-            Managing leads across spreadsheets, emails, messaging apps, and multiple tools can slow down your sales process and also create unnecessary confusion among the team.
+            Managing leads across spreadsheets, emails, messaging apps, and multiple tools can slow down your sales process and also create unnecessary confusion among the team. Your team doesn't need more tools - they need one powerful CRM software for lead management.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function StayOrganized() {
               Follow-Ups &amp; Reminders
             </h3>
             <p className="mt-3 text-sm sm:text-base text-gray-500 leading-relaxed">
-              Advanced lead tracking software will never miss an opportunity with automated emails, task reminders and follow-up notifications that keep deals moving forward.
+              Advanced lead tracking software will never miss an opportunity with emails, task reminders, and follow-up notifications that keep deals moving forward.
             </p>
             <div className="relative mt-6 flex-1 aspect-[606/359] rounded-xl overflow-hidden">
               <Image

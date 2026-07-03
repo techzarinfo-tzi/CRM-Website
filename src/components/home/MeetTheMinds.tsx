@@ -63,7 +63,7 @@ export default function MeetTheMinds() {
                 What Makes <span className="text-blue-500">TZI CRM</span> Stand Out
               </h2>
               <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed max-w-xl">
-                Every business has unique objectives, and CRM should be built to support them. TZI CRM goes beyond traditional CRM solutions by combining versatile features. TZI CRM provides everything you need to manage your business more efficiently and stay ahead of the competition.
+                Every business has unique objectives, and CRM should be built to support them. TZI CRM goes beyond traditional custom CRM solutions by combining versatile features. TZI CRM provides everything you need to manage your business more efficiently and stay ahead of the competition.
               </p>
 
               <div className="mt-8 sm:mt-10 space-y-7 sm:space-y-8">
