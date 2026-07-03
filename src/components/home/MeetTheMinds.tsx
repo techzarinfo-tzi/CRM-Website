@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import meetTheMinds from "@/src/assets/images/meet_the_minds.png";
-import quickActions from "@/src/assets/images/quick_actions.png";
 
 const features = [
   {
@@ -31,6 +33,44 @@ const features = [
 ];
 
 export default function MeetTheMinds() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleScroll = () => {
+      // Disable parallax/spread scrolling effect on tablet and mobile viewports
+      if (window.innerWidth < 1024) {
+        setScrollProgress(0);
+        return;
+      }
+      
+      const element = document.getElementById("stand-out-graphics");
+      if (!element) return;
+
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Calculate relative scroll progress when the section is in view
+      const start = rect.top - viewportHeight;
+      const total = rect.height + viewportHeight;
+
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        const progress = (viewportHeight - rect.top) / total;
+        setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial load execution
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Compute scroll-triggered layout positions for desktop, while keeping them static on mobile/tablet
+  const quickActionsTransform = `rotate(2.46deg) translate(${-scrollProgress * 85}px, ${-scrollProgress * 85}px)`;
+  const classificationTransform = `rotate(-2.13deg) translate(${scrollProgress * 85}px, ${-scrollProgress * 85}px)`;
+  const barChartTransform = `rotate(4.74deg) translate(${scrollProgress * 45}px, ${scrollProgress * 65}px)`;
+
   return (
     <>
       {/* ════════════════════════
@@ -52,46 +92,164 @@ export default function MeetTheMinds() {
       </section>
 
       {/* ════════════════════════
-          WHAT MAKES TZI CRM STAND OUT
+           WHAT MAKES TZI CRM STAND OUT
       ════════════════════════ */}
-      <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+      <section className="relative bg-white pt-10 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* ── Left: heading, intro, feature list ── */}
-            <div>
-              <h2 className="text-[28px] sm:text-[36px] md:text-[40px] lg:text-[44px] font-extrabold text-gray-900 leading-[1.15] tracking-tight">
-                What Makes <span className="text-blue-500">TZI CRM</span> Stand Out
-              </h2>
-              <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed max-w-xl">
-                Every business has unique objectives, and CRM should be built to support them. TZI CRM goes beyond traditional CRM solutions by combining versatile features. TZI CRM provides everything you need to manage your business more efficiently and stay ahead of the competition.
-              </p>
+          
+          {/* ── Top: Full-Width Heading & Description ── */}
+          <div className="flex flex-col gap-[16px] w-full lg:w-[770px] lg:h-[202px] mb-12 sm:mb-16">
+            <h2 
+              className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
+              style={{
+                fontFamily: 'Geist, sans-serif',
+                fontWeight: 500,
+                lineHeight: '58px',
+                letterSpacing: '-1.2px'
+              }}
+            >
+              What Makes <span className="text-blue-500">TZI CRM</span> Stand Out
+            </h2>
+            <p 
+              className="text-base sm:text-[18px] lg:text-[22px]"
+              style={{
+                fontFamily: 'Geist, sans-serif',
+                fontWeight: 400,
+                lineHeight: '32px',
+                letterSpacing: '-0.3px',
+                color: '#555E67'
+              }}
+            >
+              Every business has unique objectives, and CRM should be built to support them. TZI CRM goes beyond traditional CRM solutions by combining versatile features. TZI CRM provides everything you need to manage your business more efficiently and stay ahead of the competition.
+            </p>
+          </div>
 
-              <div className="mt-8 sm:mt-10 space-y-7 sm:space-y-8">
-                {features.map((feature) => (
-                  <div key={feature.title}>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-xl">
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+          {/* ── Bottom Grid: Feature List (Left) + Floating Graphics (Right) ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            
+            {/* Left Column: Feature List */}
+            <div className="lg:col-span-6 flex flex-col gap-8">
+              {features.map((feature) => (
+                <div 
+                  key={feature.title}
+                  className="flex flex-col gap-[19px] w-full lg:w-[507px] lg:min-h-[137px]"
+                >
+                  <h3 
+                    style={{
+                      fontFamily: 'Inter, sans-serif',
+                      fontWeight: 700,
+                      fontSize: '18px',
+                      lineHeight: '100%',
+                      color: '#000000'
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p 
+                    style={{
+                      fontFamily: 'Inter, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '14px',
+                      lineHeight: '169%',
+                      color: '#818181'
+                    }}
+                  >
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            {/* ── Right: floating product graphic ── */}
-            <div className="relative mx-auto w-full flex justify-center">
-              <div className="relative w-full max-w-md lg:max-w-xl aspect-[702/746]">
-                <Image
-                  src={quickActions}
-                  alt="Quick actions, deal classification and pipeline statistics widgets"
-                  fill
-                  className="object-contain"
-                  sizes="(min-width: 1024px) 600px, 90vw"
+            {/* Right Column: Floating Graphics Stack */}
+            <div className="lg:col-span-6 w-full flex justify-center lg:justify-end">
+              <div 
+                id="stand-out-graphics"
+                className="relative w-full max-w-[550px] lg:max-w-none h-[540px] md:h-[600px] lg:h-[600px] scale-90 sm:scale-100 origin-center"
+              >
+                {/* Background Blue Card */}
+                <div 
+                  className="absolute hidden lg:block"
+                  style={{
+                    width: '512.85px',
+                    height: '604.28px',
+                    transform: 'rotate(-6.04deg)',
+                    opacity: 1,
+                    top: '-1.37px',
+                    left: '16.88px',
+                    borderRadius: '32px',
+                    background: '#E9F2FF',
+                    zIndex: 0
+                  }}
                 />
+
+                {/* 1. Quick Actions image */}
+                <div 
+                  className="absolute shadow-xl overflow-hidden bg-white transition-transform duration-100 ease-out"
+                  style={{
+                    width: '383.92px',
+                    height: '426.97px',
+                    transform: quickActionsTransform,
+                    borderRadius: '32px',
+                    top: '44px',
+                    left: '1%',
+                    zIndex: 10
+                  }}
+                >
+                  <Image
+                    src="/images/home_images/Quick Actions.svg"
+                    alt="Quick Actions"
+                    fill
+                    className="object-contain p-[28px]"
+                    style={{left:"-7%"}}
+                    priority
+                  />
+                </div>
+
+                {/* 2. Classification image */}
+                <div 
+                  className="absolute shadow-xl overflow-hidden bg-white transition-transform duration-100 ease-out z-30"
+                  style={{
+                    width: '292.99px',
+                    height: '283.99px',
+                    transform: classificationTransform,
+                    borderRadius: '20px',
+                    top: '148px',
+                    left: '42%'
+                  }}
+                >
+                  <Image
+                    src="/images/home_images/Classification.svg"
+                    alt="Classification"
+                    fill
+                    className="object-contain p-2"
+                    priority
+                  />
+                </div>
+
+                {/* 3. Basic Bar Chart image */}
+                <div 
+                  className="absolute shadow-xl overflow-hidden bg-white transition-transform duration-100 ease-out z-20"
+                  style={{
+                    width: '350.68px',
+                    height: '235.70px',
+                    transform: barChartTransform,
+                    borderRadius: '16px',
+                    top: '350px',
+                    left: '20%'
+                  }}
+                >
+                  <Image
+                    src="/images/home_images/Basic Bar Chart.svg"
+                    alt="Basic Bar Chart"
+                    fill
+                    className="object-contain p-1"
+                    priority
+                  />
+                </div>
+
               </div>
             </div>
+            
           </div>
         </div>
       </section>

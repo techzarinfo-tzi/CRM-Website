@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import clientDetails from "@/src/assets/images/client_details.png";
-import whatsappDeals from "@/src/assets/images/whatsapp_deals.png";
-import voiceCommands from "@/src/assets/images/voice_commands.png";
 
 const tabs = [
   {
@@ -12,21 +9,21 @@ const tabs = [
     title: "Client Details",
     description:
       "Get complete customer information, lead history and ongoing deal updates instantly with text on chatbots.",
-    image: clientDetails,
+    image: "/images/home_images/Client_Details.svg",
   },
   {
     label: "Whatsapp & Phone Calls",
     title: "WhatsApp & Phone Calls",
     description:
       "Sales people can make direct WhatsApp messages and phone calls to customers without leaving the CRM platform.",
-    image: whatsappDeals,
+    image: "/images/home_images/Whatsapp (2).svg",
   },
   {
     label: "Voice Commands",
     title: "Voice Commands",
     description:
       'Use voice commands such as "Show me this customer\'s details" or "What\'s the status of this deal?" and get instant responses from the AI assistant.',
-    image: voiceCommands,
+    image: "/images/home_images/Voice_Commands.svg",
   },
 ];
 
@@ -35,63 +32,112 @@ export default function AiPowered() {
   const active = tabs[activeTab];
 
   return (
-    <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+    <section className="relative bg-white pt-10 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
         {/* ── Heading ── */}
-        <div className="max-w-2xl">
-          <h2 className="text-[28px] sm:text-[36px] md:text-[40px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
-            Our <span className="text-blue-500">AI Powered</span> CRM make Every Task Smarter
+        <div className="flex flex-col gap-[16px] w-full lg:w-[1251px] mb-12 sm:mb-16">
+          <h2 
+            className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 500,
+              lineHeight: '58px',
+              letterSpacing: '-1.2px'
+            }}
+          >
+            Our <span className="text-blue-500">AI Powered</span> CRM <br className="hidden sm:inline" />
+            make Every Task Smarter
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed">
+          <p 
+            className="text-base sm:text-[18px] lg:text-[22px] max-w-3xl"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 400,
+              lineHeight: '32px',
+              letterSpacing: '-0.3px',
+              color: '#31373D'
+            }}
+          >
             Need information about a specific client? Our AI-driven CRM comes with an intelligent chatbot that helps you instantly access client details without searching through multiple screens.
           </p>
         </div>
 
-        {/* ── Tabs ── */}
-        <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8 border-b border-gray-100">
-          {tabs.map((tab, index) => {
-            const isActive = index === activeTab;
-            return (
-              <button
-                key={tab.label}
-                type="button"
-                onClick={() => setActiveTab(index)}
-                className={`relative pb-3 text-sm sm:text-base font-medium transition-colors cursor-pointer ${
-                  isActive
-                    ? "text-gray-900 font-semibold"
-                    : "text-gray-400 hover:text-gray-600"
-                }`}
+        {/* ── Main Tab Card Container ── */}
+        <div className="rounded-[24px] border border-gray-100 bg-[#F7F8FA] shadow-sm p-6 sm:p-8 lg:p-10 w-full max-w-[1251px] mx-auto min-h-[410px] flex flex-col justify-between">
+          
+          {/* Tabs Navigation */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 border-b border-gray-200/80 pb-3">
+            {tabs.map((tab, index) => {
+              const isActive = index === activeTab;
+              return (
+                <button
+                  key={tab.label}
+                  type="button"
+                  onClick={() => setActiveTab(index)}
+                  className={`relative pb-3 text-sm sm:text-base font-medium transition-colors cursor-pointer ${
+                    isActive
+                      ? "text-gray-950 font-semibold"
+                      : "text-gray-400 hover:text-gray-600"
+                  }`}
+                >
+                  {tab.label}
+                  {isActive && (
+                    <span className="absolute left-0 -bottom-px h-[3px] w-full bg-blue-500 rounded-full" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Tab Content Display Area */}
+          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+            
+            {/* Left: Illustration Image */}
+            <div className="relative ml-40 w-full max-w-[450px] aspect-[401/342] flex items-center justify-center">
+              <div className="relative w-full h-full">
+                <Image
+                  src={active.image}
+                  alt={active.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 450px"
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Right: Content Text */}
+            <div className="flex-1 text-left max-w-xl">
+              <h3 
+                className="text-gray-900"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '24px',
+                  lineHeight: '32px',
+                  letterSpacing: '-0.4px'
+                }}
               >
-                {tab.label}
-                {isActive && (
-                  <span className="absolute left-0 -bottom-px h-0.5 w-full bg-gray-900" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ── Tab content ── */}
-        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12">
-          <div className="relative w-full max-w-[400px] sm:w-[380px] lg:w-[440px] aspect-[401/342] rounded-3xl overflow-hidden shrink-0">
-            <Image
-              src={active.image}
-              alt={active.title}
-              fill
-              className="object-cover scale-110"
-              sizes="440px"
-            />
-          </div>
-
-          <div className="text-center sm:text-left max-w-sm">
-            <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
-              {active.title}
-            </h3>
-            <p className="mt-3 text-sm sm:text-base text-gray-500 leading-relaxed">
-              {active.description}
-            </p>
+                {active.title}
+              </h3>
+              <p 
+                className="mt-4 leading-relaxed"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  lineHeight: '26px',
+                  color: '#555E67'
+                }}
+              >
+                {active.description}
+              </p>
+            </div>
+            
           </div>
         </div>
+
       </div>
     </section>
   );
