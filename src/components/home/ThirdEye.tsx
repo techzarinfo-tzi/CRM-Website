@@ -61,6 +61,7 @@ export default function ThirdEye() {
                 src={rootCause}
                 alt="High-value lost deals breakdown"
                 fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
                 className="object-contain object-top"
               />
             </div>
@@ -81,6 +82,7 @@ export default function ThirdEye() {
                   src={salesCycles}
                   alt="Stage analysis - where deals are lost"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain object-bottom"
                 />
               </div>
@@ -99,6 +101,7 @@ export default function ThirdEye() {
                   src={lossPattern}
                   alt="Loss pattern insight cards"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain object-bottom"
                 />
               </div>

@@ -46,6 +46,7 @@ export function Footer() {
                 width={85}
                 height={40}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </span>
             CRM is your all-in-one platform for managing clients, automating workflows, and accelerating business growth.
