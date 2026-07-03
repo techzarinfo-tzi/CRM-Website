@@ -49,7 +49,7 @@ export function Footer() {
                 style={{ width: "auto", height: "auto" }}
               />
             </span>
-            CRM is your all-in-one platform for managing clients, automating workflows, and accelerating business growth.
+            CRM is your all-in-one platform for managing clients, streamlining workflows, and accelerating business growth.
           </h2>
           <Link
             href="#free-trial"
