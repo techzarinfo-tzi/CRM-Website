@@ -7,8 +7,10 @@ import Image from "next/image";
 export default function BusinessTools() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0.5); // Default to center
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     if (typeof window === "undefined") return;
 
     const handleScroll = () => {
@@ -32,9 +34,9 @@ export default function BusinessTools() {
   }, []);
 
   // Parallax scroll translations (images rise from bottom-to-top as user scrolls down)
-  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
-  
   const getParallaxStyle = (multiplier: number) => {
+    if (!isMounted) return {};
+    const isDesktop = window.innerWidth >= 768;
     if (!isDesktop) return {};
     // True parallax: offset moves from positive (down) to negative (up)
     const translateY = (0.5 - scrollProgress) * multiplier;
@@ -49,7 +51,7 @@ export default function BusinessTools() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ── Heading ── */}
-        <div className="flex flex-col gap-[16px] w-full lg:w-[1251px] mb-8 sm:mb-12">
+        <div className="flex flex-col gap-[16px] w-full lg:w-[1251px] mb-4 sm:mb-12">
           <h2 
             className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
             style={{
@@ -116,7 +118,7 @@ export default function BusinessTools() {
 
           {/* Center: Integrations panel card */}
           <div
-            className="absolute left-1/2 top-[8%] w-[90%] sm:w-[34%] max-w-[720px]"
+            className="absolute left-1/2 top-[8%] w-[68%] sm:w-[45%] md:w-[34%] lg:w-[44%] max-w-[720px]"
             style={{
               ...getParallaxStyle(80), // Subtle translation for depth layer separation
               left: '50%',

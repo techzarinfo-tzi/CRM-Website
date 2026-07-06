@@ -125,6 +125,7 @@ export default function YourQuestions() {
               const isActive = tab === activeTab;
               return (
                 <button
+                  suppressHydrationWarning
                   key={tab}
                   type="button"
                   onClick={() => handleTabChange(tab)}
@@ -159,6 +160,7 @@ export default function YourQuestions() {
                 className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden"
               >
                 <button
+                  suppressHydrationWarning
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
                   className="w-full flex items-start justify-between gap-4 text-left p-5 sm:p-6 cursor-pointer"

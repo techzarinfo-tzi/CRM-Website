@@ -12,10 +12,11 @@ export default function HeroSection() {
       ════════════════════════ */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 pt-8 pb-16">
 
-        {/* ── Frame: wraps only the text content above, stops before the dashboard screenshot ── */}
         <div className="relative w-full flex flex-col items-center">
           {/* Dashed border frame */}
-          <div className="absolute -top-6 left-[8%] right-[8%] -bottom-6 border border-dashed border-gray-200 pointer-events-none" />
+          <div 
+            className="absolute -top-6 left-2 right-2 md:left-[4%] md:right-[4%] -bottom-6 border border-dashed border-gray-300 pointer-events-none " 
+          />
 
           {/* Trust badge */}
           <div 
@@ -52,7 +53,7 @@ export default function HeroSection() {
           </h1>
 
           {/* Headline row 2 — "into [Conversions]" */}
-          <div className="flex flex-wrap items-center justify-center gap-x-0 mt-1 lg:-mt-2">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-x-0 mt-1 lg:-mt-2 lg:gap-x-0.1">
             <h1 
               className="font-heading font-bold text-[40px] md:text-[68px] lg:text-[92px] leading-tight lg:leading-[105px] tracking-tight lg:tracking-[-3.6px]"
               style={{
@@ -63,7 +64,7 @@ export default function HeroSection() {
             </h1>
 
             {/* Component 1.svg in place of Conversions text */}
-            <div className="relative inline-block lg:-mt-2 -ml-2 md:-ml-4 lg:ml-0">
+            <div className="relative inline-block lg:-mt-2 ml-0 lg:-ml-8 mt-0 md:mt-0">
               <Image
                 src="/images/Component 1.svg"
                 alt="Conversions"
@@ -92,7 +93,7 @@ export default function HeroSection() {
           </p>
 
           {/* CTA buttons */}
-          <div className="flex items-center gap-5 mt-8">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 mt-8 w-full sm:w-auto">
             <Link
               href="#"
               className="font-semibold text-white transition-all shadow-sm"
@@ -144,7 +145,7 @@ export default function HeroSection() {
         </div>
 
         {/* Dashboard screenshot */}
-        <div className="mt-8 w-full max-w-5xl mx-auto">
+        <div className="mt-16 w-full max-w-5xl mx-auto">
           <div className="relative rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-gray-50">
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">

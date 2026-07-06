@@ -27,7 +27,7 @@ export function Navbar() {
           <Link href="#" className={`${isActive("/features") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Features</Link>
         </li>
         <li>
-          <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
+          <button suppressHydrationWarning className="flex items-center gap-1 hover:text-blue-500 transition-colors">
             Solutions
             <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -38,7 +38,7 @@ export function Navbar() {
           <Link href="/integrations" className={`${isActive("/integrations") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Integrations</Link>
         </li>
         <li className="relative group">
-          <button className={`flex items-center gap-1 ${pathname.includes("/about") || pathname.includes("/contact") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors py-4`}>
+          <button suppressHydrationWarning className={`flex items-center gap-1 ${pathname.includes("/about") || pathname.includes("/contact") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors py-4`}>
             Company
             <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
