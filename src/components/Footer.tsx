@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const SocialIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -22,6 +23,10 @@ const SocialIcon = ({ type }: { type: string }) => {
       return (
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
       );
+    case 'youtube':
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" /><path d="m10 15 5-3-5-3z" /></svg>
+      );
     default:
       return null;
   }
@@ -29,17 +34,26 @@ const SocialIcon = ({ type }: { type: string }) => {
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[#3fa5ff] via-[#378ce7] to-[#1c55d5] text-white py-16 px-4 sm:px-6 lg:px-8 mt-auto">
+    <footer className="text-white py-16 px-4 sm:px-6 lg:px-8 mt-auto" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Top Section */}
-        <div className="text-center max-w-4xl mb-8">
+        <div className="text-center max-w-4xl mb-8 mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-8">
-            <span className="font-extrabold mr-2">TZI</span>
-            CRM is your all-in-one platform for managing clients, automating workflows and accelerating business growth.
+            <span className="inline-block align-middle mr-3 -mt-2">
+              <Image
+                src="/images/footer logo.png"
+                alt="TZI Footer Logo"
+                width={85}
+                height={40}
+                className="object-contain"
+                style={{ width: "auto", height: "auto" }}
+              />
+            </span>
+            CRM is your all-in-one platform for managing clients, streamlining workflows, and accelerating business growth.
           </h2>
           <Link
             href="#free-trial"
-            className="inline-block bg-white text-[#31373D] font-inter-semibold text-sm px-6 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            className="inline-block bg-white text-[#31373D] font-inter font-bold text-[15px] px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
           >
             Start Your 14 Days Free Trial
           </Link>
@@ -61,17 +75,16 @@ export function Footer() {
             <ul className="space-y-3">
               <li><Link href="/about" className="text-white/80 hover:text-white transition-colors text-sm">About Us</Link></li>
               <li><Link href="/contact" className="text-white/80 hover:text-white transition-colors text-sm">Contact Us</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Blog</Link></li>
+              <li><Link href="/blog" className="text-white/80 hover:text-white transition-colors text-sm">Blog</Link></li>
               <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-lg mb-4">Solutions</h3>
+            <h3 className="font-semibold text-lg mb-4">Support</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">CRM for Small Business</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">CRM for Startups</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">CRM for Enterprises</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Sales CRM</Link></li>
+              <li><Link href="tel:+919952885799" className="text-white/80 hover:text-white transition-colors text-sm">+91 9952885799</Link></li>
+              <li><Link href="mailto:sales@techzarinfo.com" className="text-white/80 hover:text-white transition-colors text-sm">sales@techzarinfo.com</Link></li>
+              <li><span className="text-white/80 text-sm block leading-relaxed">No.3D, M.S Tower , 4th Floor,<br />Convent Rd, Cantonment,<br />Tiruchirappalli- 620001.</span></li>
             </ul>
           </div>
           <div>
@@ -81,6 +94,7 @@ export function Footer() {
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="instagram" /> Instagram</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="facebook" /> Facebook</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="twitter" /> Twitter</Link></li>
+              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="youtube" /> Youtube</Link></li>
             </ul>
           </div>
         </div>

@@ -102,28 +102,46 @@ export default function YourQuestions() {
   };
 
   return (
-    <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-white pt-2 sm:pt-4 lg:pt-6 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        
         {/* ── Heading ── */}
-        <h2 className="text-center text-[28px] sm:text-[36px] md:text-[40px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
+        <h2 
+          className="text-center text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight mb-5 sm:mb-6"
+          style={{
+            fontFamily: 'Geist, sans-serif',
+            fontWeight: 500,
+            lineHeight: '58px',
+            letterSpacing: '-2px'
+          }}
+        >
           Your Questions, Our Expert Answers
         </h2>
 
-        {/* ── Tabs ── */}
-        <div className="mt-6 sm:mt-8 flex justify-center">
-          <div className="inline-flex flex-wrap justify-center items-center gap-1 rounded-full border border-gray-100 bg-gray-50 p-1">
+        {/* ── Tabs Navigation ── */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex flex-wrap justify-center items-center gap-2 rounded-xl border border-gray-100 bg-[#F3F4F6]/50 p-1.5">
             {tabs.map((tab) => {
               const isActive = tab === activeTab;
               return (
                 <button
+                  suppressHydrationWarning
                   key={tab}
                   type="button"
                   onClick={() => handleTabChange(tab)}
-                  className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                  className={`h-[36px] px-5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center justify-center ${
                     isActive
-                      ? "bg-blue-500 text-white shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "text-white"
+                      : "text-gray-500 hover:text-gray-900 bg-transparent"
                   }`}
+                  style={
+                    isActive
+                      ? {
+                          background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
+                          boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
+                        }
+                      : {}
+                  }
                 >
                   {tab}
                 </button>
@@ -132,8 +150,8 @@ export default function YourQuestions() {
           </div>
         </div>
 
-        {/* ── Accordion ── */}
-        <div className="mt-8 sm:mt-10 space-y-4">
+        {/* ── Accordion List ── */}
+        <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = index === openIndex;
             return (
@@ -142,6 +160,7 @@ export default function YourQuestions() {
                 className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden"
               >
                 <button
+                  suppressHydrationWarning
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
                   className="w-full flex items-start justify-between gap-4 text-left p-5 sm:p-6 cursor-pointer"

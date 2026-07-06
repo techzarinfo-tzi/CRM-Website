@@ -47,7 +47,7 @@ export function RecommendedReads() {
   return (
     <div className="lg:w-1/3">
       <h3 className="text-xl font-bold mb-8">Recommended Reads</h3>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6">
         {recommendedPosts.map((post) => (
           <div key={post.id} className="flex items-center gap-5 group cursor-pointer">
             <div className="relative w-28 h-28 shrink-0 rounded-2xl overflow-hidden bg-gray-100">

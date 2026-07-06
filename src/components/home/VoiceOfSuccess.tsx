@@ -121,7 +121,7 @@ function MarqueeColumn({
 
 export default function VoiceOfSuccess() {
   return (
-    <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+    <section className="relative bg-white pt-10 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
       <style>{`
         @keyframes voice-marquee-up {
           from { transform: translateY(0); }
@@ -134,12 +134,30 @@ export default function VoiceOfSuccess() {
       `}</style>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
         {/* ── Heading ── */}
-        <div className="max-w-2xl">
-          <h2 className="text-[28px] sm:text-[36px] md:text-[40px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
+        <div className="flex flex-col gap-[16px] w-full lg:w-[1251px] mb-12 sm:mb-16">
+          <h2 
+            className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 500,
+              lineHeight: '58px',
+              letterSpacing: '-1.2px'
+            }}
+          >
             Hear the Voices of <span className="text-blue-500">Success</span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed">
+          <p 
+            className="text-base sm:text-[18px] lg:text-[22px] max-w-3xl"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 400,
+              lineHeight: '32px',
+              letterSpacing: '-0.3px',
+              color: '#555E67'
+            }}
+          >
             Every win has a story. Listen to the voices of success and discover the stories behind remarkable growth.
           </p>
         </div>
@@ -158,7 +176,7 @@ export default function VoiceOfSuccess() {
                 </span>
               </div>
               <p className="mt-3 text-xs sm:text-sm font-medium text-gray-800 leading-relaxed">
-                Hi! I&apos;m Zia. Based on feedback from clients, here are the key areas where this CRM can make the biggest impact:
+                Hi! I&apos;m Ziya. Based on feedback from clients, here are the key areas where this CRM can make the biggest impact:
               </p>
               <ul className="mt-3 space-y-1.5 text-xs sm:text-sm text-gray-500">
                 <li className="flex items-start gap-1.5">
@@ -176,8 +194,9 @@ export default function VoiceOfSuccess() {
               </ul>
             </div>
 
-            <div className="absolute -bottom-8 -right-4 sm:-right-10 w-[130px] sm:w-[160px]">
-              <Image src={robot} alt="Zia AI assistant robot" className="w-full h-auto object-contain" priority />
+            {/* Zia AI assistant robot - shifted further to the right side */}
+            <div className="absolute -bottom-8 -right-12 sm:-right-20 lg:-right-24 w-[140px] sm:w-[180px]">
+              <Image src={robot} alt="Zia AI assistant robot" className="w-full h-auto object-contain animate-float" priority />
             </div>
           </div>
 

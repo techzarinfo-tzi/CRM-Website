@@ -2,10 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import customerJourney from "@/src/assets/images/customer_journey.png";
-import dealQualificationImg from "@/src/assets/images/deal_qualification.png";
-import proposalSentImg from "@/src/assets/images/proposal_sent.png";
-import invoiceSent from "@/src/assets/images/invoice_sent.png";
 import invoiceSentAnimi from "@/src/assets/images/Invoice sent_animi.png";
 import dealWonAnimation from "@/src/assets/images/Deal won Animation start.png";
 import leadCaptureIcon from "@/src/assets/images/lead_capture_icon.png";
@@ -34,10 +30,10 @@ const tabs = [
 ];
 
 const stages = [
-  { tab: 0, image: customerJourney, alt: "Lead capture dashboard", button: null as null | "invoice" | "won" },
-  { tab: 1, image: dealQualificationImg, alt: "Deal qualification details", button: null },
-  { tab: 2, image: proposalSentImg, alt: "Proposal sent form", button: "invoice" },
-  { tab: 2, image: invoiceSent, alt: "Invoice sent, closed won deal", button: "won" },
+  { tab: 0, image: "/images/home_images/Leads.svg", alt: "Lead capture dashboard", button: null as null | "invoice" | "won" },
+  { tab: 1, image: "/images/home_images/Deal Qualification.svg", alt: "Deal qualification details", button: null },
+  { tab: 2, image: "/images/home_images/Proposal_Sent.svg", alt: "Proposal sent form", button: "invoice" },
+  { tab: 2, image: "/images/home_images/Deals Won.svg", alt: "Invoice sent, closed won deal", button: "won" },
 ];
 
 const STAGE_INTERVAL = 3200;
@@ -55,27 +51,48 @@ export default function CustomerJourney() {
   const activeTab = stages[stageIndex].tab;
 
   return (
-    <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+    <section className="relative bg-white pt-14 sm:pt-4 lg:pt-0 pb-10 sm:pb-12 lg:pb-14 lg:mb-4 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
         {/* ── Heading ── */}
-        <div className="max-w-2xl">
-          <h2 className="text-[28px] sm:text-[36px] md:text-[40px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
+        <div 
+          className="flex flex-col gap-[16px] w-full lg:w-[675px] lg:h-[196px] mb-12 sm:mb-16 justify-between"
+        >
+          <h2 
+            className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 500,
+              lineHeight: '58px',
+              letterSpacing: '-1.2px'
+            }}
+          >
             Stay Connected Every Step of the{" "}
             <span className="text-blue-500">Customer Journey</span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed">
-            TZI CRM solutions help businesses streamline customer interactions, organize sales activities and improve team productivity.
+          <p 
+            style={{
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 500,
+              fontSize: '16px',
+              lineHeight: '24px',
+              letterSpacing: '-0.2px',
+              color: '#555E67'
+            }}
+          >
+            Once the client fills out a form from any of your marketing channels, their details are automatically captured and added to the CRM.
           </p>
         </div>
 
         {/* ── Journey card: everything happens in this one card ── */}
-        <div className="mt-10 sm:mt-12 rounded-2xl border border-gray-100 bg-white shadow-sm p-6 sm:p-8">
+        <div className="mt-10 sm:mt-12 rounded-[24px] border border-gray-100 bg-[#F7F8FA] shadow-sm p-6 sm:p-8">
           {/* Steps */}
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
             {tabs.map((tab, index) => {
               const isActive = index === activeTab;
               return (
                 <button
+                  suppressHydrationWarning
                   key={tab.title}
                   type="button"
                   onClick={() =>
@@ -142,7 +159,7 @@ export default function CustomerJourney() {
           </div>
 
           {/* Auto-swapping product screenshot */}
-          <div className="relative aspect-[1026/400] rounded-xl overflow-hidden bg-gray-50">
+          <div className="relative aspect-[1026/400] rounded-xl overflow-hidden bg-white">
             {stages.map((stage, index) => (
               <div
                 key={stage.alt}
