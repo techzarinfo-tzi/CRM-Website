@@ -77,7 +77,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setIsFreeTrialOpen(true)}
-          className="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all"
+          className="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all cursor-pointer"
         >
           Free Trial
         </button>
@@ -146,7 +146,7 @@ export function Navbar() {
                 setIsMobileMenuOpen(false);
                 setIsFreeTrialOpen(true);
               }}
-              className="w-full px-5 py-3 text-center text-sm font-medium text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all"
+              className="w-full px-5 py-3 text-center text-sm font-medium text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all cursor-pointer"
             >
               Free Trial
             </button>

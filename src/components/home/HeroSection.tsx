@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FreeTrial from "./FreeTrial";
 
 export default function HeroSection() {
+  const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen bg-white overflow-hidden">
 
@@ -117,9 +121,10 @@ export default function HeroSection() {
             >
               Get a Quote
             </Link>
-            <Link
-              href="#"
-              className="font-semibold text-black transition-all"
+            <button
+              type="button"
+              onClick={() => setIsFreeTrialOpen(true)}
+              className="font-semibold text-black transition-all cursor-pointer"
               style={{
                 width: '243px',
                 height: '48px',
@@ -140,7 +145,7 @@ export default function HeroSection() {
               }}
             >
               Start Your 14 Days Free Trial
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -167,6 +172,8 @@ export default function HeroSection() {
         </div>
 
       </div>
+
+      <FreeTrial isOpen={isFreeTrialOpen} onClose={() => setIsFreeTrialOpen(false)} />
     </section>
   );
 }
