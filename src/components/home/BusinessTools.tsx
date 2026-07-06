@@ -7,8 +7,10 @@ import Image from "next/image";
 export default function BusinessTools() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0.5); // Default to center
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     if (typeof window === "undefined") return;
 
     const handleScroll = () => {
@@ -32,7 +34,7 @@ export default function BusinessTools() {
   }, []);
 
   // Parallax scroll translations (images rise from bottom-to-top as user scrolls down)
-  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
+  const isDesktop = isMounted && typeof window !== "undefined" && window.innerWidth >= 768;
   
   const getParallaxStyle = (multiplier: number) => {
     if (!isDesktop) return {};

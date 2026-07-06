@@ -3,10 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import integrationsImage from "@/src/assets/images/integrations_image.png";
-import metaChain from "@/src/assets/images/meta_3img.png";
-import mailChain from "@/src/assets/images/mail_2img.png";
-import whatsappChain from "@/src/assets/images/whatsapp_2img.png";
-import callChain from "@/src/assets/images/call_3img.png";
 import Link from "next/link";
 
 export default function IntegrationsDashboard() {
@@ -58,20 +54,20 @@ export default function IntegrationsDashboard() {
       >
         {/* Inner frame: caps how far apart the icons spread on ultra-wide screens */}
         <div className="relative mx-auto h-full max-w-[1400px]">
-          {/* Meta / LinkedIn / Skype chain — far left */}
+          
+          {/* Background network curves and bubbles: Meta_image.svg */}
           <div
-            className={`hidden sm:block absolute left-[5%] top-[7%] w-[20.5%] max-w-[364px] ${reveal("")}`}
+            className="absolute inset-0 w-full h-full"
+            style={{ zIndex: 1 }}
           >
-            <Image src={metaChain} alt="" className="w-full h-auto object-contain" />
+            <Image 
+              src="/images/home_images/Meta_image.svg" 
+              alt="Connected network curves" 
+              fill 
+              className="object-contain scale-105"
+              priority 
+            />
           </div>
-
-          {/* Mail / video call chain */}
-          <div
-            className={`hidden sm:block absolute left-[22%] top-[17%] w-[7.5%] max-w-[145px] ${reveal("delay-100")}`}
-          >
-            <Image src={mailChain} alt="" className="w-full h-auto object-contain" />
-          </div>
-
           {/* Center: Integrations panel */}
           <div
             className={`absolute left-1/2 top-[8%] -translate-x-1/2 w-[90%] sm:w-[34%] max-w-[720px] ${reveal("delay-150")}`}
@@ -82,20 +78,6 @@ export default function IntegrationsDashboard() {
               className="w-full h-auto object-contain drop-shadow-xl rounded-2xl"
               priority
             />
-          </div>
-
-          {/* WhatsApp / referral chain */}
-          <div
-            className={`hidden sm:block absolute right-[19.5%] top-[17%] w-[7.5%] max-w-[145px] ${reveal("delay-200")}`}
-          >
-            <Image src={whatsappChain} alt="" className="w-full h-auto object-contain" />
-          </div>
-
-          {/* Call / classifieds / directory chain — far right */}
-          <div
-            className={`hidden sm:block absolute right-[8%] top-[7%] w-[14%] max-w-[245px] ${reveal("delay-300")}`}
-          >
-            <Image src={callChain} alt="" className="w-full h-auto object-contain" />
           </div>
         </div>
       </div>
