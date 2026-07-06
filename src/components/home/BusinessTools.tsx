@@ -2,103 +2,138 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import integrationsImage from "@/src/assets/images/integrations_image.png";
-import metaChain from "@/src/assets/images/meta_3img.png";
-import mailChain from "@/src/assets/images/mail_2img.png";
-import whatsappChain from "@/src/assets/images/whatsapp_2img.png";
-import callChain from "@/src/assets/images/call_3img.png";
+
 
 export default function BusinessTools() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0.5); // Default to center
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    if (typeof window === "undefined") return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
+    const handleScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
 
-    observer.observe(el);
-    return () => observer.disconnect();
+      const rect = el.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Calculate relative scroll progress when section is in view
+      const total = rect.height + viewportHeight;
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        const progress = (viewportHeight - rect.top) / total;
+        setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial layout trigger
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const reveal = (delay: string) =>
-    `transition-all duration-1000 ease-out ${delay} ${
-      visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 sm:translate-y-28"
-    }`;
+  // Parallax scroll translations (images rise from bottom-to-top as user scrolls down)
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768;
+  
+  const getParallaxStyle = (multiplier: number) => {
+    if (!isDesktop) return {};
+    // True parallax: offset moves from positive (down) to negative (up)
+    const translateY = (0.5 - scrollProgress) * multiplier;
+    return {
+      transform: `translateY(${translateY}px)`,
+      transition: "transform 0.9s ease-out"
+    };
+  };
 
   return (
-    <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-4 sm:pb-6 lg:pb-8 overflow-hidden">
+    <section className="relative bg-white pt-6 sm:pt-10 lg:pt-14 pb-8 sm:pb-12 lg:pb-16 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
         {/* ── Heading ── */}
-        <div className="max-w-2xl">
-          <h2 className="text-[28px] sm:text-[36px] md:text-[40px] font-extrabold text-gray-900 leading-[1.2] tracking-tight">
+        <div className="flex flex-col gap-[16px] w-full lg:w-[1251px] mb-8 sm:mb-12">
+          <h2 
+            className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 500,
+              lineHeight: '58px',
+              letterSpacing: '-1.2px'
+            }}
+          >
             Bring All Your <span className="text-blue-500">Business Tools</span> Together
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed">
+          <p 
+            className="text-base sm:text-[18px] lg:text-[22px] max-w-3xl"
+            style={{
+              fontFamily: 'Geist, sans-serif',
+              fontWeight: 400,
+              lineHeight: '32px',
+              letterSpacing: '-0.3px',
+              color: '#555E67'
+            }}
+          >
             Stop switching between multiple platforms and searching for customer information. TZI CRM unifies your entire sales ecosystem into a single workspace.
           </p>
         </div>
       </div>
 
-      {/* ── Illustration: full-bleed background, edge-to-edge of the viewport ── */}
+      {/* ── Illustration: full-bleed background viewport container ── */}
       <div
         ref={sectionRef}
-        className="relative mt-10 sm:mt-12 w-screen left-1/2 -translate-x-1/2 aspect-[548/393] sm:aspect-[1600/720]"
+        className="relative mt-8 sm:mt-10 w-screen left-1/2 -translate-x-1/2 aspect-[548/393] sm:aspect-[1600/720] overflow-hidden"
         style={{
           background:
             "radial-gradient(ellipse 60% 85% at center, #eff6ff 0%, #f0f9ff 35%, #ffffff 65%)",
         }}
       >
-        {/* Inner frame: caps how far apart the icons spread on ultra-wide screens */}
+        {/* Inner frame: boundaries for wider screens */}
         <div className="relative mx-auto h-full max-w-[1400px]">
-          {/* Meta / LinkedIn / Skype chain — far left */}
-          <div
-            className={`hidden sm:block absolute left-[5%] top-[7%] w-[20.5%] max-w-[364px] ${reveal("")}`}
-          >
-            <Image src={metaChain} alt="" className="w-full h-auto object-contain" />
-          </div>
+          
+          {/* Glowing Aura pulse background */}
+          <div 
+            className="absolute left-1/2 top-[15%] -translate-x-1/2 w-[35%] aspect-square rounded-full blur-[100px] opacity-40 mix-blend-multiply animate-pulse"
+            style={{
+              background: 'rgba(48, 143, 255, 0.8)',
+              zIndex: 1
+            }}
+          />
 
-          {/* Mail / video call chain */}
+          {/* Background network curves and bubbles: Meta_image.svg */}
           <div
-            className={`hidden sm:block absolute left-[22%] top-[17%] w-[7.5%] max-w-[145px] ${reveal("delay-100")}`}
+            className="absolute inset-0 w-full h-full"
+            style={{
+              ...getParallaxStyle(180), // Stronger translation to come from bottom to top
+              zIndex: 2
+            }}
           >
-            <Image src={mailChain} alt="" className="w-full h-auto object-contain" />
-          </div>
-
-          {/* Center: Integrations panel */}
-          <div
-            className={`absolute left-1/2 top-[8%] -translate-x-1/2 w-[90%] sm:w-[34%] max-w-[720px] ${reveal("delay-150")}`}
-          >
-            <Image
-              src={integrationsImage}
-              alt="TZI CRM integrations panel connecting Facebook, Instagram and LinkedIn lead ads"
-              className="w-full h-auto object-contain drop-shadow-xl rounded-2xl"
-              priority
+            <Image 
+              src="/images/home_images/Meta_image.svg" 
+              alt="Connected network curves" 
+              fill 
+              className="object-contain scale-105"
+              priority 
             />
           </div>
 
-          {/* WhatsApp / referral chain */}
+          {/* Center: Integrations panel card */}
           <div
-            className={`hidden sm:block absolute right-[19.5%] top-[17%] w-[7.5%] max-w-[145px] ${reveal("delay-200")}`}
+            className="absolute left-1/2 top-[8%] w-[90%] sm:w-[34%] max-w-[720px]"
+            style={{
+              ...getParallaxStyle(80), // Subtle translation for depth layer separation
+              left: '50%',
+              transform: `${getParallaxStyle(80).transform || ""} translateX(-50%)`,
+              zIndex: 3
+            }}
           >
-            <Image src={whatsappChain} alt="" className="w-full h-auto object-contain" />
+            <Image
+              src="/images/home_images/Integrations.svg"
+              alt="TZI CRM integrations panel"
+              className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
+              priority
+              width={700}
+              height={350}
+            />
           </div>
 
-          {/* Call / classifieds / directory chain — far right */}
-          <div
-            className={`hidden sm:block absolute right-[8%] top-[7%] w-[14%] max-w-[245px] ${reveal("delay-300")}`}
-          >
-            <Image src={callChain} alt="" className="w-full h-auto object-contain" />
-          </div>
         </div>
       </div>
     </section>

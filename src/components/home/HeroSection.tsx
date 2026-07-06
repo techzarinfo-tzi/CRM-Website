@@ -18,58 +18,125 @@ export default function HeroSection() {
           <div className="absolute -top-6 left-[8%] right-[8%] -bottom-6 border border-dashed border-gray-200 pointer-events-none" />
 
           {/* Trust badge */}
-          <div className="inline-flex items-center border border-gray-200 rounded-full px-5 py-1.5 text-xs text-gray-500 mb-8 bg-white shadow-sm">
+          <div 
+            className="inline-flex mb-4 mt-2 items-center justify-center bg-white font-heading"
+            style={{
+              width: '261px',
+              height: '24px',
+              paddingTop: '2px',
+              paddingRight: '8px',
+              paddingBottom: '2px',
+              paddingLeft: '8px',
+              gap: '4px',
+              borderRadius: '100px',
+              border: '1px solid #BED5FF',
+              fontWeight: 400,
+              fontSize: '11px',
+              lineHeight: '20px',
+              letterSpacing: '-0.1px',
+              color: '#31373D',
+              opacity: 1
+            }}
+          >
             Trusted by 100+ growing organizations
           </div>
 
           {/* Headline row 1 */}
-          <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-gray-900 leading-[1.05] tracking-tight">
+          <h1 
+            className="font-heading font-bold text-center text-[40px] md:text-[68px] lg:text-[92px] leading-tight lg:leading-[105px] tracking-tight lg:tracking-[-3.6px]"
+            style={{
+              color: '#1D1F20'
+            }}
+          >
             Transform All Conversations
           </h1>
 
           {/* Headline row 2 — "into [Conversions]" */}
-          <div className="flex items-center justify-center gap-4 mt-1">
-            <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-gray-900 leading-[1.05] tracking-tight">
+          <div className="flex flex-wrap items-center justify-center gap-x-0 mt-1 lg:-mt-2">
+            <h1 
+              className="font-heading font-bold text-[40px] md:text-[68px] lg:text-[92px] leading-tight lg:leading-[105px] tracking-tight lg:tracking-[-3.6px]"
+              style={{
+                color: '#1D1F20'
+              }}
+            >
               into
             </h1>
 
-            {/* Dashed box around "Conversions" + floating 3D Chat */}
-            <div className="relative">
-              <div className="border-2 border-dashed border-gray-300 rounded-sm px-3 py-1">
-                <h1 className="text-[56px] md:text-[64px] lg:text-[72px] font-extrabold text-blue-500 leading-[1.05] tracking-tight">
-                  Conversions
-                </h1>
-              </div>
-              {/* 3D Chat image — offset clear of the headline text above and to the right */}
-              <div className="absolute -top-2 -right-16 sm:-right-20">
-                <Image
-                  src="/images/3D_Chat.png"
-                  alt="3D Chat"
-                  width={80}
-                  height={80}
-                  className="object-contain drop-shadow-md"
-                  style={{ width: "auto", height: "auto" }}
-                />
-              </div>
+            {/* Component 1.svg in place of Conversions text */}
+            <div className="relative inline-block lg:-mt-2 -ml-2 md:-ml-4 lg:ml-0">
+              <Image
+                src="/images/Component 1.svg"
+                alt="Conversions"
+                width={580}
+                height={122}
+                className="w-[280px] h-auto md:w-[400px] lg:w-[580px] lg:h-[122px] object-contain"
+                style={{
+                  opacity: 1
+                }}
+                priority
+              />
             </div>
           </div>
 
           {/* Sub-headline */}
-          <p className="mt-6 text-lg text-gray-500 max-w-lg leading-relaxed">
-            Track every lead, streamline follow-ups, and close deals faster than ever.
+          <p 
+            className="mt-6 text-center font-heading max-w-3xl text-[16px] md:text-[20px] lg:text-[24px]"
+            style={{
+              fontWeight: 400,
+              lineHeight: '32px',
+              letterSpacing: '-0.3px',
+              color: '#31373D'
+            }}
+          >
+            Track every lead, automate follow-ups and close deals faster than ever
           </p>
 
           {/* CTA buttons */}
           <div className="flex items-center gap-5 mt-8">
             <Link
               href="#"
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg text-sm transition-colors shadow-sm"
+              className="font-semibold text-white transition-all shadow-sm"
+              style={{
+                width: '131.22px',
+                height: '40.61px',
+                paddingTop: '10.81px',
+                paddingRight: '21.61px',
+                paddingBottom: '10.81px',
+                paddingLeft: '21.61px',
+                gap: '9.01px',
+                borderRadius: '12px',
+                background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)',
+                boxShadow: '0px 2px 2px 0px #534FEB40',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '14px',
+                opacity: 1
+              }}
             >
               Get a Quote
             </Link>
             <Link
               href="#"
-              className="text-sm font-semibold text-gray-700 hover:text-blue-500 transition-colors"
+              className="font-semibold text-black transition-all"
+              style={{
+                width: '243px',
+                height: '48px',
+                paddingTop: '12px',
+                paddingRight: '16px',
+                paddingBottom: '12px',
+                paddingLeft: '16px',
+                gap: '10px',
+                borderRadius: '12px',
+                border: '1px solid #EDEEF0',
+                boxShadow: '0px 0px 4px 0px #edeef0',
+                background: '#EDEEF0',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '14px',
+                opacity: 1
+              }}
             >
               Start Your 14 Days Free Trial
             </Link>
@@ -77,7 +144,7 @@ export default function HeroSection() {
         </div>
 
         {/* Dashboard screenshot */}
-        <div className="mt-14 w-full max-w-5xl mx-auto">
+        <div className="mt-8 w-full max-w-5xl mx-auto">
           <div className="relative rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-gray-50">
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
