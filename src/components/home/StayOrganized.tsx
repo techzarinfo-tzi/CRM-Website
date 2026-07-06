@@ -58,7 +58,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "john",
         name: "John Davis",
         company: "ABC Solutions",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "3,45,656 INR",
         textColor: "#0052FF",
@@ -68,7 +68,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "david",
         name: "David Miller",
         company: "Modern Tech",
-        assignedTo: "Sharan",
+        assignedTo: "Sarah",
         created: "21 Jul 2026",
         value: "14,240 USD",
         textColor: "#0052FF",
@@ -87,7 +87,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "felson",
         name: "Fiona Nelson",
         company: "ComCans",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "3,45,656 INR",
         textColor: "#FF6B00",
@@ -97,7 +97,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "kenny",
         name: "Kenneth Chen",
         company: "Teddy Stores",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "3,45,656 INR",
         textColor: "#FF6B00",
@@ -116,7 +116,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "leo",
         name: "Leonard Vance",
         company: "Snow Solutions",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "11,20,353 INR",
         textColor: "#00A3C4",
@@ -126,7 +126,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "andres",
         name: "Andrew Cooper",
         company: "99 Store",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "83,788 INR",
         textColor: "#00A3C4",
@@ -145,7 +145,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "luffy",
         name: "Lucas Foster",
         company: "Moon Tech",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "30,15,999 INR",
         textColor: "#00A854",
@@ -155,7 +155,7 @@ const initialKanbanState: KanbanColumn[] = [
         id: "eren",
         name: "Ethan Reynolds",
         company: "Titan Technologies",
-        assignedTo: "Kishore",
+        assignedTo: "Michael",
         created: "22 Jul 2026",
         value: "13,20,455 INR",
         textColor: "#00A854",
@@ -166,11 +166,11 @@ const initialKanbanState: KanbanColumn[] = [
 ];
 
 const initialLeadsState: LeadRow[] = [
-  { id: "1", name: "Sarah Jenkins", contact: "9100054020", company: "Venus", clientType: "Enterprise", country: "Australia", status: "Hot", assignee: "Subaspresan I" },
-  { id: "2", name: "Oliver Vance", contact: "9885444555", company: "SADF", clientType: "SMB", country: "Antarctica", status: "Warm", assignee: "Kishore" },
-  { id: "3", name: "Ahmed Ali", contact: "9158401200", company: "Rays Ltd", clientType: "SMB", country: "India", status: "Cold", assignee: "Sharan" },
-  { id: "4", name: "Ahmed Verma", contact: "8882777272", company: "Klug.co", clientType: "Enterprise", country: "India", status: "Junk", assignee: "Kishore" },
-  { id: "5", name: "Mohanad Al-Subai", contact: "7558745501", company: "SCA", clientType: "SMB", country: "India", status: "Hot", assignee: "Sharan" }
+  { id: "1", name: "Sarah Jenkins", contact: "9100054020", company: "Venus", clientType: "Enterprise", country: "Australia", status: "Hot", assignee: "Emma" },
+  { id: "2", name: "Oliver Vance", contact: "9885444555", company: "SADF", clientType: "SMB", country: "Antarctica", status: "Warm", assignee: "Michael" },
+  { id: "3", name: "Ahmed Ali", contact: "9158401200", company: "Rays Ltd", clientType: "SMB", country: "India", status: "Cold", assignee: "Sarah" },
+  { id: "4", name: "Ahmed Verma", contact: "8882777272", company: "Klug.co", clientType: "Enterprise", country: "India", status: "Junk", assignee: "Michael" },
+  { id: "5", name: "Mohanad Al-Subai", contact: "7558745501", company: "SCA", clientType: "SMB", country: "India", status: "Hot", assignee: "Sarah" }
 ];
 
 const initialRemindersState: ReminderItem[] = [
@@ -208,20 +208,23 @@ const initialRemindersState: ReminderItem[] = [
 
 export default function StayOrganized() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const leadsSectionRef = useRef<HTMLDivElement>(null);
   
-  // Demo playing states
+  // Demo playing states for Kanban Board (Loop 1)
   const [isDemoActive, setIsDemoActive] = useState(false);
-  const [isDemoSilenced, setIsDemoSilenced] = useState(false);
+  const [isKanbanSilenced, setIsKanbanSilenced] = useState(false);
+  const [kanbanCursorPos, setKanbanCursorPos] = useState<{ x: number; y: number; opacity: number; duration?: string } | null>(null);
+  const kanbanTimeoutsRef = useRef<NodeJS.Timeout[]>([]);
+
+  // Demo playing states for Leads & Follow-ups Widgets (Loop 2)
+  const [isWidgetsSilenced, setIsWidgetsSilenced] = useState(false);
+  const [widgetsCursorPos, setWidgetsCursorPos] = useState<{ x: number; y: number; opacity: number; duration?: string } | null>(null);
+  const widgetsTimeoutsRef = useRef<NodeJS.Timeout[]>([]);
+
   const [isMounted, setIsMounted] = useState(false);
-  
-  // Track all running demo timeouts to clear them instantly upon user interaction
-  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
   // Custom dropdown open/close state
   const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
-  
-  // Simulated Cursor coordinate state
-  const [demoCursorPos, setDemoCursorPos] = useState<{ x: number; y: number; opacity: number; duration?: string } | null>(null);
 
   // --- Kanban, Leads, Reminders States ---
   const [columns, setColumns] = useState<KanbanColumn[]>(JSON.parse(JSON.stringify(initialKanbanState)));
@@ -252,58 +255,56 @@ export default function StayOrganized() {
     };
   };
 
-  // Stop the demo loop and yield complete interactive control to the user
-  const stopAndSilenceDemo = () => {
-    setIsDemoSilenced(true);
+  // Stop Kanban Board demo loop
+  const stopAndSilenceKanban = () => {
+    setIsKanbanSilenced(true);
     setIsDemoActive(false);
-    setDemoCursorPos(null);
-    setActiveDropdownId(null);
-    timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
+    setKanbanCursorPos(null);
+    kanbanTimeoutsRef.current.forEach(clearTimeout);
+    kanbanTimeoutsRef.current = [];
   };
 
-  // Reusable looping demo player
-  const playDemoSequence = () => {
-    console.log("StayOrganized: playDemoSequence invoked");
-    if (isDemoSilenced) {
-      console.log("StayOrganized: playDemoSequence aborted (isDemoSilenced is true)");
-      return;
-    }
-
-    // Reset widgets to clean state before starting the sequence
-    setColumns(JSON.parse(JSON.stringify(initialKanbanState)));
-    setLeads(JSON.parse(JSON.stringify(initialLeadsState)));
-    setReminders(JSON.parse(JSON.stringify(initialRemindersState)));
-    setDemoCursorPos(null);
+  // Stop Leads and Reminders widgets demo loop
+  const stopAndSilenceWidgets = () => {
+    setIsWidgetsSilenced(true);
     setActiveDropdownId(null);
+    setWidgetsCursorPos(null);
+    widgetsTimeoutsRef.current.forEach(clearTimeout);
+    widgetsTimeoutsRef.current = [];
+  };
+
+  // Loop 1: Kanban Board Slide Animation
+  const playKanbanSequence = () => {
+    if (isKanbanSilenced) return;
+
+    // Reset columns
+    setColumns(JSON.parse(JSON.stringify(initialKanbanState)));
+    setKanbanCursorPos(null);
     setIsDemoActive(false);
 
     const parent = sectionRef.current;
-    if (!parent) {
-      console.log("StayOrganized: sectionRef.current is null!");
-      return;
-    }
+    if (!parent) return;
 
-    // Phase 1: Kanban Board Slide (starts at 300ms)
+    // Spawn cursor
     const t0 = setTimeout(() => {
-      if (isDemoSilenced) return;
+      if (isKanbanSilenced) return;
       const cardEl = document.getElementById("demo-kanban-card");
       if (cardEl) {
         const coords = getRelativeCoords(cardEl, parent);
-        setDemoCursorPos({ x: coords.x, y: coords.y, opacity: 1, duration: '0.1s' });
+        setKanbanCursorPos({ x: coords.x, y: coords.y, opacity: 1, duration: '0.1s' });
       }
     }, 100);
 
+    // Slide card
     const t1 = setTimeout(() => {
-      if (isDemoSilenced) return;
-      console.log("StayOrganized: Phase 1 (Kanban slide start)");
+      if (isKanbanSilenced) return;
       setIsDemoActive(true);
-      setDemoCursorPos(prev => prev ? { ...prev, x: prev.x + 208, duration: '1.3s' } : null);
-    }, 300);
+      setKanbanCursorPos(prev => prev ? { ...prev, x: prev.x + 208, duration: '1.3s' } : null);
+    }, 400);
 
+    // Complete drop
     const t2 = setTimeout(() => {
-      if (isDemoSilenced) return;
-      console.log("StayOrganized: Phase 1 (Kanban slide complete state update)");
+      if (isKanbanSilenced) return;
       setColumns(prevCols => {
         const qualCol = prevCols.find(c => c.id === "qualification");
         if (!qualCol) return prevCols;
@@ -322,94 +323,102 @@ export default function StayOrganized() {
         });
       });
       setIsDemoActive(false);
-      setDemoCursorPos(prev => prev ? { ...prev, opacity: 0 } : null);
-    }, 1700);
+      setKanbanCursorPos(prev => prev ? { ...prev, opacity: 0 } : null);
+    }, 1800);
 
-    // Phase 2: Status Dropdown Selection Demo (starts at 4700ms, 3 seconds after Phase 1 drop)
+    // Loop restart after 3.8 seconds (2 seconds pause at the end)
     const t3 = setTimeout(() => {
-      if (isDemoSilenced) return;
-      const selectEl = document.getElementById("demo-status-select");
-      if (!selectEl) {
-        console.log("StayOrganized: demo-status-select element not found in DOM!");
-        return;
-      }
+      if (isKanbanSilenced) return;
+      playKanbanSequence();
+    }, 3800);
 
-      console.log("StayOrganized: Phase 2 (Status dropdown click start)");
+    kanbanTimeoutsRef.current.push(t0, t1, t2, t3);
+  };
+
+  // Loop 2: Bottom Widgets (Leads & Follow-ups) Animation
+  const playWidgetsSequence = () => {
+    if (isWidgetsSilenced) return;
+
+    // Reset widgets
+    setLeads(JSON.parse(JSON.stringify(initialLeadsState)));
+    setReminders(JSON.parse(JSON.stringify(initialRemindersState)));
+    setWidgetsCursorPos(null);
+    setActiveDropdownId(null);
+
+    const parent = sectionRef.current;
+    if (!parent) return;
+
+    // Phase 2: Leads dropdown status select
+    const t1 = setTimeout(() => {
+      if (isWidgetsSilenced) return;
+      const selectEl = document.getElementById("demo-status-select");
+      if (!selectEl) return;
+
       const coords = getRelativeCoords(selectEl, parent);
-      setDemoCursorPos({ x: coords.x + 30, y: coords.y + 60, opacity: 0 });
+      setWidgetsCursorPos({ x: coords.x + 30, y: coords.y + 60, opacity: 0 });
       
-      const t3_1 = setTimeout(() => {
-        if (isDemoSilenced) return;
-        setDemoCursorPos({ x: coords.x, y: coords.y, opacity: 1 });
+      const t1_1 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
+        setWidgetsCursorPos({ x: coords.x, y: coords.y, opacity: 1, duration: '0.6s' });
       }, 100);
 
-      const t3_2 = setTimeout(() => {
-        if (isDemoSilenced) return;
+      const t1_2 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
         setActiveDropdownId("2");
       }, 800);
 
-      const t3_3 = setTimeout(() => {
-        if (isDemoSilenced) return;
+      const t1_3 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
         const optionEl = document.getElementById("demo-option-hot");
         if (optionEl) {
-          console.log("StayOrganized: Phase 2 option found, gliding cursor");
           const optCoords = getRelativeCoords(optionEl, parent);
-          setDemoCursorPos({ x: optCoords.x, y: optCoords.y, opacity: 1 });
-        } else {
-          console.log("StayOrganized: demo-option-hot option element not found!");
+          setWidgetsCursorPos({ x: optCoords.x, y: optCoords.y, opacity: 1, duration: '0.6s' });
         }
       }, 1500);
 
-      const t3_4 = setTimeout(() => {
-        if (isDemoSilenced) return;
-        console.log("StayOrganized: Phase 2 dropdown selection complete state update");
+      const t1_4 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
         setLeads(prevLeads => prevLeads.map(lead => lead.id === "2" ? { ...lead, status: "Hot" } : lead));
         setActiveDropdownId(null);
       }, 2200);
 
-      timeoutsRef.current.push(t3_1, t3_2, t3_3, t3_4);
-    }, 4700);
+      widgetsTimeoutsRef.current.push(t1_1, t1_2, t1_3, t1_4);
+    }, 200);
 
-    // Phase 3: Mark as Read Demo (starts at 7500ms)
-    const t4 = setTimeout(() => {
-      if (isDemoSilenced) return;
+    // Phase 3: Reminders mark-as-read click (1 second after Phase 2 complete)
+    const t2 = setTimeout(() => {
+      if (isWidgetsSilenced) return;
       const btnEl = document.getElementById("demo-mark-read");
-      if (!btnEl) {
-        console.log("StayOrganized: demo-mark-read element not found in DOM!");
-        return;
-      }
+      if (!btnEl) return;
 
-      console.log("StayOrganized: Phase 3 (Mark as read click start)");
       const coords = getRelativeCoords(btnEl, parent);
-      setDemoCursorPos({ x: coords.x + 20, y: coords.y + 40, opacity: 1 });
+      setWidgetsCursorPos({ x: coords.x + 20, y: coords.y + 40, opacity: 1, duration: '0.6s' });
 
-      const t4_1 = setTimeout(() => {
-        if (isDemoSilenced) return;
-        setDemoCursorPos({ x: coords.x, y: coords.y, opacity: 1 });
+      const t2_1 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
+        setWidgetsCursorPos({ x: coords.x, y: coords.y, opacity: 1, duration: '0.6s' });
       }, 300);
 
-      const t4_2 = setTimeout(() => {
-        if (isDemoSilenced) return;
-        console.log("StayOrganized: Phase 3 action complete state update");
+      const t2_2 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
         setReminders(prevRem => prevRem.map(rem => rem.id === "rem-1" ? { ...rem, isRead: true } : rem));
       }, 800);
 
-      const t4_3 = setTimeout(() => {
-        if (isDemoSilenced) return;
-        setDemoCursorPos(prev => prev ? { ...prev, opacity: 0 } : null);
+      const t2_3 = setTimeout(() => {
+        if (isWidgetsSilenced) return;
+        setWidgetsCursorPos(prev => prev ? { ...prev, opacity: 0 } : null);
       }, 1600);
 
-      timeoutsRef.current.push(t4_1, t4_2, t4_3);
-    }, 7500);
+      widgetsTimeoutsRef.current.push(t2_1, t2_2, t2_3);
+    }, 3400);
 
-    // Repeat the sequence in a loop after 11 seconds (leaving ample pause at the end)
-    const t5 = setTimeout(() => {
-      if (isDemoSilenced) return;
-      console.log("StayOrganized: restarting demo loop");
-      playDemoSequence();
-    }, 11000);
+    // Loop restart after 6 seconds (1 second pause at the end)
+    const t3 = setTimeout(() => {
+      if (isWidgetsSilenced) return;
+      playWidgetsSequence();
+    }, 6000);
 
-    timeoutsRef.current.push(t0, t1, t2, t3, t4, t5);
+    widgetsTimeoutsRef.current.push(t1, t2, t3);
   };
 
   // Set isMounted on initial render to prevent SSR mismatch
@@ -417,33 +426,52 @@ export default function StayOrganized() {
     setIsMounted(true);
     return () => {
       // Clear timeouts only when component actually unmounts
-      timeoutsRef.current.forEach(clearTimeout);
+      kanbanTimeoutsRef.current.forEach(clearTimeout);
+      widgetsTimeoutsRef.current.forEach(clearTimeout);
     };
   }, []);
 
-  // Trigger Demo Animation when scrolled into view
+  // Trigger Demo Animations when scrolled into view
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || isDemoSilenced) return;
+    if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          playDemoSequence();
+          playKanbanSequence();
+          playWidgetsSequence();
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.01 }
     );
 
     observer.observe(el);
+
+    const leadsEl = leadsSectionRef.current;
+    let leadsObserver: IntersectionObserver | null = null;
+    if (leadsEl) {
+      leadsObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            stopAndSilenceKanban();
+            if (leadsObserver) leadsObserver.disconnect();
+          }
+        },
+        { threshold: 0.3 }
+      );
+      leadsObserver.observe(leadsEl);
+    }
+
     return () => {
       observer.disconnect();
+      if (leadsObserver) leadsObserver.disconnect();
     };
-  }, [isDemoSilenced]);
+  }, []);
 
   const handleDragStart = (cardId: string, sourceColId: string) => {
-    stopAndSilenceDemo();
+    stopAndSilenceKanban();
     setDraggedCardId(cardId);
     setDraggedSourceColId(sourceColId);
   };
@@ -509,29 +537,50 @@ export default function StayOrganized() {
   };
 
   const toggleRead = (id: string) => {
-    stopAndSilenceDemo();
+    stopAndSilenceWidgets();
     setReminders(reminders.map(rem => rem.id === id ? { ...rem, isRead: !rem.isRead } : rem));
   };
 
   const toggleCompleted = (id: string) => {
-    stopAndSilenceDemo();
+    stopAndSilenceWidgets();
     setReminders(reminders.map(rem => rem.id === id ? { ...rem, isCompleted: !rem.isCompleted } : rem));
   };
 
   return (
-    <section ref={sectionRef} className="relative bg-white pt-4 sm:pt-6 lg:pt-4 pb-10 sm:pb-12 lg:pb-14 overflow-hidden">
+    <section ref={sectionRef} className="relative z-40 bg-white pt-4 sm:pt-6 lg:pt-4 pb-10 sm:pb-12 lg:pb-14 overflow-hidden">
       
-      {/* ── Simulated Finger Hand Cursor (Demo Mode) ── */}
-      {demoCursorPos && (
+      {/* ── Simulated Finger Hand Cursor (Kanban Demo) ── */}
+      {kanbanCursorPos && (
         <div 
           className="absolute pointer-events-none"
           style={{
-            left: `${demoCursorPos.x}px`,
-            top: `${demoCursorPos.y}px`,
-            opacity: demoCursorPos.opacity,
+            left: `${kanbanCursorPos.x}px`,
+            top: `${kanbanCursorPos.y}px`,
+            opacity: kanbanCursorPos.opacity,
             zIndex: 9999,
             transform: 'translate(-30%, -20%)',
-            transition: `left ${demoCursorPos.duration || '0.7s'} cubic-bezier(0.25, 0.8, 0.25, 1), top ${demoCursorPos.duration || '0.7s'} cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease-out`
+            transition: `left ${kanbanCursorPos.duration || '0.7s'} cubic-bezier(0.25, 0.8, 0.25, 1), top ${kanbanCursorPos.duration || '0.7s'} cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease-out`
+          }}
+        >
+          {/* Click pulse indicator */}
+          <div className="absolute top-0 left-0 w-8 h-8 -translate-x-[20%] -translate-y-[20%] rounded-full border border-blue-400 bg-blue-400/20 animate-ping opacity-75" />
+          <svg className="w-8 h-8 drop-shadow-lg" viewBox="0 0 24 24" fill="none">
+            <path d="M9 10V3.5a1.5 1.5 0 0 1 3 0V10M9 10a1.5 1.5 0 0 0-3 0v4.5A5.5 5.5 0 0 0 11.5 20h2.7A5.8 5.8 0 0 0 20 14.2V11a1.5 1.5 0 0 0-3 0v-1a1.5 1.5 0 0 0-3 0v-1a1.5 1.5 0 0 0-3 0" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="white" />
+          </svg>
+        </div>
+      )}
+
+      {/* ── Simulated Finger Hand Cursor (Widgets Demo) ── */}
+      {widgetsCursorPos && (
+        <div 
+          className="absolute pointer-events-none"
+          style={{
+            left: `${widgetsCursorPos.x}px`,
+            top: `${widgetsCursorPos.y}px`,
+            opacity: widgetsCursorPos.opacity,
+            zIndex: 9999,
+            transform: 'translate(-30%, -20%)',
+            transition: `left ${widgetsCursorPos.duration || '0.7s'} cubic-bezier(0.25, 0.8, 0.25, 1), top ${widgetsCursorPos.duration || '0.7s'} cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease-out`
           }}
         >
           {/* Click pulse indicator */}
@@ -574,7 +623,7 @@ export default function StayOrganized() {
 
         {/* ── Full-width pipeline card with Interactive Kanban ── */}
         <div 
-          onMouseDown={stopAndSilenceDemo}
+          onMouseDown={stopAndSilenceKanban}
           className="mt-10 sm:mt-12 rounded-[24px] border border-gray-100 bg-[#F7F8FA] flex flex-col lg:flex-row lg:h-[504px] items-stretch overflow-hidden shadow-sm animate-fade-in p-5 sm:p-8 lg:pt-[40px] lg:pb-[40px] lg:pl-[40px] lg:pr-[40px]"
           style={{
             width: '100%',
@@ -743,11 +792,11 @@ export default function StayOrganized() {
         </div>
 
         {/* ── Two cards: Lead Management + Follow-Ups ── */}
-        <div className="mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 justify-between items-center w-full max-w-[1252px] mx-auto">
+        <div ref={leadsSectionRef} className="mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 justify-between items-center w-full max-w-[1252px] mx-auto">
           
           {/* Card 1: Centralized Lead Management (Interactive Leads Table Widget) */}
           <div 
-            onMouseDown={stopAndSilenceDemo}
+            onMouseDown={stopAndSilenceWidgets}
             className="rounded-[20px] bg-[#F4F5F6] border border-[#EDEEF0] flex flex-col justify-between overflow-hidden w-full lg:w-[614px] lg:h-[554px]"
           >
             {/* Text content block */}
@@ -800,8 +849,8 @@ export default function StayOrganized() {
                     className="px-2 py-1 text-xs border border-gray-200 rounded-md bg-white text-gray-600 focus:outline-none"
                   >
                     <option value="All">All Assignees</option>
-                    <option value="Kishore">Kishore</option>
-                    <option value="Sharan">Sharan</option>
+                    <option value="Michael">Michael</option>
+                    <option value="Sarah">Sarah</option>
                   </select>
                   <button 
                     suppressHydrationWarning
@@ -843,8 +892,9 @@ export default function StayOrganized() {
                             <button
                               suppressHydrationWarning
                               id={lead.id === "2" ? "demo-status-select" : undefined}
-                              onClick={() => {
-                                stopAndSilenceDemo();
+                              onMouseDown={(e) => {
+                                e.stopPropagation();
+                                stopAndSilenceWidgets();
                                 setActiveDropdownId(activeDropdownId === lead.id ? null : lead.id);
                               }}
                               className={`px-2.5 py-1.5 rounded-[6px] text-[10px] font-bold border-0 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-blue-400 transition-all ${
@@ -868,8 +918,9 @@ export default function StayOrganized() {
                                     suppressHydrationWarning
                                     key={s}
                                     id={lead.id === "2" && s === "Hot" ? "demo-option-hot" : undefined}
-                                    onClick={() => {
-                                      stopAndSilenceDemo();
+                                    onMouseDown={(e) => {
+                                      e.stopPropagation();
+                                      stopAndSilenceWidgets();
                                       setLeads(leads.map(l => l.id === lead.id ? { ...l, status: s } : l));
                                       setActiveDropdownId(null);
                                     }}
@@ -901,7 +952,7 @@ export default function StayOrganized() {
 
           {/* Card 2: Follow-Ups & Reminders (Interactive Reminders Widget) */}
           <div 
-            onMouseDown={stopAndSilenceDemo}
+            onMouseDown={stopAndSilenceWidgets}
             className="rounded-[20px] bg-[#F4F5F6] border border-[#EDEEF0] flex flex-col justify-between overflow-hidden w-full lg:w-[614px] lg:h-[554px]"
           >
             {/* Text content block */}
