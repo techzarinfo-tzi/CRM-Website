@@ -6,7 +6,7 @@ export default function IntegrationsFeatures() {
     },
     {
       title: "Keep Teams on the Same Page",
-      description: "Ensure every department works with the same up-to-date customer information, reducing miscommunication."
+      description: "Ensure every department works with the same up-to-date customer information & reducing miscommunication."
     },
     {
       title: "Reduce App Switching",
@@ -19,9 +19,9 @@ export default function IntegrationsFeatures() {
   ];
 
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
+        <div className="mb-6">
           <h2 className="text-[32px] sm:text-[40px] font-medium text-[#1A1A1A] leading-tight tracking-tight">
             Why Business Tool <span className="text-[#3B82F6]">Integration</span> Matters?
           </h2>

@@ -37,7 +37,7 @@ export default function IntegrationsDashboard() {
     }`;
 
   return (
-    <section className="relative bg-white pt-16 sm:pt-24 lg:pt-32 pb-16 overflow-hidden">
+    <section className="relative bg-white pt-8 sm:pt-12 lg:pt-32 pb-8 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ── Heading ── */}
         <div className="mb-4">
@@ -101,7 +101,7 @@ export default function IntegrationsDashboard() {
       </div>
 
       {/* ── Footer text and button ── */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 text-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 text-center">
         <p className="max-w-4xl mx-auto text-[16px] sm:text-[18px] text-gray-700 leading-relaxed mb-8">
           Don't see your preferred business tool? No problem. We can integrate the applications your business already uses with our TZI CRM, ensuring a seamless workflow tailored to your operational needs.
         </p>

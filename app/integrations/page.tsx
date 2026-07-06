@@ -4,6 +4,8 @@ import IntegrationsFeatures from "@/src/components/integrations/IntegrationsFeat
 import IntegrationsDashboard from "@/src/components/integrations/IntegrationsDashboard";
 import IntegrationsVideo from "@/src/components/integrations/IntegrationsVideo";
 
+
+
 export default function IntegrationsPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#FAFAFA]">

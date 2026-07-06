@@ -114,7 +114,7 @@ export function ContactForm() {
 
       <div className="bg-[#f8f9fa] p-8 md:p-10 rounded-3xl w-full max-w-xl mx-auto lg:ml-auto">
         {success ? (
-          <div className="text-center py-16">
+          <div className="text-center py-8">
             <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -153,12 +153,12 @@ export function ContactForm() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-gray-900">Mail ID<span className="text-red-500">*</span></label>
+              <label className="text-sm font-semibold text-gray-900">Mail Id<span className="text-red-500">*</span></label>
               <input type="email" name="email" required className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all font-medium text-gray-800" />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-gray-900">Mobile Number<span className="text-red-500">*</span></label>
+              <label className="text-sm font-semibold text-gray-900">Mob No<span className="text-red-500">*</span></label>
               <PhoneInput
                 international
                 country={selectedCountry}

@@ -46,9 +46,10 @@ export function Footer() {
                 width={85}
                 height={40}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </span>
-            CRM is your all-in-one platform for managing clients, automating workflows and accelerating business growth.
+            CRM is your all-in-one platform for managing clients, streamlining workflows, and accelerating business growth.
           </h2>
           <Link
             href="#free-trial"
@@ -83,7 +84,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li><Link href="tel:+919952885799" className="text-white/80 hover:text-white transition-colors text-sm">+91 9952885799</Link></li>
               <li><Link href="mailto:sales@techzarinfo.com" className="text-white/80 hover:text-white transition-colors text-sm">sales@techzarinfo.com</Link></li>
-              <li><span className="text-white/80 text-sm block leading-relaxed">No.3D, M.S Tower , 4th Floor,<br/>Convent Rd, Cantonment,<br/>Tiruchirappalli- 620001.</span></li>
+              <li><span className="text-white/80 text-sm block leading-relaxed">No.3D, M.S Tower , 4th Floor,<br />Convent Rd, Cantonment,<br />Tiruchirappalli- 620001.</span></li>
             </ul>
           </div>
           <div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HelpCTA() {
   return (
-    <section className="bg-white py-16 sm:py-24 text-center">
+    <section className="bg-white py-8 sm:py-12 text-center">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-[28px] sm:text-[36px] font-medium text-gray-900 leading-tight mb-8">
           No matter where you are in your <span className="font-bold">CRM</span> journey,<br className="hidden sm:block" />

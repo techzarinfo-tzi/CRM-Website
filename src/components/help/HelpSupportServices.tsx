@@ -57,20 +57,20 @@ export default function HelpSupportServices() {
   ];
 
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <div className="mb-16">
+        <div className="mb-8">
           <h2 className="text-[32px] sm:text-[40px] font-medium text-[#1A1A1A] leading-tight tracking-tight">
             How We <span className="text-[#3B82F6]">Support</span> You
           </h2>
         </div>
 
-        <div className="flex flex-col gap-24 sm:gap-32">
+        <div className="flex flex-col gap-12 sm:gap-16">
           {services.map((service) => (
             <div 
               key={service.id} 
-              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${service.imageFirst ? 'lg:flex-row-reverse' : ''}`}
+              className={`flex flex-col lg:flex-row items-center gap-6 lg:gap-12 ${service.imageFirst ? 'lg:flex-row-reverse' : ''}`}
             >
               {/* Text Content */}
               <div className="flex-1 max-w-2xl">
