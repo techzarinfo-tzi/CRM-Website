@@ -1,7 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FreeTrial from "./home/FreeTrial";
 
 export function Navbar() {
+  const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-20 py-4 bg-white border-b border-gray-100 shadow-sm">
       {/* Logo */}
@@ -64,12 +70,13 @@ export function Navbar() {
 
       {/* CTA buttons */}
       <div className="flex items-center gap-2">
-        <Link
-          href="#"
+        <button
+          type="button"
+          onClick={() => setIsFreeTrialOpen(true)}
           className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors"
         >
           Free Trial
-        </Link>
+        </button>
         <Link
           href="#"
           className="px-5 py-2.5 text-sm font-semibold text-white rounded-lg transition-all hover:shadow-lg hover:opacity-95"
@@ -78,6 +85,8 @@ export function Navbar() {
           Schedule a Demo
         </Link>
       </div>
+
+      <FreeTrial isOpen={isFreeTrialOpen} onClose={() => setIsFreeTrialOpen(false)} />
     </nav>
   );
 }
