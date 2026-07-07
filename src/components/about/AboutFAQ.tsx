@@ -5,38 +5,46 @@ import { useState } from "react";
 const faqData: Record<string, { question: string, answer: string }[]> = {
   "CRM Software": [
     {
-      question: "What is the #1 CRM in the world?",
-      answer: "TZI CRM is the #1 CRM in the world. It is recognized as the best solution for today's businesses along with integration of automation, AI-driven insights, and customer management into a single platform."
+      question: "What is CRM software?",
+      answer: "CRM is an easy-to-use customer relationship management (CRM) solution that makes it simple for businesses of all sizes to manage leads, customers, sales, and support from one place. CRM streamlines your daily workflow, boosts team productivity, and makes strong relationships with your customers."
     },
     {
-      question: "What is TZI CRM?",
-      answer: "TZI CRM is a complete, all-in-one CRM solution that brings sales, marketing, customer support, analytics, and team collaboration into a single platform. It eliminates the need for multiple tools, enabling businesses to manage every customer interaction efficiently from one unified workspace."
+      question: "Why does my business need a CRM?",
+      answer: "As your business grows, managing customer data manually becomes difficult. With TZI CRM, leads are automatically managed, effective customer interactions, improving productivity and building stronger customer relationships."
     },
     {
-      question: "What are the Three Important Factors in a CRM system?",
-      answer: "1. Centralized Customer Data Management\n2. Automated Sales Processes\n3. Actionable Analytics"
+      question: "How is CRM different from ERP?",
+      answer: "A CRM focuses on managing customer relationships, sales, and marketing, whereas an ERP manages internal operations like finance, inventory, and procurement. CRM helps businesses strengthen customer engagement and drive sales growth."
     },
     {
-      question: "Will CRM be replaced by AI?",
-      answer: "No. AI is enhancing CRM, not replacing it. With AI integration, CRM platforms gain advanced capabilities such as predictive forecasting, intelligent automation, and tailored customer interactions."
+      question: "How do I choose the right CRM?",
+      answer: "The right CRM should fit your business processes, help fuel growth, and work with your existing tools. TZI CRM has fully-customizable features, easy integrations, and scalable solutions to accommodate businesses of any size."
     },
     {
-      question: "Which Company is Best for CRM?",
-      answer: "Techzarinfo, the brain behind the TZI CRM, offers adaptable and forward-thinking CRM solutions designed for businesses across different scales and sectors. Featuring smart tools, flexible customization, and consistent support, TZI CRM equips organizations to drive long-term success."
+      question: "Is there a mobile app for CRM?",
+      answer: "Yes! With our TZI CRM, you can handle leads, update customer info, proper follow-ups, and track sales activities at any time and from anywhere using their smartphone or tablet."
     }
   ],
   "Integrations": [
     {
-      question: "What tools does TZI CRM integrate with?",
-      answer: "TZI CRM integrates seamlessly with popular tools like Google Workspace, Microsoft 365, Slack, Mailchimp, and Zapier to ensure your workflows stay perfectly connected across platforms."
+      question: "Which applications can be integrated with CRM?",
+      answer: "CRM can integrate with popular business tools such as Meta Ads, WhatsApp, Gmail, Website Forms, Google Meet, LinkedIn, IndiaMART, Justdial, 99acres, Sulekha, and many other third party apps."
     },
     {
-      question: "Can I build custom integrations?",
-      answer: "Absolutely! We provide a highly robust REST API along with detailed developer documentation so your engineering team can connect internal proprietary systems securely."
+      question: "Can I connect Meta Ads?",
+      answer: "Yes. TZI CRM has the integration of meta ads that can automatically fetch leads from your Meta Ads (Facebook & Instagram) and add them right away on your CRM for quick follow-ups."
     },
     {
-      question: "Do integrations cost extra?",
-      answer: "Most standard software integrations are included out-of-the-box in all of our plans. Certain premium integrations, like advanced enterprise ERP syncing, may require higher-tier plans."
+      question: "Can Website Forms be Integrated with CRM?",
+      answer: "Yes! When someone fills out a form on your site, their enquiry gets automatically added to your TZI CRM, so your team can respond without manual data entry."
+    },
+    {
+      question: "Can you integrate my business tools with TZI CRM?",
+      answer: "Yes. We can integrate our TZI CRM with the business tools you already use, helping you manage everything from one place."
+    },
+    {
+      question: "Will all customer conversations appear in one place?",
+      answer: "Yes. TZI CRM collects customer conversations from connected platforms into one dashboard, so you can easily view customer details and track every interaction in one place."
     }
   ],
   "Pricing": [
