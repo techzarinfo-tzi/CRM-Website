@@ -34,10 +34,19 @@ export default function IntegrationsFeatures() {
                 key={idx}
                 className="bg-white rounded-[32px] p-8 sm:p-10 border-[4px] border-[#EDEEF0] hover:border-gray-300 transition-colors text-center flex flex-col items-center justify-center min-h-[240px]"
               >
-                <h3 className="text-[17px] font-semibold text-gray-900 mb-3">
+                <h3 
+                  className="text-gray-900 mb-3" 
+                  style={{ 
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 500,
+                    fontSize: '20px',
+                    lineHeight: '32px',
+                    letterSpacing: '-0.3px'
+                  }}
+                >
                   {feature.title}
                 </h3>
-                <p className="text-gray-500 text-[14px] leading-relaxed max-w-sm">
+                <p className="text-gray-500 text-[14px] leading-relaxed max-w-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
                   {feature.description}
                 </p>
               </div>

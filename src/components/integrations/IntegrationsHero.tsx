@@ -9,7 +9,10 @@ export default function IntegrationsHero() {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-8 mb-6 sm:mb-8">
           {/* Heading */}
           <div className="flex-1">
-            <h1 className="text-[40px] sm:text-[52px] md:text-[60px] font-bold text-[#1A1A1A] leading-[1.1] tracking-tight">
+            <h1 
+              className="text-[40px] sm:text-[52px] md:text-[60px] font-medium text-[#1A1A1A] leading-[1.1] tracking-tight"
+              style={{ fontFamily: 'Geist, sans-serif' }}
+            >
               One System.<br />
               <span 
                 className="text-transparent bg-clip-text inline-block" 
@@ -20,9 +23,17 @@ export default function IntegrationsHero() {
             </h1>
           </div>
           
-          {/* Description */}
           <div className="flex-1">
-            <p className="text-[16px] sm:text-[18px] text-gray-600 leading-relaxed max-w-lg lg:ml-auto">
+            <p 
+              className="text-gray-600 max-w-lg lg:ml-auto"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 400,
+                fontSize: '18px',
+                lineHeight: '32px',
+                letterSpacing: '0%'
+              }}
+            >
               Stop switching between multiple apps to manage customer interactions. Integrate our CRM with your trusted business applications and you can automatically capture leads, streamline communication, and keep every customer conversation in one centralized platform.
             </p>
           </div>
@@ -30,8 +41,7 @@ export default function IntegrationsHero() {
 
         {/* Graphic */}
         <div 
-          className="w-full mx-auto flex justify-center rounded-[24px] sm:rounded-[32px] overflow-hidden"
-          style={{ background: 'linear-gradient(177.63deg, #1E40AF 10%, #1E40AF 93.3%)' }}
+          className="w-full mx-auto flex justify-center rounded-[24px] sm:rounded-[32px] overflow-hidden bg-gradient-to-r from-[#5978c2] to-[#2546a1]"
         >
           <Image
             src="/images/integration/Fade.svg"
