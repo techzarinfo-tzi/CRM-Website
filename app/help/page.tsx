@@ -17,7 +17,7 @@ export default function HelpPage() {
 
       <VoiceOfSuccess />
 
-      <div className="mt-12 md:mt-20 lg:mt-24">
+      <div className="pt-6 md:pt-10">
         <AboutFAQ />
       </div>
     </div>
