@@ -8,7 +8,7 @@ import { AboutFAQ } from "@/src/components/about/AboutFAQ";
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans text-gray-900">
-      <main className="flex-grow w-full px-6 lg:px-20 pt-6 pb-16 md:pt-10 md:pb-24">
+      <main className="flex-grow w-full px-6 lg:px-20 py-12 md:py-20 lg:py-24">
         <AboutHero />
         <AboutMission />
         <AboutDNA />

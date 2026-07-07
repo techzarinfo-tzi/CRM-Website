@@ -47,7 +47,7 @@ export default function BusinessTools() {
   };
 
   return (
-    <section className="relative bg-white pt-6 sm:pt-10 lg:pt-14 pb-8 sm:pb-12 lg:pb-16 overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ── Heading ── */}

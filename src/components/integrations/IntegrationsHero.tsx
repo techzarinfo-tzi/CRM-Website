@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function IntegrationsHero() {
   return (
-    <section className="bg-white pt-8 sm:pt-12 pb-6 overflow-hidden">
+    <section className="pt-12 md:pt-20 lg:pt-24 pb-6 md:pb-10 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Top Text Section: Side by side on large screens */}

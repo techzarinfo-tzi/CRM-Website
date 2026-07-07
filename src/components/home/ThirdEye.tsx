@@ -4,7 +4,7 @@ import gauge from "@/src/assets/images/gauge.png";
 
 export default function ThirdEye() {
   return (
-    <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 lg:pb-28 overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-10 justify-between items-start">
 

@@ -23,7 +23,7 @@ export default function HelpContactOptions() {
   ];
 
   return (
-    <section className="bg-white py-6 sm:py-8">
+    <section className="py-12 md:py-20 lg:py-24 bg-white">
       <div className="mx-auto max-w-[1243px] px-4 sm:px-6 lg:px-8">
 
         {/* Heading */}

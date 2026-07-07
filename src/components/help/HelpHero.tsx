@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HelpHero() {
   return (
-    <section className="bg-white pt-4 sm:pt-6 pb-8 text-center">
+    <section className="py-12 md:py-20 lg:py-24 bg-white text-center">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1243px] mx-auto flex flex-col items-center justify-center gap-6">
           <h1 className="text-[32px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-bold text-[#1A1A1A] leading-[1.2] lg:leading-[1.1] tracking-tight px-4 sm:px-0">

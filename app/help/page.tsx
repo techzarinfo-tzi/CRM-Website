@@ -15,11 +15,9 @@ export default function HelpPage() {
       {/* <HelpSupportServices /> */}
       {/* <HelpCTA /> */}
 
-      <div className="py-8">
-        <VoiceOfSuccess />
-      </div>
+      <VoiceOfSuccess />
 
-      <div className="py-8">
+      <div className="mt-12 md:mt-20 lg:mt-24">
         <AboutFAQ />
       </div>
     </div>

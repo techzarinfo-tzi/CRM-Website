@@ -57,7 +57,7 @@ export default function HelpSupportServices() {
   ];
 
   return (
-    <section className="bg-white py-8 sm:py-12">
+    <section className="py-12 md:py-20 lg:py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-8">

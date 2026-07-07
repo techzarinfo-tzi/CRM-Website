@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function IntegrationsVideo() {
   return (
-    <section className="bg-white py-8 sm:py-12">
+    <section className="pt-6 md:pt-10 pb-12 md:pb-20 lg:pb-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
 
 

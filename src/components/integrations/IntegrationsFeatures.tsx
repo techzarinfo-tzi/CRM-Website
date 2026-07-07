@@ -19,7 +19,7 @@ export default function IntegrationsFeatures() {
   ];
 
   return (
-    <section className="bg-white py-8 sm:py-12">
+    <section className="pt-6 md:pt-10 pb-6 md:pb-10 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-6">
           <h2 className="text-[32px] sm:text-[40px] font-medium text-[#1A1A1A] leading-tight tracking-tight">

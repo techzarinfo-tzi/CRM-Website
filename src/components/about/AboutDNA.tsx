@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function AboutDNA() {
   return (
-    <div className="w-full relative flex items-center mb-32 mt-12 min-h-[300px]">
+    <div className="w-full relative flex items-center mb-12 md:mb-24 mt-12 min-h-[300px]">
 
       {/* Background Blue Banner - shorter than the container to create overlap effect */}
       <div className="absolute inset-y-8 inset-x-0 bg-gradient-to-r from-[#5978c2] to-[#2546a1] rounded-[32px] shadow-xl z-0"></div>

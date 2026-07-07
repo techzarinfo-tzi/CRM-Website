@@ -76,7 +76,7 @@ export default function MeetTheMinds() {
       {/* ════════════════════════
           MEET THE MINDS (video)
       ════════════════════════ */}
-      <section className="relative bg-white pt-4 sm:pt-6 lg:pt-8 pb-4 sm:pb-6 lg:pb-8 overflow-hidden">
+      <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative w-full aspect-[1251/680] rounded-2xl sm:rounded-3xl overflow-hidden">
             <Image
@@ -94,7 +94,7 @@ export default function MeetTheMinds() {
       {/* ════════════════════════
            WHAT MAKES TZI CRM STAND OUT
       ════════════════════════ */}
-      <section className="relative bg-white pt-10 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
+      <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           {/* ── Top: Full-Width Heading & Description ── */}

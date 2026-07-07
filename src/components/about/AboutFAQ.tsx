@@ -66,13 +66,13 @@ export function AboutFAQ() {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-3xl mx-auto mb-20">
-      <h2 className="text-[28px] sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-gray-900 mb-6 sm:mb-8 text-center tracking-tight px-4">
+    <div className="flex flex-col items-center max-w-3xl mx-auto mb-10">
+      <h2 className="text-[28px] sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-gray-900 mb-4 sm:mb-6 text-center tracking-tight px-4">
         Your Questions, Our Expert Answers
       </h2>
 
       {/* Tabs */}
-      <div className="bg-[#F8F9FA] p-1.5 rounded-2xl flex flex-col sm:flex-row items-stretch sm:items-center justify-center mb-8 sm:mb-10 w-[90%] sm:w-fit mx-auto border border-gray-100 gap-1 sm:gap-0">
+      <div className="bg-[#F8F9FA] p-1.5 rounded-2xl flex flex-col sm:flex-row items-stretch sm:items-center justify-center mb-6 sm:mb-8 w-[90%] sm:w-fit mx-auto border border-gray-100 gap-1 sm:gap-0">
         {tabs.map(tab => (
           <button
             key={tab}

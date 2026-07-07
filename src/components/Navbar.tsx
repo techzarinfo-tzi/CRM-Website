@@ -11,10 +11,11 @@ export function Navbar() {
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + '/');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
+  const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 bg-white">
-      <div className="flex items-center justify-between px-6 lg:px-20 py-4 relative z-50 bg-white">
+      <div className="flex items-center justify-between px-6 lg:px-8 xl:px-20 py-4 relative z-50 bg-white">
         {/* Logo */}
         <Link href="/" className="relative block">
           <Image
@@ -23,12 +24,12 @@ export function Navbar() {
             width={140}
             height={140}
             priority
-            className="w-[110px] h-auto object-contain object-left"
+            className="w-[110px] min-w-[110px] shrink-0 h-auto object-contain object-left"
           />
         </Link>
 
       {/* Nav links */}
-      <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+      <ul className="hidden lg:flex items-center gap-4 xl:gap-8 text-sm font-medium text-gray-700">
         <li>
           <Link href="#" className={`${isActive("/features") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Features</Link>
         </li>
@@ -43,15 +44,23 @@ export function Navbar() {
         <li>
           <Link href="/integrations" className={`${isActive("/integrations") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Integrations</Link>
         </li>
-        <li className="relative group">
-          <button suppressHydrationWarning className={`flex items-center gap-1 ${pathname.includes("/about") || pathname.includes("/contact") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors py-4`}>
+        <li 
+          className="relative group"
+          onMouseEnter={() => setIsCompanyDropdownOpen(true)}
+          onMouseLeave={() => setIsCompanyDropdownOpen(false)}
+        >
+          <button 
+            suppressHydrationWarning 
+            className={`flex items-center gap-1 ${pathname.includes("/about") || pathname.includes("/contact") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors py-4`}
+            onClick={() => setIsCompanyDropdownOpen(!isCompanyDropdownOpen)}
+          >
             Company
-            <svg className="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-3.5 h-3.5 mt-px transition-transform duration-200 ${isCompanyDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
-          <div className="absolute top-full left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div className={`absolute top-full left-1/2 -translate-x-1/2 transition-all duration-200 ${isCompanyDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
             <div className="bg-[#f4f7fe] rounded-[20px] p-5 flex flex-col gap-5 shadow-lg min-w-[180px]">
               <Link href="/about" className="flex items-center gap-3 text-gray-900 hover:text-blue-500 transition-colors text-[16px] font-medium">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
@@ -73,7 +82,7 @@ export function Navbar() {
       </ul>
 
       {/* Desktop CTA buttons */}
-      <div className="hidden md:flex items-center gap-3">
+      <div className="hidden lg:flex items-center gap-3">
         <button
           type="button"
           onClick={() => setIsFreeTrialOpen(true)}
@@ -92,7 +101,7 @@ export function Navbar() {
 
       {/* Mobile Hamburger Icon */}
       <button
-        className="md:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors"
+        className="lg:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle menu"
       >
@@ -110,7 +119,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl transition-all duration-300 ease-in-out ${
+        className={`lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl transition-all duration-300 ease-in-out ${
           isMobileMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
         }`}
       >

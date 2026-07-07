@@ -9,7 +9,7 @@ export default function HeroSection() {
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-24 relative min-h-screen bg-white overflow-hidden">
 
       {/* ════════════════════════
           HERO BODY

@@ -48,7 +48,7 @@ export default function IntegrationsDashboard() {
   };
 
   return (
-    <section className="relative bg-white pt-8 sm:pt-12 lg:pt-32 pb-8 overflow-hidden">
+    <section className="pt-6 md:pt-10 pb-6 md:pb-10 relative bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ── Heading ── */}
         <div className="mb-4">
@@ -61,7 +61,7 @@ export default function IntegrationsDashboard() {
       {/* ── Illustration: full-bleed background, edge-to-edge of the viewport ── */}
       <div
         ref={sectionRef}
-        className="relative mt-4 sm:mt-8 w-screen left-1/2 -translate-x-1/2 aspect-[548/393] sm:aspect-[1600/720]"
+        className="relative mt-4 sm:mt-8 w-screen left-1/2 -translate-x-1/2 aspect-[548/393] sm:aspect-[1600/720] overflow-hidden"
         style={{
           background:
             "radial-gradient(ellipse 60% 85% at center, #eff6ff 0%, #f0f9ff 35%, #ffffff 65%)",
@@ -97,7 +97,7 @@ export default function IntegrationsDashboard() {
           </div>
           {/* Center: Integrations panel */}
           <div
-            className="absolute left-1/2 top-[8%] w-[90%] sm:w-[34%] max-w-[720px]"
+            className="absolute left-1/2 top-[8%] w-[68%] sm:w-[45%] md:w-[34%] lg:w-[44%] max-w-[720px]"
             style={{
               ...getParallaxStyle(80), // Subtle translation for depth layer separation
               left: '50%',

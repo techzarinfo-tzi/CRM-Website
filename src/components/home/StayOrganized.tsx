@@ -547,7 +547,7 @@ export default function StayOrganized() {
   };
 
   return (
-    <section ref={sectionRef} className="relative z-40 bg-white pt-4 sm:pt-6 lg:pt-4 pb-10 sm:pb-12 lg:pb-14 overflow-hidden">
+    <section ref={sectionRef} className="py-12 md:py-20 lg:py-24 relative z-40 bg-white overflow-hidden">
       
       {/* ── Simulated Finger Hand Cursor (Kanban Demo) ── */}
       {kanbanCursorPos && (

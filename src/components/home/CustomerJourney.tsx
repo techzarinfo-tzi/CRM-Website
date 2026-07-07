@@ -51,7 +51,7 @@ export default function CustomerJourney() {
   const activeTab = stages[stageIndex].tab;
 
   return (
-    <section className="relative bg-white pt-14 sm:pt-4 lg:pt-0 pb-10 sm:pb-12 lg:pb-14 lg:mb-4 overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-24 relative bg-white lg:mb-4 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ── Heading ── */}
