@@ -114,12 +114,22 @@ export function AboutFAQ() {
                 <span className="font-semibold text-gray-900 text-[15px]">
                   {faq.question}
                 </span>
-                <div className={`shrink-0 w-6 h-6 flex items-center justify-center rounded-full transition-colors ${isOpen ? 'bg-[#3b82f6] text-white' : 'bg-gray-100 text-gray-400'}`}>
+                <div 
+                  className={`shrink-0 w-6 h-6 flex items-center justify-center rounded-full transition-all ${isOpen ? 'text-white' : 'bg-gray-100 text-gray-400'}`}
+                  style={
+                    isOpen
+                      ? {
+                          background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
+                          boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
+                        }
+                      : {}
+                  }
+                >
                   <svg
                     width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
-                    className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    className={`transition-transform duration-300 ${isOpen ? 'rotate-90' : 'rotate-0'}`}
                   >
-                    <path d="M6 9l6 6 6-6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
               </button>

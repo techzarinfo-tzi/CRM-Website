@@ -169,13 +169,21 @@ export default function YourQuestions() {
                     {faq.question}
                   </span>
                   <span
-                    className={`flex items-center justify-center w-8 h-8 rounded-full shrink-0 transition-colors ${
-                      isOpen ? "bg-blue-500" : "bg-gray-100"
+                    className={`flex items-center justify-center w-8 h-8 rounded-full shrink-0 transition-all ${
+                      isOpen ? "" : "bg-gray-100"
                     }`}
+                    style={
+                      isOpen
+                        ? {
+                            background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
+                            boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
+                          }
+                        : {}
+                    }
                   >
                     <svg
-                      className={`w-4 h-4 transition-transform ${
-                        isOpen ? "text-white rotate-0" : "text-gray-500"
+                      className={`w-4 h-4 transition-transform duration-300 ${
+                        isOpen ? "text-white rotate-90" : "text-gray-500 rotate-0"
                       }`}
                       fill="none"
                       stroke="currentColor"
@@ -185,7 +193,7 @@ export default function YourQuestions() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d={isOpen ? "M19 9l-7 7-7-7" : "M9 5l7 7-7 7"}
+                        d="M9 5l7 7-7 7"
                       />
                     </svg>
                   </span>
