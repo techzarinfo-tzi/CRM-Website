@@ -12,24 +12,73 @@ export function AboutDNA() {
 
         {/* Left side Graphic (TZI DNA) - overflowing top significantly, aligning bottom */}
         <div className="w-full xl:w-[45%] flex justify-center xl:ml-4 z-10 relative self-center xl:self-end mb-4 lg:mb-8 -mt-16 xl:-mt-[120px]">
-          <div className="relative w-[85%] sm:w-[60%] xl:w-full max-w-[400px] xl:max-w-[460px] drop-shadow-xl">
+          <div className="relative w-[85%] sm:w-[60%] xl:w-full max-w-[400px] xl:max-w-[460px] drop-shadow-xl" style={{ perspective: '1200px' }}>
+            <style>{`
+              .transform-style-3d {
+                transform-style: preserve-3d;
+              }
+              @keyframes spin-true-3d {
+                0% { transform: rotateZ(41deg) rotateY(0deg); }
+                100% { transform: rotateZ(41deg) rotateY(360deg); }
+              }
+            `}</style>
+
+            {/* The original background base image, keeping the exact layout size */}
             <Image
               src="/images/about us/image2.png"
               alt="TZI CRM DNA Graphic Base"
               width={480}
               height={480}
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain relative z-10"
               priority
             />
-            <Image
-              src="/images/about us/strand.svg"
-              alt="TZI CRM DNA Strand"
-              width={480}
-              height={480}
-              className="absolute inset-0 w-full h-full object-contain drop-shadow-sm"
-              priority
-              unoptimized
-            />
+
+            {/* TRUE 3D CSS DNA SPIRAL - perfectly overlaid diagonally without breaking layout */}
+            <div 
+              className="absolute inset-0 w-full h-full z-20 flex items-center justify-center pointer-events-none" 
+              style={{ 
+                perspective: '1000px',
+                WebkitMaskImage: 'url("/images/about us/image2.png")',
+                WebkitMaskSize: 'contain',
+                WebkitMaskPosition: 'center',
+                WebkitMaskRepeat: 'no-repeat',
+                maskImage: 'url("/images/about us/image2.png")',
+                maskSize: 'contain',
+                maskPosition: 'center',
+                maskRepeat: 'no-repeat'
+              }}
+            >
+              <div
+                className="relative w-[10%] h-[141%] transform-style-3d"
+                style={{
+                  animation: 'spin-true-3d 8s linear infinite'
+                }}
+              >
+                {Array.from({ length: 55 }).map((_, i) => {
+                  const yPos = (i / 54) * 100;
+                  const rotation = i * 15;
+                  return (
+                    <div
+                      key={i}
+                      className="absolute left-0 w-full h-[1px] bg-[#3B82F6]/40 transform-style-3d shadow-[0_0_2px_rgba(59,130,246,0.4)]"
+                      style={{
+                        top: `${yPos}%`,
+                        transform: `rotateY(${rotation}deg)`
+                      }}
+                    >
+                      <div
+                        className="absolute top-1/2 left-0 w-1.5 h-1.5 sm:w-2 sm:h-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#38BDF8] shadow-[0_0_6px_#38BDF8]"
+                        style={{ transform: `rotateY(${-rotation}deg)` }}
+                      ></div>
+                      <div
+                        className="absolute top-1/2 right-0 w-1.5 h-1.5 sm:w-2 sm:h-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2563EB] shadow-[0_0_6px_#2563EB]"
+                        style={{ transform: `rotateY(${-rotation}deg)` }}
+                      ></div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
