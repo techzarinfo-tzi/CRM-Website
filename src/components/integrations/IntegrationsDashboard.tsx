@@ -7,30 +7,45 @@ import Link from "next/link";
 
 export default function IntegrationsDashboard() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0.5); // Default to center
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    setIsMounted(true);
+    if (typeof window === "undefined") return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
+    const handleScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
 
-    observer.observe(el);
-    return () => observer.disconnect();
+      const rect = el.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Calculate relative scroll progress when section is in view
+      const total = rect.height + viewportHeight;
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        const progress = (viewportHeight - rect.top) / total;
+        setScrollProgress(Math.min(Math.max(progress, 0), 1));
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial layout trigger
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const reveal = (delay: string) =>
-    `transition-all duration-1000 ease-out ${delay} ${
-      visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20 sm:translate-y-28"
-    }`;
+  // Parallax scroll translations (images rise from bottom-to-top as user scrolls down)
+  const getParallaxStyle = (multiplier: number) => {
+    if (!isMounted) return {};
+    const isDesktop = window.innerWidth >= 768;
+    if (!isDesktop) return {};
+    // True parallax: offset moves from positive (down) to negative (up)
+    const translateY = (0.5 - scrollProgress) * multiplier;
+    return {
+      transform: `translateY(${translateY}px)`,
+      transition: "transform 0.9s ease-out"
+    };
+  };
 
   return (
     <section className="relative bg-white pt-8 sm:pt-12 lg:pt-32 pb-8 overflow-hidden">
@@ -55,10 +70,22 @@ export default function IntegrationsDashboard() {
         {/* Inner frame: caps how far apart the icons spread on ultra-wide screens */}
         <div className="relative mx-auto h-full max-w-[1400px]">
           
+          {/* Glowing Aura pulse background */}
+          <div 
+            className="absolute left-1/2 top-[15%] -translate-x-1/2 w-[35%] aspect-square rounded-full blur-[100px] opacity-40 mix-blend-multiply animate-pulse"
+            style={{
+              background: 'rgba(48, 143, 255, 0.8)',
+              zIndex: 1
+            }}
+          />
+
           {/* Background network curves and bubbles: Meta_image.svg */}
           <div
             className="absolute inset-0 w-full h-full"
-            style={{ zIndex: 1 }}
+            style={{
+              ...getParallaxStyle(180), // Stronger translation to come from bottom to top
+              zIndex: 2
+            }}
           >
             <Image 
               src="/images/home_images/Meta_image.svg" 
@@ -70,7 +97,13 @@ export default function IntegrationsDashboard() {
           </div>
           {/* Center: Integrations panel */}
           <div
-            className={`absolute left-1/2 top-[8%] -translate-x-1/2 w-[90%] sm:w-[34%] max-w-[720px] ${reveal("delay-150")}`}
+            className="absolute left-1/2 top-[8%] w-[90%] sm:w-[34%] max-w-[720px]"
+            style={{
+              ...getParallaxStyle(80), // Subtle translation for depth layer separation
+              left: '50%',
+              transform: `${getParallaxStyle(80).transform || ""} translateX(-50%)`,
+              zIndex: 3
+            }}
           >
             <Image
               src={integrationsImage}
