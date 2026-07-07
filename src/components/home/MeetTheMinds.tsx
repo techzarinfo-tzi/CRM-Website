@@ -161,10 +161,10 @@ export default function MeetTheMinds() {
             </div>
 
             {/* Right Column: Floating Graphics Stack */}
-            <div className="lg:col-span-6 w-full flex justify-center lg:justify-end">
+            <div className="lg:col-span-6 w-full flex justify-center lg:justify-end overflow-visible md:ml-18">
               <div 
                 id="stand-out-graphics"
-                className="relative w-full max-w-[550px] lg:max-w-none h-[540px] md:h-[600px] lg:h-[600px] scale-90 sm:scale-100 origin-center"
+                className="relative w-full max-w-[550px] lg:max-w-none h-[340px] min-[400px]:h-[410px] min-[500px]:h-[480px] sm:h-[540px] md:h-[600px] lg:h-[600px] scale-[0.58] min-[400px]:scale-[0.7] min-[500px]:scale-[0.85] sm:scale-90 md:scale-100 origin-top lg:origin-center mr-20"
               >
                 {/* Background Blue Card */}
                 <div 

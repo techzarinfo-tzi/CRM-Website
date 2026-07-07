@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const tabs = [
@@ -31,8 +31,16 @@ export default function AiPowered() {
   const [activeTab, setActiveTab] = useState(0);
   const active = tabs[activeTab];
 
+  // Automate tab cycling with reset-on-interaction support
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % tabs.length);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [activeTab]);
+
   return (
-    <section className="relative bg-white pt-10 sm:pt-16 lg:pt-24 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
+    <section className="relative bg-white pt-20 sm:pt-4 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ── Heading ── */}
@@ -72,6 +80,7 @@ export default function AiPowered() {
               const isActive = index === activeTab;
               return (
                 <button
+                  suppressHydrationWarning
                   key={tab.label}
                   type="button"
                   onClick={() => setActiveTab(index)}
@@ -94,7 +103,7 @@ export default function AiPowered() {
           <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
             
             {/* Left: Illustration Image */}
-            <div className="relative ml-40 w-full max-w-[450px] aspect-[401/342] flex items-center justify-center">
+            <div className="relative w-full max-w-[450px] aspect-[401/342] flex items-center justify-center">
               <div className="relative w-full h-full">
                 <Image
                   src={active.image}

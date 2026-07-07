@@ -204,10 +204,10 @@ export default function ThirdEye() {
               </div>
               <div className="relative mt-4 w-full h-[240px] sm:h-[350px] lg:h-[400px]">
                 <Image
-                  src="/images/home_images/Frame 1707479109.svg"
+                  src="/images/home_images/Route_Analysis.svg"
                   alt="Root Cause Analysis visual"
                   fill
-                  className="object-contain object-top"
+                  className="object-contain object-top border-radius-xl"
                   priority
                 />
               </div>

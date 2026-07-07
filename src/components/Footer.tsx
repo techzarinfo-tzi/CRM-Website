@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import FreeTrial from "./home/FreeTrial";
 
 const SocialIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -33,6 +37,8 @@ const SocialIcon = ({ type }: { type: string }) => {
 };
 
 export function Footer() {
+  const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
+
   return (
     <footer className="text-white py-16 px-4 sm:px-6 lg:px-8 mt-auto" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
       <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -51,12 +57,13 @@ export function Footer() {
             </span>
             CRM is your all-in-one platform for managing clients, streamlining workflows, and accelerating business growth.
           </h2>
-          <Link
-            href="#free-trial"
-            className="inline-block bg-white text-[#31373D] font-inter font-bold text-[15px] px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+          <button
+            type="button"
+            onClick={() => setIsFreeTrialOpen(true)}
+            className="inline-block bg-white text-[#31373D] font-inter font-bold text-[15px] px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
           >
             Start Your 14 Days Free Trial
-          </Link>
+          </button>
         </div>
 
         {/* Links Grid */}
@@ -104,6 +111,8 @@ export function Footer() {
           © 2026 TZI CRM . All rights reserved
         </div>
       </div>
+
+      <FreeTrial isOpen={isFreeTrialOpen} onClose={() => setIsFreeTrialOpen(false)} />
     </footer>
   );
 }
