@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const CheckIcon = () => (
   <svg className="w-5 h-5 text-emerald-500 inline-block" fill="currentColor" viewBox="0 0 20 20">
@@ -367,16 +368,23 @@ export function PricingSection() {
               <td colSpan={6} className="p-4 font-bold text-gray-900 text-lg">Supported Integrations</td>
             </tr>
             {[
-              'Facebook & Instagram Lead Ads',
-              'LinkedIn Lead Gen Campaigns',
-              'Justdial Lead Webhook',
-              'IndiaMART Leads Pull API',
-              '99acres Webhook Integration',
-              'Sulekha Lead Webhook',
-              'Google Meet Integration'
-            ].map((feature, i) => (
+              { name: 'Facebook & Instagram Lead Ads', icon: '/images/pricing/facebook logo.svg' },
+              { name: 'LinkedIn Lead Gen Campaigns', icon: '/images/pricing/linkedin logo.svg' },
+              { name: 'Justdial Lead Webhook', icon: '/images/pricing/justdial-seeklogo 1.svg' },
+              { name: 'IndiaMART Leads Pull API', icon: '/images/pricing/IndiaMART Symbol PNG 1.svg' },
+              { name: '99acres Webhook Integration', icon: '/images/pricing/99acres.svg' },
+              { name: 'Sulekha Lead Webhook', icon: '/images/pricing/Sulekha Icon 1.svg' },
+              { name: 'Google Meet Integration', icon: '/images/pricing/google-meet.svg' }
+            ].map((integration, i) => (
               <tr key={i} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="p-4 text-gray-700 font-medium">{feature}</td>
+                <td className="p-4 text-gray-700 font-medium">
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-6 relative flex-shrink-0">
+                      <Image src={integration.icon} alt={integration.name} fill className="object-contain" />
+                    </div>
+                    {integration.name}
+                  </div>
+                </td>
                 <td className="p-4 text-center"><CrossIcon /></td>
                 <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
                 <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
