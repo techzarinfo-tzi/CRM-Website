@@ -39,8 +39,8 @@ export default function MeetTheMinds() {
     if (typeof window === "undefined") return;
 
     const handleScroll = () => {
-      // Disable parallax/spread scrolling effect on tablet and mobile viewports
-      if (window.innerWidth < 1024) {
+      // Disable parallax/spread scrolling effect on tablet and laptop viewports under 1280px (xl breakpoint)
+      if (window.innerWidth < 1280) {
         setScrollProgress(0);
         return;
       }
@@ -76,7 +76,7 @@ export default function MeetTheMinds() {
       {/* ════════════════════════
           MEET THE MINDS (video)
       ════════════════════════ */}
-      <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
+      <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative w-full aspect-[1251/680] rounded-2xl sm:rounded-3xl overflow-hidden">
             <Image
@@ -94,11 +94,11 @@ export default function MeetTheMinds() {
       {/* ════════════════════════
            WHAT MAKES TZI CRM STAND OUT
       ════════════════════════ */}
-      <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
+      <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           {/* ── Top: Full-Width Heading & Description ── */}
-          <div className="flex flex-col gap-[16px] w-full lg:w-[770px] lg:h-[202px] mb-12 sm:mb-16">
+          <div className="flex flex-col gap-[16px] w-full xl:w-[770px] xl:h-[202px] mb-12 sm:mb-16">
             <h2 
               className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
               style={{
@@ -125,14 +125,14 @@ export default function MeetTheMinds() {
           </div>
 
           {/* ── Bottom Grid: Feature List (Left) + Floating Graphics (Right) ── */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-16 items-start">
             
             {/* Left Column: Feature List */}
-            <div className="lg:col-span-6 flex flex-col gap-8">
+            <div className="xl:col-span-6 flex flex-col gap-8">
               {features.map((feature) => (
                 <div 
                   key={feature.title}
-                  className="flex flex-col gap-[19px] w-full lg:w-[507px] lg:min-h-[137px]"
+                  className="flex flex-col gap-[19px] w-full xl:w-[507px] xl:min-h-[137px]"
                 >
                   <h3 
                     style={{
@@ -161,14 +161,14 @@ export default function MeetTheMinds() {
             </div>
 
             {/* Right Column: Floating Graphics Stack */}
-            <div className="lg:col-span-6 w-full flex justify-center lg:justify-end overflow-visible md:ml-18">
+            <div className="xl:col-span-6 w-full flex justify-center xl:justify-end overflow-visible md:ml-18">
               <div 
                 id="stand-out-graphics"
-                className="relative w-full max-w-[550px] lg:max-w-none h-[340px] min-[400px]:h-[410px] min-[500px]:h-[480px] sm:h-[540px] md:h-[600px] lg:h-[600px] scale-[0.58] min-[400px]:scale-[0.7] min-[500px]:scale-[0.85] sm:scale-90 md:scale-100 origin-top lg:origin-center mr-20"
+                className="relative w-full max-w-[550px] xl:max-w-none h-[340px] min-[400px]:h-[410px] min-[500px]:h-[480px] sm:h-[540px] md:h-[600px] xl:h-[600px] scale-[0.58] min-[400px]:scale-[0.7] min-[500px]:scale-[0.85] sm:scale-90 md:scale-100 origin-top xl:origin-center mr-20"
               >
                 {/* Background Blue Card */}
                 <div 
-                  className="absolute hidden lg:block"
+                  className="absolute hidden xl:block"
                   style={{
                     width: '512.85px',
                     height: '604.28px',

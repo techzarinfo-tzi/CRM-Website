@@ -4,12 +4,12 @@ import gauge from "@/src/assets/images/gauge.png";
 
 export default function ThirdEye() {
   return (
-    <section className="py-12 md:py-20 lg:py-24 relative bg-white overflow-hidden">
+    <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-10 justify-between items-start">
+        <div className="flex flex-col xl:flex-row gap-10 justify-between items-start">
 
           {/* ── Left Column: Heading + bottom-left cards ── */}
-          <div className="w-full lg:w-[755px] flex flex-col gap-10">
+          <div className="w-full xl:w-[755px] flex flex-col gap-10">
             {/* Heading */}
             <h2
               className="text-[32px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-medium text-gray-900 tracking-tight"
@@ -37,7 +37,7 @@ export default function ThirdEye() {
                 <Image
                   src={thumbsUp}
                   alt="Thumbs up"
-                  className="inline-block w-9 h-9 sm:w-11 sm:h-11 lg:w-30 lg:h-30 object-contain align-middle"
+                  className="inline-block w-9 h-9 sm:w-11 sm:h-11 xl:w-30 xl:h-30 object-contain align-middle"
                   priority
                 />
               </span>
@@ -47,7 +47,7 @@ export default function ThirdEye() {
             <div className="flex flex-col sm:flex-row gap-6 w-full">
               {/* Sales Cycle Gap Detection Card */}
               <div
-                className="rounded-[24px] bg-[#F7F8FA] p-6 flex flex-col justify-between w-full sm:w-[60%] lg:w-[445px] lg:h-[456px] lg:shrink-0"
+                className="rounded-[24px] bg-[#F7F8FA] p-6 flex flex-col justify-between w-full sm:w-[60%] xl:w-[445px] xl:h-[456px] xl:shrink-0"
               >
                 <div>
                   <h3
@@ -89,7 +89,7 @@ export default function ThirdEye() {
 
               {/* Loss Pattern Detection Card */}
               <div
-                className="rounded-[24px] bg-[#F7F8FA] p-6 flex flex-col justify-between w-full sm:w-[40%] lg:w-[286px] lg:h-[456px] lg:shrink-0"
+                className="rounded-[24px] bg-[#F7F8FA] p-6 flex flex-col justify-between w-full sm:w-[40%] xl:w-[286px] xl:h-[456px] xl:shrink-0"
               >
                 <div>
                   <h3
@@ -132,10 +132,10 @@ export default function ThirdEye() {
           </div>
 
           {/* ── Right Column: Win Rate Optimization + Root Cause Analysis ── */}
-          <div className="w-full lg:w-[445px] flex flex-col gap-6">
+          <div className="w-full xl:w-[445px] flex flex-col gap-6">
             {/* Win Rate Optimization Card */}
             <div
-              className="rounded-[24px] bg-[#F7F8FA] p-6 flex items-start justify-between gap-4 w-full lg:w-[445px] lg:h-[132px] lg:shrink-0"
+              className="rounded-[24px] bg-[#F7F8FA] p-6 flex items-start justify-between gap-4 w-full xl:w-[445px] xl:h-[132px] xl:shrink-0"
             >
               <div>
                 <h3
@@ -173,7 +173,7 @@ export default function ThirdEye() {
 
             {/* Root Cause Analysis Card */}
             <div
-              className="rounded-[24px] bg-[#F7F8FA] p-6 flex flex-col justify-between w-full lg:w-[445px] lg:h-[626px] lg:shrink-0"
+              className="rounded-[24px] bg-[#F7F8FA] p-6 flex flex-col justify-between w-full xl:w-[445px] xl:h-[626px] xl:shrink-0"
             >
               <div>
                 <h3
