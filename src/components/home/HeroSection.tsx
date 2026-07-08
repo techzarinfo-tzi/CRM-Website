@@ -9,12 +9,12 @@ export default function HeroSection() {
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
 
   return (
-    <section className="py-12 md:py-20 lg:py-24 relative min-h-screen bg-white overflow-hidden">
+    <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
 
       {/* ════════════════════════
           HERO BODY
       ════════════════════════ */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 pt-8 pb-16">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 pt-4 pb-6">
 
         <div className="relative w-full flex flex-col items-center">
           {/* Dashed border frame */}
