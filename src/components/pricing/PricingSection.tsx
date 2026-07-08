@@ -249,15 +249,22 @@ export function PricingSection() {
                     </span>
                   )}
                 </div>
-                <div className="text-left sm:text-right">
+                <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
                   {typeof plan.price === 'object' ? (
-                    <div className="text-2xl sm:text-3xl font-medium">
-                      {billing === '6_months' && plan.price['6_months'] ? (
-                        <>₹{plan.price['6_months'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/6mo</span></>
-                      ) : (
-                        <>₹{plan.price['yearly'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/yr</span></>
+                    <>
+                      <div className="text-2xl sm:text-3xl font-medium">
+                        {billing === '6_months' && plan.price['6_months'] ? (
+                          <>₹{plan.price['6_months'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/6mo</span></>
+                        ) : (
+                          <>₹{plan.price['yearly'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/yr</span></>
+                        )}
+                      </div>
+                      {plan.id === 'launch' && (
+                        <div className={`text-sm mt-0.5 ${isSelected ? 'text-white/90' : 'text-gray-500'}`}>
+                          {billing === 'yearly' ? 'or ₹3,999 for 6 months' : 'or ₹5,999 per year'}
+                        </div>
                       )}
-                    </div>
+                    </>
                   ) : (
                     <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
                       {plan.price === 'Custom pricing' ? <Link href="/contact">{plan.price}</Link> : plan.price}
