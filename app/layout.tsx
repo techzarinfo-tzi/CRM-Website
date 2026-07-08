@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/src/components/Navbar";
 import { Footer } from "@/src/components/Footer";
@@ -35,12 +36,19 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+      </head>
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-grow flex flex-col">
           {children}
         </main>
         <Footer />
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

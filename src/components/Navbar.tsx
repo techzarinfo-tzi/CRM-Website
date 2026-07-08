@@ -5,12 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import FreeTrial from "./home/FreeTrial";
+import ScheduleDemo from "./home/ScheduleDemo";
 
 export function Navbar() {
   const pathname = usePathname() || "";
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + '/');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
+  const [isScheduleDemoOpen, setIsScheduleDemoOpen] = useState(false);
   const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
 
   return (
@@ -90,13 +92,14 @@ export function Navbar() {
         >
           Free Trial
         </button>
-        <Link
-          href="#"
-          className="px-5 py-2.5 text-sm font-semibold text-white rounded-xl transition-all hover:shadow-lg hover:opacity-95"
+        <button
+          type="button"
+          onClick={() => setIsScheduleDemoOpen(true)}
+          className="px-5 py-2.5 text-sm font-semibold text-white rounded-xl transition-all hover:shadow-lg hover:opacity-95 cursor-pointer"
           style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
         >
           Schedule a Demo
-        </Link>
+        </button>
       </div>
 
       {/* Mobile Hamburger Icon */}
@@ -159,19 +162,23 @@ export function Navbar() {
             >
               Free Trial
             </button>
-            <Link
-              href="#"
-              className="w-full px-5 py-3 text-center text-sm font-semibold text-white rounded-xl transition-all"
+            <button
+              type="button"
+              className="w-full px-5 py-3 text-center text-sm font-semibold text-white rounded-xl transition-all cursor-pointer"
               style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsScheduleDemoOpen(true);
+              }}
             >
               Schedule a Demo
-            </Link>
+            </button>
           </div>
         </div>
       </div>
 
       <FreeTrial isOpen={isFreeTrialOpen} onClose={() => setIsFreeTrialOpen(false)} />
+      <ScheduleDemo isOpen={isScheduleDemoOpen} onClose={() => setIsScheduleDemoOpen(false)} />
     </nav>
   );
 }
