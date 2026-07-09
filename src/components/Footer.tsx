@@ -104,11 +104,11 @@ export function Footer() {
           <div>
             <ul className="space-y-3">
               <li><Link href="https://wa.me/919952885799" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="whatsapp" /> Whatsapp</Link></li>
-              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="linkedin" /> Linkedin</Link></li>
-              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="instagram" /> Instagram</Link></li>
-              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="facebook" /> Facebook</Link></li>
+              <li><Link href="https://www.linkedin.com/company/techzarinfo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="linkedin" /> Linkedin</Link></li>
+              <li><Link href="https://www.instagram.com/techzarinfo.software?igsh=ZXF6MnVieXFqeWg4" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="instagram" /> Instagram</Link></li>
+              <li><Link href="https://www.facebook.com/share/1944Hd72q9/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="facebook" /> Facebook</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="twitter" /> Twitter</Link></li>
-              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="youtube" /> Youtube</Link></li>
+              <li><Link href="https://youtube.com/@techzarinfochennai?si=fSaDwm1Ck-Vaz9Bh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="youtube" /> Youtube</Link></li>
             </ul>
           </div>
         </div>
