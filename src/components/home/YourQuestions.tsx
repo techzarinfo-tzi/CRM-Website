@@ -61,29 +61,29 @@ const faqsByTab: Record<string, FaqItem[]> = {
   ],
   Pricing: [
     {
-      question: "What pricing plans does TZI CRM offer?",
+      question: "How much does CRM software cost?",
       answer:
-        "TZI CRM offers flexible plans for individuals, growing teams and large organizations, each with a different set of features and usage limits to match your needs.",
+        "TZI CRM prices start at ₹5,999 per year for the Launch plan, ₹11,999 per year for the Cruise plan, and ₹21,999 per year for the Accelerate plan. We also offer a custom-priced Enterprise plan for large organizations.",
     },
     {
-      question: "Is there a free trial available?",
+      question: "Do you offer annual plans?",
       answer:
-        "Yes, you can start a 30-day free trial with full access to core features, no credit card required.",
+        "Yes. All TZI CRM plans are available on an annual subscription. Annual billing provides the best value while ensuring uninterrupted access to updates, support, and new features.",
     },
     {
-      question: "Can I upgrade or downgrade my plan anytime?",
+      question: "Is there a one-time payment option?",
       answer:
-        "Absolutely. You can change your plan at any time from your account settings, and billing will be prorated automatically.",
+        "Yes, TZI CRM can also be purchased as a white-label application, which allows you to put your logo and your own brand identity on the platform as well as the product itself.",
     },
     {
-      question: "Do you offer discounts for annual billing?",
+      question: "Are there hidden charges?",
       answer:
-        "Yes, switching to annual billing saves you up to 20% compared to paying monthly.",
+        "No. We believe in transparent pricing. You only pay for the plan you choose, and any optional customizations or enterprise requirements, feel free to contact our team at sales@techzarinfo.com for a personalized quote",
     },
     {
-      question: "What payment methods are accepted?",
+      question: "Do integrations cost extra?",
       answer:
-        "We accept all major credit and debit cards, as well as UPI and net banking for customers in India.",
+        "Yes. Each additional integration is available at ₹1,000 per integration. Our team will discuss your integration requirements in advance, ensuring complete transparency with no unexpected charges.",
     },
   ],
 };
@@ -104,9 +104,9 @@ export default function YourQuestions() {
   return (
     <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* ── Heading ── */}
-        <h2 
+        <h2
           className="text-center text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight mb-5 sm:mb-6"
           style={{
             fontFamily: 'Geist, sans-serif',
@@ -129,17 +129,16 @@ export default function YourQuestions() {
                   key={tab}
                   type="button"
                   onClick={() => handleTabChange(tab)}
-                  className={`h-[36px] px-5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center justify-center ${
-                    isActive
+                  className={`h-[36px] px-5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center justify-center ${isActive
                       ? "text-white"
                       : "text-gray-500 hover:text-gray-900 bg-transparent"
-                  }`}
+                    }`}
                   style={
                     isActive
                       ? {
-                          background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
-                          boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
-                        }
+                        background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
+                        boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
+                      }
                       : {}
                   }
                 >
@@ -169,22 +168,20 @@ export default function YourQuestions() {
                     {faq.question}
                   </span>
                   <span
-                    className={`flex items-center justify-center w-8 h-8 rounded-full shrink-0 transition-all ${
-                      isOpen ? "" : "bg-gray-100"
-                    }`}
+                    className={`flex items-center justify-center w-8 h-8 rounded-full shrink-0 transition-all ${isOpen ? "" : "bg-gray-100"
+                      }`}
                     style={
                       isOpen
                         ? {
-                            background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
-                            boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
-                          }
+                          background: "linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)",
+                          boxShadow: "0px 2px 6px 0px rgba(74, 58, 255, 0.1), inset 0px 1px 1.5px 0px rgba(255, 255, 255, 0.25), inset 0px -1px 1px 0px rgba(0, 0, 0, 0.12)",
+                        }
                         : {}
                     }
                   >
                     <svg
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        isOpen ? "text-white rotate-90" : "text-gray-500 rotate-0"
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "text-white rotate-90" : "text-gray-500 rotate-0"
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -200,9 +197,8 @@ export default function YourQuestions() {
                 </button>
 
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
+                  className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
                 >
                   <div className="overflow-hidden">
                     <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-sm text-gray-500 leading-relaxed">

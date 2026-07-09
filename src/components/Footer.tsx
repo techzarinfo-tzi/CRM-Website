@@ -71,10 +71,17 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Product</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Features</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Pricing</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Free Demo</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Testimonials</Link></li>
+              <li><Link href="/#features" className="text-white/80 hover:text-white transition-colors text-sm">Features</Link></li>
+              <li><Link href="/pricing" className="text-white/80 hover:text-white transition-colors text-sm">Pricing</Link></li>
+              <li>
+                <button 
+                  onClick={() => setIsFreeTrialOpen(true)} 
+                  className="text-white/80 hover:text-white transition-colors text-sm cursor-pointer bg-transparent border-0 p-0 font-normal outline-none text-left"
+                >
+                  Free Trial
+                </button>
+              </li>
+              <li><Link href="/#testimonials" className="text-white/80 hover:text-white transition-colors text-sm">Testimonials</Link></li>
             </ul>
           </div>
           <div>
@@ -96,7 +103,7 @@ export function Footer() {
           </div>
           <div>
             <ul className="space-y-3">
-              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="whatsapp" /> Whatsapp</Link></li>
+              <li><Link href="https://wa.me/919952885799" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="whatsapp" /> Whatsapp</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="linkedin" /> Linkedin</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="instagram" /> Instagram</Link></li>
               <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="facebook" /> Facebook</Link></li>

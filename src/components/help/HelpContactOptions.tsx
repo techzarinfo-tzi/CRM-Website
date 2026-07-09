@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HelpContactOptions() {
   const options = [
@@ -6,19 +7,22 @@ export default function HelpContactOptions() {
       id: 1,
       title: "Phone Support",
       description: "+91 9952885799",
-      icon: "/images/help/phone.svg"
+      icon: "/images/help/phone.svg",
+      href: "tel:+919952885799"
     },
     {
       id: 2,
       title: "WhatsApp Support",
       description: "+91 9952885799",
-      icon: "/images/help/whatsapp.svg"
+      icon: "/images/help/whatsapp.svg",
+      href: "https://wa.me/919952885799"
     },
     {
       id: 3,
       title: "Email Support",
       description: "sales@techzarinfo.com",
-      icon: "/images/help/email.svg"
+      icon: "/images/help/email.svg",
+      href: "mailto:sales@techzarinfo.com"
     }
   ];
 
@@ -40,9 +44,10 @@ export default function HelpContactOptions() {
         {/* Cards */}
         <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-[36px]">
           {options.map((option) => (
-            <div
+            <Link
               key={option.id}
-              className="bg-white rounded-[24px] border-[4px] border-[#EDEEF0] p-6 lg:p-[40px] flex flex-col items-center justify-center text-center w-full max-w-[292px] h-auto min-h-[232px] shrink-0 hover:shadow-lg transition-shadow"
+              href={option.href}
+              className="bg-white rounded-[24px] border-[4px] border-[#EDEEF0] p-6 lg:p-[40px] flex flex-col items-center justify-center text-center w-full max-w-[292px] h-auto min-h-[232px] shrink-0 hover:shadow-lg transition-all duration-300 hover:border-blue-200"
             >
               <div className="flex flex-col items-center justify-center gap-[18px]">
                 <Image
@@ -53,9 +58,9 @@ export default function HelpContactOptions() {
                   className="w-16 h-16 object-contain mb-2"
                 />
                 <h3 className="text-[16px] font-semibold text-gray-900">{option.title}</h3>
-                <p className="text-[14px] text-gray-500">{option.description}</p>
+                <p className="text-[14px] text-gray-500 hover:text-blue-600 transition-colors">{option.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

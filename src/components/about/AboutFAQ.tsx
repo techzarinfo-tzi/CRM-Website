@@ -49,16 +49,24 @@ const faqData: Record<string, { question: string, answer: string }[]> = {
   ],
   "Pricing": [
     {
-      question: "How does your pricing structure work?",
-      answer: "We offer flexible, tier-based pricing that scales based on the number of active users and the specific features you need. You can choose to be billed monthly or save 20% by paying annually."
+      question: "How much does CRM software cost?",
+      answer: "TZI CRM prices start at ₹5,999 per year for the Launch plan, ₹11,999 per year for the Cruise plan, and ₹21,999 per year for the Accelerate plan. We also offer a custom-priced Enterprise plan for large organizations."
     },
     {
-      question: "Is there a free trial available?",
-      answer: "Yes, we offer a 14-day fully-featured free trial so your team can test-drive TZI CRM completely risk-free. No credit card is required to sign up."
+      question: "Do you offer annual plans?",
+      answer: "Yes. All TZI CRM plans are available on an annual subscription. Annual billing provides the best value while ensuring uninterrupted access to updates, support, and new features."
     },
     {
-      question: "Are there any hidden fees or setup costs?",
-      answer: "Not at all! Our pricing is completely transparent. Your subscription fee covers everything, including standard customer support, cloud hosting, and continuous platform updates."
+      question: "Is there a one-time payment option?",
+      answer: "Yes, TZI CRM can also be purchased as a white-label application, which allows you to put your logo and your own brand identity on the platform as well as the product itself."
+    },
+    {
+      question: "Are there hidden charges?",
+      answer: "No. We believe in transparent pricing. You only pay for the plan you choose, and any optional customizations or enterprise requirements, feel free to contact our team at sales@techzarinfo.com for a personalized quote"
+    },
+    {
+      question: "Do integrations cost extra?",
+      answer: "Yes. Each additional integration is available at ₹1,000 per integration. Our team will discuss your integration requirements in advance, ensuring complete transparency with no unexpected charges."
     }
   ]
 };

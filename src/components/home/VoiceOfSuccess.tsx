@@ -121,7 +121,7 @@ function MarqueeColumn({
 
 export default function VoiceOfSuccess() {
   return (
-    <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
+    <section id="testimonials" className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden scroll-mt-24">
       <style>{`
         @keyframes voice-marquee-up {
           from { transform: translateY(0); }

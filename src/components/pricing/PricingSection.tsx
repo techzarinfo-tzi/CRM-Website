@@ -113,7 +113,13 @@ export function PricingSection() {
   const [sliderVal, setSliderVal] = useState(5);
   const [billing, setBilling] = useState<'6_months' | 'yearly'>('yearly');
 
-  const selectedPlan = plans.find(p => p.sliderValue === sliderVal) || plans[1];
+  const selectedPlan = billing === '6_months'
+    ? (plans.find(p => p.id === 'launch')!)
+    : (plans.find(p => p.sliderValue === sliderVal) || plans[1]);
+
+  const displayedPlans = billing === '6_months'
+    ? plans.filter(p => p.id === 'launch')
+    : plans;
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value);
@@ -221,66 +227,87 @@ export function PricingSection() {
       <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto mb-20">
         {/* Plans List */}
         <div className="flex-1 space-y-4">
-          {plans.map((plan) => {
-            const isSelected = selectedPlan.id === plan.id;
-            return (
-              <div
-                key={plan.id}
-                onClick={() => setSliderVal(plan.sliderValue)}
-                className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
-                  ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
-                  : plan.id === 'enterprise'
-                    ? 'border-transparent bg-transparent hover:border-blue-300 hover:bg-white text-gray-900'
-                    : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
-                  } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
-                style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+          {billing === '6_months' && sliderVal > 5 ? (
+            <div className="bg-amber-50 border border-amber-200 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center justify-center gap-4">
+              <svg className="w-12 h-12 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <h3 className="text-lg font-bold text-amber-900">Plan Unavailable</h3>
+              <p className="text-amber-700 text-sm sm:text-base max-w-md">
+                There is no 6 months plan for more than 5 users. Go with yearly plan.
+              </p>
+              <button
+                type="button"
+                onClick={() => setBilling('yearly')}
+                className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold transition-colors shadow-sm cursor-pointer"
               >
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                  <h3 className="text-lg sm:text-xl font-semibold">{plan.name}</h3>
-                  {plan.tag && (
-                    <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.id === 'free'
-                      ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
-                      : plan.id === 'launch'
-                        ? 'bg-[#e0f2fe] text-[#0ea5e9]'
-                        : plan.id === 'cruise'
-                          ? 'bg-[#fae8ff] text-[#c026d3]'
-                          : 'bg-gray-100 text-gray-600'
-                      }`}>
-                      {plan.tag}
-                    </span>
-                  )}
-                </div>
-                <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
-                  {typeof plan.price === 'object' ? (
-                    <>
-                      <div className="text-2xl sm:text-3xl font-medium">
-                        {billing === '6_months' && plan.price['6_months'] ? (
-                          <>₹{plan.price['6_months'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/6mo</span></>
-                        ) : (
-                          <>₹{plan.price['yearly'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/yr</span></>
-                        )}
-                      </div>
-                      {plan.id === 'launch' && (
-                        <div className={`text-sm mt-0.5 ${isSelected ? 'text-white/90' : 'text-gray-500'}`}>
-                          {billing === 'yearly' ? 'or ₹3,999 for 6 months' : 'or ₹5,999 per year'}
+                Switch to Yearly Billing
+              </button>
+            </div>
+          ) : (
+            <>
+              {displayedPlans.map((plan) => {
+                const isSelected = selectedPlan.id === plan.id;
+                return (
+                  <div
+                    key={plan.id}
+                    onClick={() => setSliderVal(plan.sliderValue)}
+                    className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
+                      ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
+                      : plan.id === 'enterprise'
+                        ? 'border-transparent bg-transparent hover:border-blue-300 hover:bg-white text-gray-900'
+                        : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
+                      } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
+                    style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+                  >
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                      <h3 className="text-lg sm:text-xl font-semibold">{plan.name}</h3>
+                      {plan.tag && (
+                        <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.id === 'free'
+                          ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
+                          : plan.id === 'launch'
+                            ? 'bg-[#e0f2fe] text-[#0ea5e9]'
+                            : plan.id === 'cruise'
+                              ? 'bg-[#fae8ff] text-[#c026d3]'
+                              : 'bg-gray-100 text-gray-600'
+                          }`}>
+                          {plan.tag}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
+                      {typeof plan.price === 'object' ? (
+                        <>
+                          <div className="text-2xl sm:text-3xl font-medium">
+                            {billing === '6_months' && plan.price['6_months'] ? (
+                              <>₹{plan.price['6_months'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/6mo</span></>
+                            ) : (
+                              <>₹{plan.price['yearly'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/yr</span></>
+                            )}
+                          </div>
+                          {plan.id === 'launch' && (
+                            <div className={`text-sm mt-0.5 ${isSelected ? 'text-white/90' : 'text-gray-500'}`}>
+                              {billing === 'yearly' ? 'or ₹3,999 for 6 months' : 'or ₹5,999 per year'}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
+                          {plan.price === 'Custom pricing' ? <Link href="/contact">{plan.price}</Link> : plan.price}
                         </div>
                       )}
-                    </>
-                  ) : (
-                    <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
-                      {plan.price === 'Custom pricing' ? <Link href="/contact">{plan.price}</Link> : plan.price}
                     </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+                  </div>
+                );
+              })}
 
-          <div className="pt-4">
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm">
-              Choose Plan
-            </button>
-          </div>
+              <div className="pt-4">
+                <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm">
+                  Choose Plan
+                </button>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Features Box */}

@@ -93,7 +93,7 @@ export default function HeroSection() {
               color: '#31373D'
             }}
           >
-            Track every lead, automate follow-ups and close deals faster than ever
+            Track every lead, streamline follow-ups and close deals faster than ever
           </p>
 
           {/* CTA buttons */}
