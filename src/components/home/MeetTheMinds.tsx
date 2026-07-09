@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import meetTheMinds from "@/src/assets/images/meet_the_minds.png";
 
 const features = [
   {
@@ -34,6 +33,7 @@ const features = [
 
 export default function MeetTheMinds() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -44,7 +44,7 @@ export default function MeetTheMinds() {
         setScrollProgress(0);
         return;
       }
-      
+
       const element = document.getElementById("stand-out-graphics");
       if (!element) return;
 
@@ -78,15 +78,34 @@ export default function MeetTheMinds() {
       ════════════════════════ */}
       <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="relative w-full aspect-[1251/680] rounded-2xl sm:rounded-3xl overflow-hidden">
-            <Image
-              src={meetTheMinds}
-              alt="Meet the Minds Behind TZI CRM"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 1024px, 100vw"
-              priority
+          <div className="relative w-full aspect-[1251/680] rounded-2xl sm:rounded-3xl overflow-hidden group shadow-2xl">
+            <video
+              src="/images/home_images/meet the minds.mp4"
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
             />
+            <button
+              onClick={() => setIsMuted(!isMuted)}
+              className="absolute bottom-4 right-4 p-3 bg-black/40 hover:bg-black/60 text-white rounded-full transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 backdrop-blur-sm shadow-lg"
+              aria-label={isMuted ? "Unmute video" : "Mute video"}
+            >
+              {isMuted ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              )}
+            </button>
           </div>
         </div>
       </section>
@@ -96,10 +115,10 @@ export default function MeetTheMinds() {
       ════════════════════════ */}
       <section id="features" className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
+
           {/* ── Top: Full-Width Heading & Description ── */}
           <div className="flex flex-col gap-[16px] w-full xl:w-[770px] xl:h-[202px] mb-12 sm:mb-16">
-            <h2 
+            <h2
               className="text-[32px] sm:text-[44px] lg:text-[52px] font-medium text-gray-900 tracking-tight"
               style={{
                 fontFamily: 'Geist, sans-serif',
@@ -110,7 +129,7 @@ export default function MeetTheMinds() {
             >
               What Makes <span className="text-blue-500">TZI CRM</span> Stand Out
             </h2>
-            <p 
+            <p
               className="text-base sm:text-[18px] lg:text-[22px]"
               style={{
                 fontFamily: 'Geist, sans-serif',
@@ -126,15 +145,15 @@ export default function MeetTheMinds() {
 
           {/* ── Bottom Grid: Feature List (Left) + Floating Graphics (Right) ── */}
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-16 items-start">
-            
+
             {/* Left Column: Feature List */}
             <div className="xl:col-span-6 flex flex-col gap-8">
               {features.map((feature) => (
-                <div 
+                <div
                   key={feature.title}
                   className="flex flex-col gap-[19px] w-full xl:w-[507px] xl:min-h-[137px]"
                 >
-                  <h3 
+                  <h3
                     style={{
                       fontFamily: 'Inter, sans-serif',
                       fontWeight: 700,
@@ -145,7 +164,7 @@ export default function MeetTheMinds() {
                   >
                     {feature.title}
                   </h3>
-                  <p 
+                  <p
                     style={{
                       fontFamily: 'Inter, sans-serif',
                       fontWeight: 400,
@@ -162,12 +181,12 @@ export default function MeetTheMinds() {
 
             {/* Right Column: Floating Graphics Stack */}
             <div className="xl:col-span-6 w-full flex justify-center xl:justify-end overflow-visible md:ml-18">
-              <div 
+              <div
                 id="stand-out-graphics"
                 className="relative w-full max-w-[550px] xl:max-w-none h-[340px] min-[400px]:h-[410px] min-[500px]:h-[480px] sm:h-[540px] md:h-[600px] xl:h-[600px] scale-[0.58] min-[400px]:scale-[0.7] min-[500px]:scale-[0.85] sm:scale-90 md:scale-100 origin-top xl:origin-center mr-20"
               >
                 {/* Background Blue Card */}
-                <div 
+                <div
                   className="absolute hidden xl:block"
                   style={{
                     width: '512.85px',
@@ -183,7 +202,7 @@ export default function MeetTheMinds() {
                 />
 
                 {/* 1. Quick Actions image */}
-                <div 
+                <div
                   className="absolute shadow-xl overflow-hidden bg-white transition-transform duration-100 ease-out"
                   style={{
                     width: '383.92px',
@@ -200,13 +219,13 @@ export default function MeetTheMinds() {
                     alt="Quick Actions"
                     fill
                     className="object-contain p-[28px]"
-                    style={{left:"-7%"}}
+                    style={{ left: "-7%" }}
                     priority
                   />
                 </div>
 
                 {/* 2. Classification image */}
-                <div 
+                <div
                   className="absolute shadow-xl overflow-hidden bg-white transition-transform duration-100 ease-out z-30"
                   style={{
                     width: '292.99px',
@@ -227,7 +246,7 @@ export default function MeetTheMinds() {
                 </div>
 
                 {/* 3. Basic Bar Chart image */}
-                <div 
+                <div
                   className="absolute shadow-xl overflow-hidden bg-white transition-transform duration-100 ease-out z-20"
                   style={{
                     width: '350.68px',
@@ -249,7 +268,7 @@ export default function MeetTheMinds() {
 
               </div>
             </div>
-            
+
           </div>
         </div>
       </section>
