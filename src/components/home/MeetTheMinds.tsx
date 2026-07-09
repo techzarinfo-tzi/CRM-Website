@@ -94,7 +94,7 @@ export default function MeetTheMinds() {
       {/* ════════════════════════
            WHAT MAKES TZI CRM STAND OUT
       ════════════════════════ */}
-      <section className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden">
+      <section id="features" className="py-8 md:py-12 lg:py-16 relative bg-white overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           {/* ── Top: Full-Width Heading & Description ── */}

@@ -33,7 +33,7 @@ export function Navbar() {
       {/* Nav links */}
       <ul className="hidden lg:flex items-center gap-4 xl:gap-8 text-sm font-medium text-gray-700">
         <li>
-          <Link href="#" className={`${isActive("/features") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Features</Link>
+          <Link href="/#features" className="hover:text-blue-500 transition-colors">Features</Link>
         </li>
         <li>
           <button suppressHydrationWarning className="flex items-center gap-1 hover:text-blue-500 transition-colors">
