@@ -15,6 +15,17 @@ export function Navbar() {
   const [isScheduleDemoOpen, setIsScheduleDemoOpen] = useState(false);
   const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
 
+  const handleScrollToFeatures = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setIsMobileMenuOpen(false);
+    if (pathname === "/") {
+      e.preventDefault();
+      const element = document.getElementById("features");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <nav className="sticky top-0 z-50 bg-white">
       <div className="flex items-center justify-between px-6 lg:px-8 xl:px-20 py-4 relative z-50 bg-white">
@@ -33,7 +44,7 @@ export function Navbar() {
       {/* Nav links */}
       <ul className="hidden lg:flex items-center gap-4 xl:gap-8 text-sm font-medium text-gray-700">
         <li>
-          <Link href="/#features" className="hover:text-blue-500 transition-colors">Features</Link>
+          <Link href="/#features" className="hover:text-blue-500 transition-colors" onClick={handleScrollToFeatures}>Features</Link>
         </li>
         <li>
           <button suppressHydrationWarning className="flex items-center gap-1 hover:text-blue-500 transition-colors">
@@ -129,7 +140,7 @@ export function Navbar() {
         <div className="px-6 py-6 flex flex-col gap-6 max-h-[calc(100vh-80px)] overflow-y-auto">
           <ul className="flex flex-col gap-4 text-base font-medium text-gray-700">
             <li>
-              <Link href="/#features" className={`block ${isActive("/#features") ? "text-blue-500" : "hover:text-blue-500"}`} onClick={() => setIsMobileMenuOpen(false)}>Features</Link>
+              <Link href="/#features" className="block hover:text-blue-500" onClick={handleScrollToFeatures}>Features</Link>
             </li>
             <li>
               <Link href="/integrations" className={`block ${isActive("/integrations") ? "text-blue-500" : "hover:text-blue-500"}`} onClick={() => setIsMobileMenuOpen(false)}>Integrations</Link>
