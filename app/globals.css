@@ -23,6 +23,50 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading), Arial, Helvetica, sans-serif;
+}
+
+@keyframes sweep {
+  0% {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  80% {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes counter-sweep {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  80% {
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    transform: rotate(-90deg);
+  }
 }

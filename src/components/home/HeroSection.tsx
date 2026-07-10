@@ -99,7 +99,7 @@ export default function HeroSection() {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 mt-8 w-full sm:w-auto">
             <Link
-              href="#"
+              href="/contact-us"
               className="font-semibold text-white transition-all shadow-sm"
               style={{
                 width: '131.22px',

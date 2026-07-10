@@ -1,30 +1,30 @@
-import Image from "next/image";
+import AnimatedOrbits from "./AnimatedOrbits";
 
 export default function IntegrationsHero() {
   return (
     <section className="pt-12 md:pt-20 lg:pt-24 pb-6 md:pb-10 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Top Text Section: Side by side on large screens */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-8 mb-6 sm:mb-8">
           {/* Heading */}
           <div className="flex-1">
-            <h1 
+            <h1
               className="text-[40px] sm:text-[52px] md:text-[60px] font-medium text-[#1A1A1A] leading-[1.1] tracking-tight"
               style={{ fontFamily: 'Geist, sans-serif' }}
             >
               One System.<br />
-              <span 
-                className="text-transparent bg-clip-text inline-block" 
+              <span
+                className="text-transparent bg-clip-text inline-block"
                 style={{ backgroundImage: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
               >
                 Infinite Connections.
               </span>
             </h1>
           </div>
-          
+
           <div className="flex-1">
-            <p 
+            <p
               className="text-gray-600 max-w-lg lg:ml-auto"
               style={{
                 fontFamily: 'Inter, sans-serif',
@@ -39,19 +39,8 @@ export default function IntegrationsHero() {
           </div>
         </div>
 
-        {/* Graphic */}
-        <div 
-          className="w-full mx-auto flex justify-center rounded-[24px] sm:rounded-[32px] overflow-hidden bg-gradient-to-r from-[#5978c2] to-[#2546a1]"
-        >
-          <Image
-            src="/images/integration/Fade.svg"
-            alt="Integration connections"
-            width={1242}
-            height={285}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
+        {/* Animated Graphic */}
+        <AnimatedOrbits />
 
       </div>
     </section>

@@ -95,7 +95,7 @@ export function AboutDNA() {
           </ul>
 
           <Link
-            href="/contact"
+            href="/contact-us"
             className="bg-white text-[#170F49] font-semibold text-[15px] px-7 py-3 rounded-[10px] shadow-md hover:shadow-lg hover:bg-gray-50 transition-all"
           >
             See Our DNA in Action

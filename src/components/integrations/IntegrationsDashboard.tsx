@@ -121,7 +121,7 @@ export default function IntegrationsDashboard() {
           Don't see your preferred business tool? No problem. We can integrate the applications your business already uses with our TZI CRM, ensuring a seamless workflow tailored to your operational needs.
         </p>
         <Link 
-          href="/contact" 
+          href="/contact-us" 
           className="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all hover:opacity-95"
           style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
         >

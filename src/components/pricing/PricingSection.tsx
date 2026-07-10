@@ -133,7 +133,7 @@ export function PricingSection() {
   };
 
   return (
-    <section className="py-12 md:py-20 lg:py-24 px-6 max-w-6xl mx-auto bg-white min-h-screen">
+    <section id="pricing" className="py-12 md:py-20 lg:py-24 px-6 max-w-6xl mx-auto bg-white min-h-screen scroll-mt-24">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="font-bold text-gray-900 mb-4 md:mb-6 flex flex-wrap md:flex-nowrap items-center justify-center gap-2 md:gap-4 md:whitespace-nowrap text-[48px] sm:text-[64px] md:text-[92px] leading-[1.1] md:leading-[80px] tracking-tight md:tracking-[-3.6px]">
@@ -293,7 +293,7 @@ export function PricingSection() {
                         </>
                       ) : (
                         <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
-                          {plan.price === 'Custom pricing' ? <Link href="/contact">{plan.price}</Link> : plan.price}
+                          {plan.price === 'Custom pricing' ? <Link href="/contact-us">{plan.price}</Link> : plan.price}
                         </div>
                       )}
                     </div>
