@@ -228,13 +228,13 @@ export function PricingSection() {
         {/* Plans List */}
         <div className="flex-1 space-y-4">
           {billing === '6_months' && sliderVal > 5 ? (
-            <div className="bg-amber-50 border border-amber-200 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center justify-center gap-4">
-              <svg className="w-12 h-12 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <div className="bg-blue-50 border border-blue-200 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center justify-center gap-4">
+              <svg className="w-12 h-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <h3 className="text-lg font-bold text-amber-900">Plan Unavailable</h3>
-              <p className="text-amber-700 text-sm sm:text-base max-w-md">
-                There is no 6 months plan for more than 5 users. Go with yearly plan.
+              <h3 className="text-lg font-bold text-blue-900">Growing Team?</h3>
+              <p className="text-blue-700 text-sm sm:text-base max-w-md">
+                For more than 5 users, switch to our yearly plan to unlock advanced team features and better pricing.
               </p>
               <button
                 type="button"
