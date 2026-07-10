@@ -45,14 +45,13 @@ export function Footer() {
         {/* Top Section */}
         <div className="text-center max-w-4xl mb-8 mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-8">
-            <span className="inline-block align-middle mr-3 -mt-2">
+            <span className="inline-block align-baseline mr-3">
               <Image
                 src="/images/footer logo.png"
                 alt="TZI Footer Logo"
                 width={85}
                 height={40}
-                className="object-contain"
-                style={{ width: "auto", height: "auto" }}
+                className="h-[36px] w-auto object-contain translate-y-1"
               />
             </span>
             CRM is your all-in-one platform for managing clients, streamlining workflows, and accelerating business growth.
