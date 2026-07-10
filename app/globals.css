@@ -33,40 +33,21 @@ h6 {
 }
 
 @keyframes sweep {
-  0% {
-    transform: rotate(-90deg);
-    opacity: 0;
+  from {
+    transform: rotate(0deg);
   }
 
-  15% {
-    opacity: 1;
-  }
-
-  65% {
-    opacity: 1;
-  }
-
-  80% {
-    transform: rotate(90deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: rotate(90deg);
-    opacity: 0;
+  to {
+    transform: rotate(360deg);
   }
 }
 
 @keyframes counter-sweep {
-  0% {
-    transform: rotate(90deg);
+  from {
+    transform: rotate(360deg);
   }
 
-  80% {
-    transform: rotate(-90deg);
-  }
-
-  100% {
-    transform: rotate(-90deg);
+  to {
+    transform: rotate(0deg);
   }
 }
