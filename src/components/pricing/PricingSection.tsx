@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import FreeTrial from "../home/FreeTrial";
 
 const CheckIcon = () => (
   <svg className="w-5 h-5 text-emerald-500 inline-block" fill="currentColor" viewBox="0 0 20 20">
@@ -112,6 +113,7 @@ const plans = [
 export function PricingSection() {
   const [sliderVal, setSliderVal] = useState(5);
   const [billing, setBilling] = useState<'6_months' | 'yearly'>('yearly');
+  const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
 
   const selectedPlan = billing === '6_months'
     ? (plans.find(p => p.id === 'launch')!)
@@ -293,7 +295,21 @@ export function PricingSection() {
                         </>
                       ) : (
                         <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
-                          {plan.price === 'Custom pricing' ? <Link href="/contact-us">{plan.price}</Link> : plan.price}
+                          {plan.price === 'Custom pricing' ? (
+                            <Link href="/contact-us">{plan.price}</Link>
+                          ) : plan.price === 'Free' ? (
+                            <button 
+                              type="button" 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setIsFreeTrialOpen(true);
+                              }}
+                            >
+                              {plan.price}
+                            </button>
+                          ) : (
+                            plan.price
+                          )}
                         </div>
                       )}
                     </div>
@@ -429,6 +445,8 @@ export function PricingSection() {
           </tbody>
         </table>
       </div>
+
+      <FreeTrial isOpen={isFreeTrialOpen} onClose={() => setIsFreeTrialOpen(false)} />
     </section>
   );
 }
