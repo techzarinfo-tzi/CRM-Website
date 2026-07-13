@@ -122,6 +122,7 @@ export default function HeroSection() {
               Get a Quote
             </Link>
             <button
+              suppressHydrationWarning
               type="button"
               onClick={() => setIsFreeTrialOpen(true)}
               className="font-semibold text-black transition-all cursor-pointer"

@@ -139,7 +139,7 @@ export default function MeetTheMinds() {
                 color: '#555E67'
               }}
             >
-              Every business has unique objectives, and CRM should be built to support them. TZI CRM goes beyond traditional CRM solutions by combining versatile features. TZI CRM provides everything you need to manage your business more efficiently and stay ahead of the competition.
+              Every business has unique objectives, and CRM should be built to support them. TZI CRM goes beyond traditional CRM solutions by combining versatile features. It provides everything you need to manage your business more efficiently and stay ahead of the competition.
             </p>
           </div>
 

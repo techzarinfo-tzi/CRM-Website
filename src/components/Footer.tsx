@@ -58,6 +58,7 @@ export function Footer() {
             CRM is your all-in-one platform for managing clients, streamlining workflows, and accelerating business growth.
           </h2>
           <button
+            suppressHydrationWarning
             type="button"
             onClick={() => setIsFreeTrialOpen(true)}
             className="inline-block bg-white text-[#31373D] font-inter font-bold text-[15px] px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
@@ -75,6 +76,7 @@ export function Footer() {
               <li><Link href="/pricing" className="text-white/80 hover:text-white transition-colors text-sm">Pricing</Link></li>
               <li>
                 <button 
+                  suppressHydrationWarning
                   onClick={() => setIsFreeTrialOpen(true)} 
                   className="text-white/80 hover:text-white transition-colors text-sm cursor-pointer bg-transparent border-0 p-0 font-normal outline-none text-left"
                 >

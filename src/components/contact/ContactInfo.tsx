@@ -9,7 +9,7 @@ export function ContactInfo() {
         with a <span className="text-[#3b82f6]">Conversation</span>
       </h1>
       <p className="text-gray-600 text-[17px] mb-6 max-w-[480px] leading-relaxed">
-        Your business is unique, and your CRM should be too. Tell us about your requirements, and our CRM experts will help you find the right solution.
+        Your business is unique, and your CRM should be too. Tell us about your requirements, and our experts will help you find the right solution.
       </p>
 
       <div className="flex flex-col gap-8 mb-8">

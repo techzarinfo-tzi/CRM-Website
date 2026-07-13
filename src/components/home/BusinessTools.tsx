@@ -73,7 +73,7 @@ export default function BusinessTools() {
               color: '#555E67'
             }}
           >
-            Stop switching between multiple platforms and searching for customer information. TZI CRM unifies your entire sales ecosystem into a single workspace.
+            Stop switching between multiple platforms and searching for customer information. It unifies your entire sales ecosystem into a single workspace.
           </p>
         </div>
       </div>

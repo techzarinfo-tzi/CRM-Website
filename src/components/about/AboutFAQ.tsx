@@ -84,7 +84,7 @@ export function AboutFAQ() {
   return (
     <div className="flex flex-col items-center max-w-3xl mx-auto mb-10">
       <h2 className="text-[28px] sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-gray-900 mb-4 sm:mb-6 text-center tracking-tight px-4">
-        Your Questions, Our Expert Answers
+        Our Expert Answers for Your Questions
       </h2>
 
       {/* Tabs */}

@@ -73,7 +73,7 @@ export default function ThirdEye() {
                       color: '#31373D'
                     }}
                   >
-                    Streamline your sales process, eliminate delays and improve your deal closures.
+                    Identify stages where opportunities frequently fall or drop off.Streamline your sales process, eliminate delays and improve your deal closures.
                   </p>
                 </div>
                 <div className="relative mt-4 w-full h-[180px] sm:h-[200px] lg:h-[290px]">
@@ -115,7 +115,7 @@ export default function ThirdEye() {
                       color: '#31373D'
                     }}
                   >
-                    Identify recurring sales obstacles across your pipeline.
+                    Identify recurring sales obstacles across your pipeline. Analyze historical deal data to uncover trends, bottlenecks, and areas that need improvement.
                   </p>
                 </div>
                 <div className="relative  w-full h-[180px] sm:h-[200px] lg:h-[290px]">
@@ -135,7 +135,7 @@ export default function ThirdEye() {
           <div className="w-full xl:w-[445px] flex flex-col gap-6">
             {/* Win Rate Optimization Card */}
             <div
-              className="rounded-[24px] bg-[#F7F8FA] p-6 flex items-start justify-between gap-4 w-full xl:w-[445px] xl:h-[132px] xl:shrink-0"
+              className="rounded-[24px] bg-[#F7F8FA] p-6 flex items-start justify-between gap-4 w-full xl:w-[445px] xl:shrink-0"
             >
               <div>
                 <h3
@@ -161,7 +161,7 @@ export default function ThirdEye() {
                     color: '#31373D'
                   }}
                 >
-                  Utilize deal-loss insights to strengthen your sales approach, improve close rates and drive sustainable growth.
+                  Turn your losses into future revenue opportunities.Utilize deal-loss insights to strengthen your sales approach, improve close rates and drive sustainable growth.
                 </p>
               </div>
               <Image
@@ -199,7 +199,7 @@ export default function ThirdEye() {
                     color: '#31373D'
                   }}
                 >
-                  Gain visibility into customer rejections, pricing concerns, competitor influence and other factors affecting your sales outcomes.
+                  Know exactly why deals were lost. Gain visibility into customer rejections, pricing concerns, competitor influence and other factors affecting your sales outcomes.
                 </p>
               </div>
               <div className="relative mt-4 w-full h-[240px] sm:h-[350px] lg:h-[400px]">

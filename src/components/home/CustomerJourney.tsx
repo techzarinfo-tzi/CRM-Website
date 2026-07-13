@@ -80,7 +80,8 @@ export default function CustomerJourney() {
               color: '#555E67'
             }}
           >
-            Once the client fills out a form from any of your marketing channels, their details are automatically captured and added to the CRM.
+            Our solutions help businesses streamline customer interactions, organize sales activities, and improve team productivity. With powerful sales CRM software, your team can efficiently manage and track the entire sales journey.
+
           </p>
         </div>
 

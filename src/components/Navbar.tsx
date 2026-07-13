@@ -14,6 +14,7 @@ export function Navbar() {
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
   const [isScheduleDemoOpen, setIsScheduleDemoOpen] = useState(false);
   const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
+  const [isMobileCompanyDropdownOpen, setIsMobileCompanyDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
@@ -129,6 +130,7 @@ export function Navbar() {
         {/* Desktop CTA buttons */}
         <div className="hidden lg:flex items-center gap-3">
           <button
+            suppressHydrationWarning
             type="button"
             onClick={() => setIsFreeTrialOpen(true)}
             className="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all cursor-pointer"
@@ -136,6 +138,7 @@ export function Navbar() {
             Free Trial
           </button>
           <button
+            suppressHydrationWarning
             type="button"
             onClick={() => setIsScheduleDemoOpen(true)}
             className="px-5 py-2.5 text-sm font-semibold text-white rounded-xl transition-all hover:shadow-lg hover:opacity-95 cursor-pointer"
@@ -147,6 +150,7 @@ export function Navbar() {
 
         {/* Mobile Hamburger Icon */}
         <button
+          suppressHydrationWarning
           className="lg:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
@@ -183,9 +187,17 @@ export function Navbar() {
               <Link href="/integrations" className={`block ${isActive("/integrations") ? "text-blue-500" : "hover:text-blue-500"}`} onClick={() => setIsMobileMenuOpen(false)}>Integrations</Link>
             </li>
             <li>
-              <div className="flex flex-col gap-3">
-                <div className={`font-medium ${pathname.includes("/about-us") || pathname.includes("/contact-us") ? "text-blue-500" : "text-gray-700"}`}>Company</div>
-                <div className="pl-4 flex flex-col gap-3 text-sm border-l-2 border-gray-100">
+              <div className="flex flex-col">
+                <button 
+                  onClick={() => setIsMobileCompanyDropdownOpen(!isMobileCompanyDropdownOpen)}
+                  className={`flex items-center justify-between w-full font-medium transition-colors ${pathname.includes("/about-us") || pathname.includes("/contact-us") ? "text-blue-500" : "text-gray-700 hover:text-blue-500"}`}
+                >
+                  Company
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${isMobileCompanyDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className={`pl-4 flex flex-col gap-3 text-sm border-l-2 border-gray-100 overflow-hidden transition-all duration-300 ${isMobileCompanyDropdownOpen ? "max-h-40 opacity-100 mt-4" : "max-h-0 opacity-0 m-0"}`}>
                   <Link href="/about-us" className="hover:text-blue-500 text-gray-600" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
                   <Link href="/contact-us" className="hover:text-blue-500 text-gray-600" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
                 </div>
@@ -201,6 +213,7 @@ export function Navbar() {
 
           <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
             <button
+              suppressHydrationWarning
               type="button"
               onClick={() => {
                 setIsMobileMenuOpen(false);
@@ -211,6 +224,7 @@ export function Navbar() {
               Free Trial
             </button>
             <button
+              suppressHydrationWarning
               type="button"
               className="w-full px-5 py-3 text-center text-sm font-semibold text-white rounded-xl transition-all cursor-pointer"
               style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}
