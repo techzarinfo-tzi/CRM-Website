@@ -1,6 +1,6 @@
 import { BlogPost, BlogSummary, Pagination } from "@/src/types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const API_URL = process.env.NEXT_PUBLIC_API_ADMIN_URL || "http://localhost:5001";
 
 // Revalidate blog data periodically so new/edited posts show up without a
 // full redeploy, while still benefiting from caching between requests.

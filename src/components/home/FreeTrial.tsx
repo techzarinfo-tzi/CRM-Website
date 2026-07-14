@@ -9,7 +9,7 @@ type FlagComponent = ComponentType<{ title?: string; className?: string }>;
 const flags = rawFlags as Partial<Record<Country, FlagComponent>>;
 
 const BACKEND_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const INDUSTRIES = [
   "Retail",
