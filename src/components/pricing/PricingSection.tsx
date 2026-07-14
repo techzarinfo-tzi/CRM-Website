@@ -318,8 +318,15 @@ export function PricingSection() {
               })}
 
               <div className="pt-4">
-                <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm">
-                  Choose Plan
+                <button 
+                  onClick={() => {
+                    if (selectedPlan.id === 'free') {
+                      setIsFreeTrialOpen(true);
+                    }
+                  }}
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm"
+                >
+                  {selectedPlan.id === 'free' ? 'Start Free Trial' : 'Choose Plan'}
                 </button>
               </div>
             </>
