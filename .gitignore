@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# local dev server logs
+out.log
+err.log
+
 # next.js
 /.next/
 /out/

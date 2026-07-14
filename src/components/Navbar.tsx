@@ -125,6 +125,9 @@ export function Navbar() {
           <li>
             <Link href="/pricing" className={`${isActive("/pricing") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Pricing</Link>
           </li>
+          <li>
+            <Link href="/blog" className={`${isActive("/blog") ? "text-blue-500 font-semibold" : "hover:text-blue-500"} transition-colors`}>Blog</Link>
+          </li>
         </ul>
 
         {/* Desktop CTA buttons */}
@@ -208,6 +211,9 @@ export function Navbar() {
             </li>
             <li>
               <Link href="/pricing" className={`block ${isActive("/pricing") ? "text-blue-500" : "hover:text-blue-500"}`} onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
+            </li>
+            <li>
+              <Link href="/blog" className={`block ${isActive("/blog") ? "text-blue-500" : "hover:text-blue-500"}`} onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
             </li>
           </ul>
 
