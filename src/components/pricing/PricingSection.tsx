@@ -254,9 +254,7 @@ export function PricingSection() {
                     onClick={() => setSliderVal(plan.sliderValue)}
                     className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
                       ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
-                      : plan.id === 'enterprise'
-                        ? 'border-transparent bg-transparent hover:border-blue-300 hover:bg-white text-gray-900'
-                        : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
+                      : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
                       } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
                     style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
                   >

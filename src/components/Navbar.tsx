@@ -54,8 +54,8 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100">
-      <div className="flex items-center justify-between px-6 lg:px-8 xl:px-20 py-2.5 relative z-50 bg-white">
+    <nav className="sticky top-0 z-50 bg-white">
+      <div className="flex items-center justify-between px-6 lg:px-8 xl:px-20 py-4 relative z-50 bg-white">
         {/* Logo */}
         <Link href="/" className="relative block">
           <Image
@@ -64,7 +64,7 @@ export function Navbar() {
             width={140}
             height={140}
             priority
-            className="w-[95px] min-w-[95px] shrink-0 h-auto object-contain object-left"
+            className="w-[110px] min-w-[110px] shrink-0 h-auto object-contain object-left"
           />
         </Link>
 
@@ -191,7 +191,7 @@ export function Navbar() {
             </li>
             <li>
               <div className="flex flex-col">
-                <button 
+                <button
                   onClick={() => setIsMobileCompanyDropdownOpen(!isMobileCompanyDropdownOpen)}
                   className={`flex items-center justify-between w-full font-medium transition-colors ${pathname.includes("/about-us") || pathname.includes("/contact-us") ? "text-blue-500" : "text-gray-700 hover:text-blue-500"}`}
                 >
