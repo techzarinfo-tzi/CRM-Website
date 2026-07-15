@@ -9,6 +9,7 @@ export function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [phone, setPhone] = useState<string | undefined>("");
   const [selectedCountry, setSelectedCountry] = useState<any>("GB");
+  const [errors, setErrors] = useState<Record<string, string>>({});
   
   // Get all available countries and use static english names to prevent server/client hydration mismatch
   const countries = useMemo(() => {
@@ -33,11 +34,26 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    
+    // Manual validation
+    const newErrors: Record<string, string> = {};
+    if (!data.name?.toString().trim()) newErrors.name = "This field is required";
+    if (!selectedCountry) newErrors.country = "This field is required";
+    if (!data.email?.toString().trim()) newErrors.email = "This field is required";
+    if (!phone) newErrors.phone = "This field is required";
+    if (!data.requirements?.toString().trim()) newErrors.requirements = "This field is required";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    setLoading(true);
     
     // Use the phone state
     data.phone = phone || "";
@@ -125,10 +141,11 @@ export function ContactForm() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Name<span className="text-red-500">*</span></label>
-              <input name="name" required className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all font-medium text-gray-800" />
+              <input name="name" className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all font-medium text-gray-800 focus:ring-2 ${errors.name ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`} />
+              {errors.name && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.name}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -136,10 +153,9 @@ export function ContactForm() {
               <div className="relative">
                 <select 
                   name="country" 
-                  required 
                   value={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
-                  className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 appearance-none focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all cursor-pointer font-medium text-gray-800"
+                  className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 appearance-none outline-none transition-all cursor-pointer font-medium text-gray-800 focus:ring-2 ${errors.country ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`}
                 >
                   <option value="" disabled>Select a country</option>
                   {countries.map((c) => (
@@ -150,28 +166,34 @@ export function ContactForm() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
               </div>
+              {errors.country && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.country}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Mail Id<span className="text-red-500">*</span></label>
-              <input type="email" name="email" required className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all font-medium text-gray-800" />
+              <input type="email" name="email" className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all font-medium text-gray-800 focus:ring-2 ${errors.email ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`} />
+              {errors.email && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.email}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Mobile No<span className="text-red-500">*</span></label>
-              <PhoneInput
-                international
-                country={selectedCountry}
-                onCountryChange={setSelectedCountry}
-                value={phone}
-                onChange={handlePhoneChange}
-                className="w-full bg-[#f0f2f5] rounded-xl focus-within:ring-2 focus-within:ring-[#3b82f6] transition-all overflow-hidden"
-              />
+              <div className={`rounded-xl transition-all focus-within:ring-2 ${errors.phone ? 'ring-2 ring-red-500 focus-within:ring-red-500' : 'focus-within:ring-[#3b82f6]'}`}>
+                <PhoneInput
+                  international
+                  country={selectedCountry}
+                  onCountryChange={setSelectedCountry}
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  className="w-full bg-[#f0f2f5] rounded-xl overflow-hidden"
+                />
+              </div>
+              {errors.phone && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.phone}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Share Your Requirements<span className="text-red-500">*</span></label>
-              <textarea name="requirements" required rows={4} className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all resize-none font-medium text-gray-800"></textarea>
+              <textarea name="requirements" rows={4} className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all resize-none font-medium text-gray-800 focus:ring-2 ${errors.requirements ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`}></textarea>
+              {errors.requirements && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.requirements}</span>}
             </div>
 
             <button type="submit" disabled={loading} className="mt-2 mx-auto text-white font-medium px-10 py-3 rounded-full transition-all hover:shadow-lg hover:opacity-95 disabled:opacity-70 disabled:hover:shadow-none" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
