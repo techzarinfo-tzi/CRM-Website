@@ -40,11 +40,11 @@ export function Footer() {
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
 
   return (
-    <footer className="text-white py-16 px-4 sm:px-6 lg:px-8 mt-auto" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
+    <footer className="text-white py-10 px-4 sm:px-6 lg:px-8 mt-auto" style={{ background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' }}>
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Top Section */}
-        <div className="text-center max-w-4xl mb-8 mx-auto">
-          <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-8">
+        <div className="text-center max-w-4xl mb-6 mx-auto">
+          <h2 className="text-2xl md:text-3xl font-medium leading-tight mb-6">
             <span className="inline-block align-baseline mr-3">
               <Image
                 src="/images/footer logo.png"
@@ -67,7 +67,7 @@ export function Footer() {
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 w-full max-w-5xl mt-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 w-full max-w-5xl mt-8 mb-10">
           <div>
             <h3 className="font-semibold text-lg mb-4">Product</h3>
             <ul className="space-y-3">
@@ -108,14 +108,14 @@ export function Footer() {
               <li><Link href="https://www.linkedin.com/company/techzarinfo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="linkedin" /> Linkedin</Link></li>
               <li><Link href="https://www.instagram.com/techzarinfo.software?igsh=ZXF6MnVieXFqeWg4" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="instagram" /> Instagram</Link></li>
               <li><Link href="https://www.facebook.com/share/1944Hd72q9/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="facebook" /> Facebook</Link></li>
-              <li><Link href="#" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="twitter" /> Twitter</Link></li>
+
               <li><Link href="https://youtube.com/@techzarinfochennai?si=fSaDwm1Ck-Vaz9Bh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"><SocialIcon type="youtube" /> Youtube</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="text-center text-white/70 text-sm mt-8">
+        <div className="text-center text-white/70 text-sm mt-4">
           © 2026 TZI CRM . All rights reserved
         </div>
       </div>

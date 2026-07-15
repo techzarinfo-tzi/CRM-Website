@@ -123,15 +123,13 @@ export function PricingSection() {
     ? plans.filter(p => p.id === 'launch')
     : plans;
 
+  const planIndexMap: Record<number, number> = { 0: 0, 5: 1, 10: 2, 20: 3, 50: 4 };
+  const indexToPlanMap: Record<number, number> = { 0: 0, 1: 5, 2: 10, 3: 20, 4: 50 };
+  const currentSliderIndex = planIndexMap[sliderVal] ?? 1;
+
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value);
-    let nearest = 0;
-    if (val < 2.5) nearest = 0;
-    else if (val < 7.5) nearest = 5;
-    else if (val < 15) nearest = 10;
-    else if (val < 35) nearest = 20;
-    else nearest = 50;
-    setSliderVal(nearest);
+    setSliderVal(indexToPlanMap[val] ?? 5);
   };
 
   return (
@@ -205,23 +203,23 @@ export function PricingSection() {
         <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
           <div
             className="absolute h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
-            style={{ width: `${(sliderVal / 50) * 100}%` }}
+            style={{ width: `${(currentSliderIndex / 4) * 100}%` }}
           />
           <input
             type="range"
             min="0"
-            max="50"
+            max="4"
             step="1"
-            value={sliderVal}
+            value={currentSliderIndex}
             onChange={handleSliderChange}
             className="absolute w-full h-full opacity-0 cursor-pointer z-10"
           />
           <div
             className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20 transition-all duration-300 ease-in-out"
-            style={{ left: `${(sliderVal / 50) * 100}%` }}
+            style={{ left: `${(currentSliderIndex / 4) * 100}%` }}
           />
         </div>
-        <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${(sliderVal / 50) * 100}% - 24px)` }}>
+        <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${(currentSliderIndex / 4) * 100}% - 24px)` }}>
           {selectedPlan.usersText}
         </div>
       </div>

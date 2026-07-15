@@ -158,7 +158,7 @@ export function ContactForm() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-gray-900">Mob No<span className="text-red-500">*</span></label>
+              <label className="text-sm font-semibold text-gray-900">Mobile No<span className="text-red-500">*</span></label>
               <PhoneInput
                 international
                 country={selectedCountry}
