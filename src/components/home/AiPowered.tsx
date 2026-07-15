@@ -35,7 +35,7 @@ export default function AiPowered() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % tabs.length);
-    }, 1000);
+    }, 15000); // Increased time to 20 seconds for better readability
     return () => clearInterval(timer);
   }, [activeTab]);
 

@@ -851,6 +851,7 @@ export default function StayOrganized() {
                     <option value="All">All Assignees</option>
                     <option value="Michael">Michael</option>
                     <option value="Sarah">Sarah</option>
+                    <option value="Emma">Emma</option>
                   </select>
                   <button 
                     suppressHydrationWarning
