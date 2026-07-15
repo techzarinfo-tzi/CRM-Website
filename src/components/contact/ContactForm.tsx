@@ -144,7 +144,7 @@ export function ContactForm() {
           <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Name<span className="text-red-500">*</span></label>
-              <input name="name" className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all font-medium text-gray-800 focus:ring-2 ${errors.name ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`} />
+              <input name="name" className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all font-medium text-gray-800 focus:ring-2 focus:ring-[#3b82f6]" />
               {errors.name && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.name}</span>}
             </div>
 
@@ -155,7 +155,7 @@ export function ContactForm() {
                   name="country" 
                   value={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
-                  className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 appearance-none outline-none transition-all cursor-pointer font-medium text-gray-800 focus:ring-2 ${errors.country ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`}
+                  className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 appearance-none outline-none transition-all cursor-pointer font-medium text-gray-800 focus:ring-2 focus:ring-[#3b82f6]"
                 >
                   <option value="" disabled>Select a country</option>
                   {countries.map((c) => (
@@ -171,13 +171,13 @@ export function ContactForm() {
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Mail Id<span className="text-red-500">*</span></label>
-              <input type="email" name="email" className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all font-medium text-gray-800 focus:ring-2 ${errors.email ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`} />
+              <input type="email" name="email" className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all font-medium text-gray-800 focus:ring-2 focus:ring-[#3b82f6]" />
               {errors.email && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.email}</span>}
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Mobile No<span className="text-red-500">*</span></label>
-              <div className={`rounded-xl transition-all focus-within:ring-2 ${errors.phone ? 'ring-2 ring-red-500 focus-within:ring-red-500' : 'focus-within:ring-[#3b82f6]'}`}>
+              <div className="rounded-xl transition-all focus-within:ring-2 focus-within:ring-[#3b82f6]">
                 <PhoneInput
                   international
                   country={selectedCountry}
@@ -192,7 +192,7 @@ export function ContactForm() {
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-gray-900">Share Your Requirements<span className="text-red-500">*</span></label>
-              <textarea name="requirements" rows={4} className={`w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all resize-none font-medium text-gray-800 focus:ring-2 ${errors.requirements ? 'ring-2 ring-red-500 focus:ring-red-500' : 'focus:ring-[#3b82f6]'}`}></textarea>
+              <textarea name="requirements" rows={4} className="w-full bg-[#f0f2f5] border-none rounded-xl px-4 py-3.5 outline-none transition-all resize-none font-medium text-gray-800 focus:ring-2 focus:ring-[#3b82f6]"></textarea>
               {errors.requirements && <span className="text-red-500 text-xs font-medium mt-[-4px]">{errors.requirements}</span>}
             </div>
 
