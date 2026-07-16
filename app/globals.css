@@ -33,6 +33,34 @@ h6 {
   font-family: var(--font-heading), Arial, Helvetica, sans-serif;
 }
 
+/* Blog post content is pasted/imported HTML (Word, Docs, other CMSes) and
+   can carry inline width/height attributes or long unbroken URLs/words that
+   the typography plugin doesn't constrain by default. Cap every descendant
+   to the container's width so nothing can force horizontal overflow — this
+   must never be paired with overflow:hidden upstream, since clipping would
+   hide the content instead of letting it shrink/wrap. */
+.prose {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.prose * {
+  max-width: 100%;
+}
+
+.prose img {
+  height: auto;
+}
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+}
+
+.prose pre {
+  overflow-x: auto;
+}
+
 @keyframes sweep {
   from {
     transform: rotate(0deg);
