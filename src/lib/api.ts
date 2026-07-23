@@ -4,13 +4,16 @@ const API_URL = process.env.NEXT_PUBLIC_API_ADMIN_URL || "http://localhost:5001"
 
 // Revalidate blog data periodically so new/edited posts show up without a
 // full redeploy, while still benefiting from caching between requests.
-const BLOG_REVALIDATE_SECONDS = 60;
+export const BLOG_REVALIDATE_SECONDS = 60;
 
-export async function getPublishedBlogs(): Promise<{
+export async function getPublishedBlogs(
+  page = 1,
+  limit = 10
+): Promise<{
   blogs: BlogSummary[];
   pagination: Pagination;
 }> {
-  const res = await fetch(`${API_URL}/api/blogs`, {
+  const res = await fetch(`${API_URL}/api/blogs?page=${page}&limit=${limit}`, {
     next: { revalidate: BLOG_REVALIDATE_SECONDS },
   });
 

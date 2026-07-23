@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { BlogSummary } from "@/src/types";
 import { resolveBlogImageUrl, BLOG_IMAGES_UNOPTIMIZED } from "@/src/lib/api";
+import { BlogImage } from "@/src/components/blog/BlogImage";
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -18,10 +18,9 @@ export function BlogCard({ post }: { post: BlogSummary }) {
     <div className="flex flex-col rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden bg-white group">
       <Link href={`/blog/${post.slug}`} className="relative w-full aspect-[4/3] bg-gray-100 block">
         {imageUrl ? (
-          <Image
+          <BlogImage
             src={imageUrl}
             alt={post.title}
-            fill
             unoptimized={BLOG_IMAGES_UNOPTIMIZED}
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"

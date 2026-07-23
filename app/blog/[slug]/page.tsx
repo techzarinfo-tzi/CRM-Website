@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogBySlug, resolveBlogImageUrl, BLOG_IMAGES_UNOPTIMIZED } from "@/src/lib/api";
+import { BlogImage } from "@/src/components/blog/BlogImage";
 
 type Params = Promise<{ slug: string }>;
 
@@ -66,10 +66,9 @@ export default async function BlogDetailsPage({ params }: { params: Params }) {
 
         {imageUrl ? (
           <div className="relative w-full aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 mb-8 sm:mb-10">
-            <Image
+            <BlogImage
               src={imageUrl}
               alt={blog.title}
-              fill
               priority
               unoptimized={BLOG_IMAGES_UNOPTIMIZED}
               sizes="(min-width: 768px) 768px, 100vw"
