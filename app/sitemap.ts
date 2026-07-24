@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
-import { BLOG_REVALIDATE_SECONDS, getPublishedBlogs } from "@/src/lib/api";
+import { getPublishedBlogs } from "@/src/lib/api";
 import { SITE_URL } from "@/src/lib/site";
 
-// Keep the sitemap's own cache in step with the blog fetch cache so a newly
-// published post shows up here without a redeploy or manual regeneration.
-export const revalidate = BLOG_REVALIDATE_SECONDS;
+// Keep the sitemap's own cache in step with the blog fetch cache (BLOG_REVALIDATE_SECONDS)
+// so a newly published post shows up here without a redeploy or manual regeneration.
+// Next.js requires this export to be a literal it can statically parse, not an import.
+export const revalidate = 60;
 
 const STATIC_ROUTES = ["", "/about-us", "/pricing", "/integrations", "/help", "/contact-us", "/blog"];
 
