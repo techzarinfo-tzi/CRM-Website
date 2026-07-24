@@ -91,7 +91,8 @@ export function Footer() {
               <li><Link href="/about-us" className="text-white/80 hover:text-white transition-colors text-sm">About Us</Link></li>
               <li><Link href="/contact-us" className="text-white/80 hover:text-white transition-colors text-sm">Contact Us</Link></li>
               <li><Link href="/blog" className="text-white/80 hover:text-white transition-colors text-sm">Blog</Link></li>
-              <li><Link href="#" className="text-white/80 hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
+              <li><Link href="/privacy-policy" className="text-white/80 hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="text-white/80 hover:text-white transition-colors text-sm">Terms &amp; Conditions</Link></li>
             </ul>
           </div>
           <div>
