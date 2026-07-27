@@ -73,7 +73,7 @@ export default function ThirdEye() {
                       color: '#31373D'
                     }}
                   >
-                    Identify stages where opportunities frequently fall or drop off.Streamline your sales process, eliminate delays and improve your deal closures.
+                    Identify stages where opportunities frequently fall or drop off. Streamline your sales process, eliminate delays and improve your deal closures.
                   </p>
                 </div>
                 <div className="relative mt-4 w-full h-[180px] sm:h-[200px] lg:h-[290px]">
@@ -161,7 +161,7 @@ export default function ThirdEye() {
                     color: '#31373D'
                   }}
                 >
-                  Turn your losses into future revenue opportunities.Utilize deal-loss insights to strengthen your sales approach, improve close rates and drive sustainable growth.
+                  Turn your losses into future revenue opportunities. Utilize deal-loss insights to strengthen your sales approach, improve close rates and drive sustainable growth.
                 </p>
               </div>
               <Image

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function BlogPostNotFound() {
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans text-gray-900">
-      <main className="flex-grow max-w-3xl mx-auto w-full px-6 md:px-10 py-24 flex flex-col items-center text-center">
+      <main className="flex-grow min-w-0 w-full max-w-3xl mx-auto px-4 sm:px-6 md:px-10 py-16 sm:py-24 flex flex-col items-center text-center">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Blog post not found</h1>
         <p className="text-gray-500 mb-6">
           The article you&apos;re looking for doesn&apos;t exist or may have been removed.
