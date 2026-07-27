@@ -59,7 +59,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="relative block">
           <Image
-            src="/images/TZI-Logo.png"
+            src="/images/TZI-Logo.svg"
             alt="TZI Logo"
             width={140}
             height={140}

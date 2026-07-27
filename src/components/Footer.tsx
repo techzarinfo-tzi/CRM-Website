@@ -47,7 +47,7 @@ export function Footer() {
           <h2 className="text-2xl md:text-3xl font-medium leading-tight mb-6">
             <span className="inline-block align-baseline mr-3">
               <Image
-                src="/images/footer logo.png"
+                src="/images/footer logo.svg"
                 alt="TZI Footer Logo"
                 width={85}
                 height={40}
