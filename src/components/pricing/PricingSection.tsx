@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import FreeTrial from "../home/FreeTrial";
+
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const CheckIcon = () => (
   <svg className="w-5 h-5 text-emerald-500 inline-block" fill="currentColor" viewBox="0 0 20 20">
@@ -17,119 +20,220 @@ const CrossIcon = () => (
   </svg>
 );
 
-const plans = [
-  {
-    id: 'free',
-    name: 'Free Trial',
-    usersText: 'All users',
-    sliderValue: 0,
-    price: 'Free',
-    tag: '14 Days',
-    features: [
-      '14-day full access',
-      'No card required',
-      'Leads management',
-      'Deals management',
-      'Drag-and-drop pipeline view',
-      'Smart proposals',
-      'Digital invoicing',
-      'Meetings scheduler',
-      'Team analytics',
-      'Users & roles (RBAC)',
-      'Email chat',
-      'Deal analysis (pricing recommendation)',
-      'Target & task management'
-    ]
-  },
-  {
-    id: 'launch',
-    name: 'Launch',
-    usersText: 'Up to 5 users',
-    sliderValue: 5,
-    price: { '6_months': 3999, 'yearly': 5999 },
-    tag: 'Small Teams',
-    features: [
-      'Leads management',
-      'Deals management',
-      'Drag-and-drop pipeline view',
-      'Smart proposals',
-      'Digital invoicing',
-      'Meetings scheduler',
-      'Team analytics',
-      'Users & roles (RBAC)',
-      'Email chat',
-      'Deal analysis (pricing recommendation)',
-      'Target & task management'
-    ]
-  },
-  {
-    id: 'cruise',
-    name: 'Cruise',
-    usersText: '5–10 users',
-    sliderValue: 10,
-    price: { 'yearly': 11999 },
-    tag: 'Growing Teams',
-    features: [
-      'All 11 Launch features',
-      'Loss analysis (lost deal analytics)',
-      'AI internal assistant (CRM search bot)',
-      'Internal workspace chat',
-      'Predictive client lifetime value (CLTV)',
-      'Streak leaderboard'
-    ]
-  },
-  {
-    id: 'accelerate',
-    name: 'Accelerate',
-    usersText: 'Up to 20 users',
-    sliderValue: 20,
-    price: { 'yearly': 21999 },
-    tag: 'Scaling Teams',
-    features: [
-      'All 11 Launch features',
-      'Loss analysis (lost deal analytics)',
-      'AI internal assistant (CRM search bot)',
-      'Internal workspace chat',
-      'Predictive client lifetime value (CLTV)',
-      'Streak leaderboard',
-      'Up to 20 users capacity'
-    ]
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    usersText: '20+ users',
-    sliderValue: 50,
-    price: 'Custom pricing',
-    tag: 'Unlimited',
-    features: [
-      'Identical feature set to Cruise/Accelerate',
-      'White-label option',
-      'Custom user limits'
-    ]
-  }
+type ApiBillingCycle = "monthly" | "half_yearly" | "yearly";
+type UiBillingCycle = "6_months" | "yearly";
+
+interface ApiTier {
+  billing_cycle: ApiBillingCycle;
+  price: number;
+  duration_months: number;
+  grace_days: number;
+}
+
+interface ApiPlan {
+  _id: string;
+  plan_name: string;
+  plan_code: string;
+  plan_type: "free" | "paid" | "enterprise";
+  description?: string;
+  currency: string;
+  tiers: ApiTier[];
+  max_users_per_tenant: number;
+  features: Record<string, boolean>;
+  is_recommended: boolean;
+  sort_order: number;
+}
+
+// Mirrors FEATURE_GROUPS in the superadmin PlanForm's feature checklist
+// (src/components/superadmin/plans/PlanForm.jsx) — same groups, keys and
+// labels as what the superadmin actually selects, minus the "Lead Source
+// Integrations" group, which is rendered separately below (INTEGRATIONS).
+const FEATURE_SECTIONS: { title: string; keys: string[] }[] = [
+  { title: "Core Modules", keys: ["dashboard", "leads", "create_lead", "deals_all", "create_deal", "deals_pipeline"] },
+  { title: "Documents", keys: ["invoices", "proposal", "documents"] },
+  { title: "Communication", keys: ["email_chat", "email_campaigns", "whatsapp_chat", "messages", "chatbot"] },
+  { title: "Reports & Engagement", keys: ["analytics", "streak_leaderboard"] },
+  { title: "Tasks & Targets", keys: ["task_management", "target_management", "assigned_tasks"] },
+  { title: "Meetings", keys: ["meetings", "google_meet_sync", "zoom_meetings", "schedule_view"] },
+  { title: "Administration", keys: ["users_roles", "admin_access", "settings"] },
+  { title: "Security & Tracking", keys: ["device_login_requests", "live_tracking"] },
 ];
 
+const FEATURE_LABELS: Record<string, string> = {
+  dashboard: "Dashboard",
+  leads: "Leads",
+  create_lead: "Create Lead",
+  deals_all: "Deals",
+  create_deal: "Create Deal",
+  deals_pipeline: "Pipeline View",
+  invoices: "Invoices",
+  proposal: "Proposal",
+  documents: "Document Center",
+  email_chat: "Email Chat",
+  email_campaigns: "Email Campaigns",
+  whatsapp_chat: "WhatsApp Chat",
+  messages: "Internal Messages",
+  chatbot: "AI Chatbot Assistant",
+  analytics: "Analytics",
+  streak_leaderboard: "Streak Leaderboard",
+  task_management: "Task Management",
+  target_management: "Target Management",
+  assigned_tasks: "Assigned Tasks",
+  meetings: "Meetings Scheduler",
+  google_meet_sync: "Google Meet Sync",
+  zoom_meetings: "Zoom Meetings",
+  schedule_view: "Calendar",
+  users_roles: "Users & Roles",
+  admin_access: "Admin Access",
+  settings: "Settings",
+  device_login_requests: "Device Login Requests",
+  live_tracking: "Live Location Tracking",
+  integration_facebook: "Facebook & Instagram",
+  integration_linkedin: "LinkedIn",
+  integration_justdial: "Justdial",
+  integration_indiamart: "IndiaMART",
+  integration_99acres: "99acres",
+  integration_sulekha: "Sulekha",
+};
+
+const INTEGRATIONS: { key: string; name: string; icon: string }[] = [
+  { key: "integration_facebook", name: "Facebook & Instagram Lead Ads", icon: "/images/pricing/facebook logo.svg" },
+  { key: "integration_linkedin", name: "LinkedIn Lead Gen Campaigns", icon: "/images/pricing/linkedin logo.svg" },
+  { key: "integration_justdial", name: "Justdial Lead Webhook", icon: "/images/pricing/justdial-seeklogo 1.svg" },
+  { key: "integration_indiamart", name: "IndiaMART Leads Pull API", icon: "/images/pricing/IndiaMART Symbol PNG 1.svg" },
+  { key: "integration_99acres", name: "99acres Webhook Integration", icon: "/images/pricing/99acres.svg" },
+  { key: "integration_sulekha", name: "Sulekha Lead Webhook", icon: "/images/pricing/Sulekha Icon 1.svg" },
+];
+
+const INCLUDES_PANEL_KEYS = [
+  ...FEATURE_SECTIONS.flatMap((section) => section.keys),
+  ...INTEGRATIONS.map((i) => i.key),
+];
+
+const usersLabel = (plan: ApiPlan) => {
+  if (plan.plan_type === "free") return "All users";
+  if (!plan.max_users_per_tenant) return "Unlimited users";
+  return `Up to ${plan.max_users_per_tenant} users`;
+};
+
+const getTier = (plan: ApiPlan, cycle: ApiBillingCycle) =>
+  plan.tiers?.find((t) => t.billing_cycle === cycle);
+
+// The slider represents team size ("Up to N users"), so plans are ordered
+// by max_users_per_tenant ascending — free plans first, "unlimited" (0 or
+// enterprise) last — regardless of price.
+const sortUsersFor = (plan: ApiPlan) => {
+  if (plan.plan_type === "free") return -1;
+  if (plan.plan_type === "enterprise" || !plan.max_users_per_tenant) return Infinity;
+  return plan.max_users_per_tenant;
+};
+
+const tagForPlan = (plan: ApiPlan) => {
+  if (plan.plan_type === "free") return "Free Trial";
+  if (plan.plan_type === "enterprise") return "Unlimited";
+  return plan.is_recommended ? "Recommended" : undefined;
+};
+
 export function PricingSection() {
-  const [sliderVal, setSliderVal] = useState(5);
-  const [billing, setBilling] = useState<'6_months' | 'yearly'>('yearly');
+  const [plans, setPlans] = useState<ApiPlan[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [sliderIndex, setSliderIndex] = useState(0);
+  const [billing, setBilling] = useState<UiBillingCycle>("yearly");
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
 
-  const selectedPlan = billing === '6_months'
-    ? (plans.find(p => p.id === 'launch')!)
-    : (plans.find(p => p.sliderValue === sliderVal) || plans[1]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${BACKEND_URL}/api/superadmin/subscription-plans/public/landing`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (cancelled) return;
+        if (json.success && Array.isArray(json.data)) {
+          const sorted = [...json.data].sort((a, b) => {
+            if (a.plan_type === "free" && b.plan_type !== "free") return -1;
+            if (b.plan_type === "free" && a.plan_type !== "free") return 1;
+            return a.sort_order - b.sort_order;
+          });
+          setPlans(sorted);
+        }
+      })
+      .catch((err) => console.error("Failed to load subscription plans:", err))
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-  const displayedPlans = billing === '6_months'
-    ? plans.filter(p => p.id === 'launch')
-    : plans;
+  const displayedPlans = plans
+    .filter((p) => {
+      if (p.plan_type === "free" || p.plan_type === "enterprise") return true;
+      const cycle: ApiBillingCycle = billing === "6_months" ? "half_yearly" : "yearly";
+      return !!getTier(p, cycle);
+    })
+    .sort((a, b) => sortUsersFor(a) - sortUsersFor(b));
 
-  const planIndexMap: Record<number, number> = { 0: 0, 5: 1, 10: 2, 20: 3, 50: 4 };
-  const indexToPlanMap: Record<number, number> = { 0: 0, 1: 5, 2: 10, 3: 20, 4: 50 };
-  const currentSliderIndex = planIndexMap[sliderVal] ?? 1;
+  const maxSliderIndex = Math.max(displayedPlans.length - 1, 0);
+  const safeSliderIndex = Math.min(sliderIndex, maxSliderIndex);
+  const selectedPlan = displayedPlans[safeSliderIndex];
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value);
-    setSliderVal(indexToPlanMap[val] ?? 5);
+    setSliderIndex(parseInt(e.target.value, 10));
+  };
+
+  const renderCardPrice = (plan: ApiPlan, isSelected: boolean) => {
+    if (plan.plan_type === "free") {
+      return (
+        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? "bg-white text-blue-600 border-white" : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"}`}>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsFreeTrialOpen(true);
+            }}
+          >
+            Free
+          </button>
+        </div>
+      );
+    }
+
+    if (plan.plan_type === "enterprise") {
+      return (
+        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? "bg-white text-blue-600 border-white" : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"}`}>
+          <Link href="/contact-us">Custom pricing</Link>
+        </div>
+      );
+    }
+
+    const primaryCycle: ApiBillingCycle = billing === "6_months" ? "half_yearly" : "yearly";
+    const altCycle: ApiBillingCycle = billing === "6_months" ? "yearly" : "half_yearly";
+    const primaryTier = getTier(plan, primaryCycle) || getTier(plan, "monthly");
+    const altTier = getTier(plan, altCycle);
+
+    if (!primaryTier) {
+      return (
+        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? "bg-white text-blue-600 border-white" : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"}`}>
+          <Link href="/contact-us">Contact us</Link>
+        </div>
+      );
+    }
+
+    const cycleSuffix = primaryTier.billing_cycle === "half_yearly" ? "/6mo" : primaryTier.billing_cycle === "yearly" ? "/yr" : "/mo";
+
+    return (
+      <>
+        <div className="text-2xl sm:text-3xl font-medium">
+          ₹{primaryTier.price.toLocaleString()}
+          <span className={`font-normal text-lg sm:text-2xl ${isSelected ? "text-white/80" : "text-gray-500"}`}>{cycleSuffix}</span>
+        </div>
+        {altTier && (
+          <div className={`text-sm mt-0.5 ${isSelected ? "text-white/90" : "text-gray-500"}`}>
+            or ₹{altTier.price.toLocaleString()} {altTier.billing_cycle === "half_yearly" ? "for 6 months" : "per year"}
+          </div>
+        )}
+      </>
+    );
   };
 
   return (
@@ -198,259 +302,194 @@ export function PricingSection() {
         </div>
       </div>
 
-      {/* Slider */}
-      <div className="mb-6 mx-auto px-4" style={{ width: '100%', maxWidth: '1211.5px' }}>
-        <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
-          <div
-            className="absolute h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
-            style={{ width: `${(currentSliderIndex / 4) * 100}%` }}
-          />
-          <input
-            type="range"
-            min="0"
-            max="4"
-            step="1"
-            value={currentSliderIndex}
-            onChange={handleSliderChange}
-            className="absolute w-full h-full opacity-0 cursor-pointer z-10"
-          />
-          <div
-            className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20 transition-all duration-300 ease-in-out"
-            style={{ left: `${(currentSliderIndex / 4) * 100}%` }}
-          />
-        </div>
-        <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${(currentSliderIndex / 4) * 100}% - 24px)` }}>
-          {selectedPlan.usersText}
-        </div>
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto mb-20">
-        {/* Plans List */}
-        <div className="flex-1 space-y-4">
-          {billing === '6_months' && sliderVal > 5 ? (
-            <div className="bg-blue-50 border border-blue-200 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center justify-center gap-4">
-              <svg className="w-12 h-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <h3 className="text-lg font-bold text-blue-900">Growing Team?</h3>
-              <p className="text-blue-700 text-sm sm:text-base max-w-md">
-                For more than 5 users, switch to our yearly plan to unlock advanced team features and better pricing.
-              </p>
-              <button
-                type="button"
-                onClick={() => setBilling('yearly')}
-                className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold transition-colors shadow-sm cursor-pointer"
-              >
-                Switch to Yearly Billing
-              </button>
+      {loading ? (
+        <div className="text-center text-gray-500 py-16">Loading plans...</div>
+      ) : plans.length === 0 ? (
+        <div className="text-center text-gray-500 py-16">No plans are currently available.</div>
+      ) : (
+        <>
+          {/* Slider */}
+          <div className="mb-6 mx-auto px-4" style={{ width: '100%', maxWidth: '1211.5px' }}>
+            <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
+              <div
+                className="absolute h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
+                style={{ width: `${maxSliderIndex === 0 ? 0 : (safeSliderIndex / maxSliderIndex) * 100}%` }}
+              />
+              <input
+                type="range"
+                min="0"
+                max={maxSliderIndex}
+                step="1"
+                value={safeSliderIndex}
+                onChange={handleSliderChange}
+                className="absolute w-full h-full opacity-0 cursor-pointer z-10"
+              />
+              <div
+                className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20 transition-all duration-300 ease-in-out"
+                style={{ left: `${maxSliderIndex === 0 ? 0 : (safeSliderIndex / maxSliderIndex) * 100}%` }}
+              />
             </div>
-          ) : (
-            <>
-              {displayedPlans.map((plan) => {
-                const isSelected = selectedPlan.id === plan.id;
-                return (
-                  <div
-                    key={plan.id}
-                    onClick={() => setSliderVal(plan.sliderValue)}
-                    className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
-                      ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
-                      : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
-                      } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
-                    style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+            {selectedPlan && (
+              <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${maxSliderIndex === 0 ? 0 : (safeSliderIndex / maxSliderIndex) * 100}% - 24px)` }}>
+                {usersLabel(selectedPlan)}
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto mb-20">
+            {/* Plans List */}
+            <div className="flex-1 space-y-4">
+              {displayedPlans.length === 0 ? (
+                <div className="bg-blue-50 border border-blue-200 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center justify-center gap-4">
+                  <svg className="w-12 h-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  <h3 className="text-lg font-bold text-blue-900">No plans on 6-month billing</h3>
+                  <p className="text-blue-700 text-sm sm:text-base max-w-md">
+                    Switch to our yearly plan to see pricing and unlock advanced team features.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setBilling('yearly')}
+                    className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold transition-colors shadow-sm cursor-pointer"
                   >
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                      <h3 className="text-lg sm:text-xl font-semibold">{plan.name}</h3>
-                      {plan.tag && (
-                        <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.id === 'free'
-                          ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
-                          : plan.id === 'launch'
-                            ? 'bg-[#e0f2fe] text-[#0ea5e9]'
-                            : plan.id === 'cruise'
-                              ? 'bg-[#fae8ff] text-[#c026d3]'
-                              : 'bg-gray-100 text-gray-600'
-                          }`}>
-                          {plan.tag}
-                        </span>
-                      )}
-                    </div>
-                    <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
-                      {typeof plan.price === 'object' ? (
-                        <>
-                          <div className="text-2xl sm:text-3xl font-medium">
-                            {billing === '6_months' && plan.price['6_months'] ? (
-                              <>₹{plan.price['6_months'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/6mo</span></>
-                            ) : (
-                              <>₹{plan.price['yearly'].toLocaleString()}<span className={`font-normal text-lg sm:text-2xl ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>/yr</span></>
-                            )}
-                          </div>
-                          {plan.id === 'launch' && (
-                            <div className={`text-sm mt-0.5 ${isSelected ? 'text-white/90' : 'text-gray-500'}`}>
-                              {billing === 'yearly' ? 'or ₹3,999 for 6 months' : 'or ₹5,999 per year'}
-                            </div>
-                          )}
-                        </>
-                      ) : (
-                        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
-                          {plan.price === 'Custom pricing' ? (
-                            <Link href="/contact-us">{plan.price}</Link>
-                          ) : plan.price === 'Free' ? (
-                            <button 
-                              type="button" 
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setIsFreeTrialOpen(true);
-                              }}
-                            >
-                              {plan.price}
-                            </button>
-                          ) : (
-                            plan.price
+                    Switch to Yearly Billing
+                  </button>
+                </div>
+              ) : (
+                <>
+                  {displayedPlans.map((plan, idx) => {
+                    const isSelected = selectedPlan?._id === plan._id;
+                    const tag = tagForPlan(plan);
+                    return (
+                      <div
+                        key={plan._id}
+                        onClick={() => setSliderIndex(idx)}
+                        className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
+                          ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
+                          : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
+                          } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
+                        style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+                      >
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                          <h3 className="text-lg sm:text-xl font-semibold">{plan.plan_name}</h3>
+                          {tag && (
+                            <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.plan_type === 'free'
+                              ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
+                              : plan.is_recommended
+                                ? 'bg-[#fae8ff] text-[#c026d3]'
+                                : 'bg-gray-100 text-gray-600'
+                              }`}>
+                              {tag}
+                            </span>
                           )}
                         </div>
-                      )}
-                    </div>
+                        <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
+                          {renderCardPrice(plan, isSelected)}
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  <div className="pt-4">
+                    <button
+                      onClick={() => {
+                        if (selectedPlan?.plan_type === 'free') {
+                          setIsFreeTrialOpen(true);
+                        }
+                      }}
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm"
+                    >
+                      {selectedPlan?.plan_type === 'free' ? 'Start Free Trial' : 'Choose Plan'}
+                    </button>
                   </div>
-                );
-              })}
+                </>
+              )}
+            </div>
 
-              <div className="pt-4">
-                <button 
-                  onClick={() => {
-                    if (selectedPlan.id === 'free') {
-                      setIsFreeTrialOpen(true);
-                    }
-                  }}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm"
-                >
-                  {selectedPlan.id === 'free' ? 'Start Free Trial' : 'Choose Plan'}
-                </button>
-              </div>
-            </>
-          )}
-        </div>
+            {/* Features Box */}
+            <div className="w-full lg:w-[400px] bg-white border border-gray-200 rounded-[28px] p-9 shadow-sm flex flex-col min-h-[400px]">
+              <h3 className="text-xl font-medium text-gray-900 mb-6">Includes:</h3>
+              <ul className="flex flex-col gap-4 flex-1">
+                {selectedPlan &&
+                  INCLUDES_PANEL_KEYS.filter((key) => selectedPlan.features?.[key]).map((key) => (
+                    <li key={key} className="flex items-start justify-between gap-3 text-sm text-gray-600">
+                      <span className="flex-1 mt-0.5">{FEATURE_LABELS[key] ?? key}</span>
+                      <div className="shrink-0"><CheckIcon /></div>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
 
-        {/* Features Box */}
-        <div className="w-full lg:w-[400px] bg-white border border-gray-200 rounded-[28px] p-9 shadow-sm flex flex-col min-h-[400px]">
-          <h3 className="text-xl font-medium text-gray-900 mb-6">Includes:</h3>
-          <ul className="flex flex-col gap-4 flex-1">
-            {selectedPlan.features.map((feature, idx) => (
-              <li key={idx} className="flex items-start justify-between gap-3 text-sm text-gray-600">
-                <span className="flex-1 mt-0.5">{feature}</span>
-                <div className="shrink-0"><CheckIcon /></div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+          {/* Differentiation Table */}
+          <div className="mt-16 max-w-5xl mx-auto overflow-x-auto pb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Compare Plans & Features</h2>
+            <table className="w-full text-left border-collapse min-w-[800px]">
+              <thead>
+                <tr>
+                  <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold w-1/4">Feature</th>
+                  {plans.map((plan) => (
+                    <th key={plan._id} className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center">
+                      {plan.plan_name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 bg-white">
+                  <td className="p-4 text-gray-900 font-bold">Users Allowed</td>
+                  {plans.map((plan) => (
+                    <td key={plan._id} className="p-4 text-gray-600 text-center font-medium">{usersLabel(plan)}</td>
+                  ))}
+                </tr>
 
-      {/* Differentiation Table */}
-      <div className="mt-16 max-w-5xl mx-auto overflow-x-auto pb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">Compare Plans & Features</h2>
-        <table className="w-full text-left border-collapse min-w-[800px]">
-          <thead>
-            <tr>
-              <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold w-1/4">Feature</th>
-              <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center w-[15%]">Free Trial</th>
-              <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center w-[15%]">Launch</th>
-              <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center w-[15%]">Cruise</th>
-              <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center w-[15%]">Accelerate</th>
-              <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center w-[15%]">Enterprise</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-gray-200 bg-white">
-              <td className="p-4 text-gray-900 font-bold">Users Allowed</td>
-              <td className="p-4 text-gray-600 text-center font-medium">All users</td>
-              <td className="p-4 text-gray-600 text-center font-medium">Up to 5</td>
-              <td className="p-4 text-gray-600 text-center font-medium">5–10</td>
-              <td className="p-4 text-gray-600 text-center font-medium">Up to 20</td>
-              <td className="p-4 text-gray-600 text-center font-medium">20+</td>
-            </tr>
+                {FEATURE_SECTIONS.map((section) => (
+                  <Fragment key={section.title}>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <td colSpan={plans.length + 1} className="p-4 font-bold text-gray-900 text-lg">{section.title}</td>
+                    </tr>
+                    {section.keys.map((key) => (
+                      <tr key={key} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td className="p-4 text-gray-700 font-medium">{FEATURE_LABELS[key] ?? key}</td>
+                        {plans.map((plan) => (
+                          <td key={plan._id} className="p-4 text-center">
+                            {plan.features?.[key] ? <CheckIcon /> : <CrossIcon />}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </Fragment>
+                ))}
 
-            {/* Basic Features */}
-            <tr className="bg-gray-50 border-b border-gray-200">
-              <td colSpan={6} className="p-4 font-bold text-gray-900 text-lg">Basic Features</td>
-            </tr>
-            {[
-              ['Leads Management', true, true, true, true, true],
-              ['Deals Management', true, true, true, true, true],
-              ['Drag-and-Drop Pipeline View', true, true, true, true, true],
-              ['Smart Proposals', true, true, true, true, true],
-              ['Digital Invoicing', true, true, true, true, true],
-              ['Meetings Scheduler', true, true, true, true, true],
-              ['Team Analytics', true, true, true, true, true],
-              ['Users & Roles (RBAC)', true, true, true, true, true]
-            ].map((row, i) => (
-              <tr key={i} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="p-4 text-gray-700 font-medium">{row[0]}</td>
-                <td className="p-4 text-center">{row[1] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[2] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[3] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[4] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[5] ? <CheckIcon /> : <CrossIcon />}</td>
-              </tr>
-            ))}
-
-            {/* Unique & Premium Features */}
-            <tr className="bg-gray-50 border-b border-gray-200">
-              <td colSpan={6} className="p-4 font-bold text-gray-900 text-lg">Unique & Premium Features</td>
-            </tr>
-            {[
-              ['Email Chat', true, true, true, true, true],
-              ['Deal Analysis (Pricing Recommendation)', true, true, true, true, true],
-              ['Target & Task Management', true, true, true, true, true],
-              ['Loss Analysis (Lost Deal Analytics)', false, false, true, true, true],
-              ['AI Internal Assistant (CRM Search Bot)', false, false, true, true, true],
-              ['Internal Workspace Chat', false, false, true, true, true],
-              ['Predictive Client Lifetime Value (CLTV)', false, false, true, true, true],
-              ['Streak leaderboard', false, false, true, true, true],
-              ['White-label option', false, false, false, false, true],
-            ].map((row, i) => (
-              <tr key={i} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="p-4 text-gray-700 font-medium">{row[0]}</td>
-                <td className="p-4 text-center">{row[1] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[2] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[3] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[4] ? <CheckIcon /> : <CrossIcon />}</td>
-                <td className="p-4 text-center">{row[5] ? <CheckIcon /> : <CrossIcon />}</td>
-              </tr>
-            ))}
-
-            {/* Supported Integrations */}
-            <tr className="bg-gray-50 border-b border-gray-200">
-              <td colSpan={6} className="p-4 font-bold text-gray-900 text-lg">Supported Integrations</td>
-            </tr>
-            {[
-              { name: 'Facebook & Instagram Lead Ads', icon: '/images/pricing/facebook logo.svg' },
-              { name: 'LinkedIn Lead Gen Campaigns', icon: '/images/pricing/linkedin logo.svg' },
-              { name: 'Justdial Lead Webhook', icon: '/images/pricing/justdial-seeklogo 1.svg' },
-              { name: 'IndiaMART Leads Pull API', icon: '/images/pricing/IndiaMART Symbol PNG 1.svg' },
-              { name: '99acres Webhook Integration', icon: '/images/pricing/99acres.svg' },
-              { name: 'Sulekha Lead Webhook', icon: '/images/pricing/Sulekha Icon 1.svg' },
-              { name: 'Google Meet Integration', icon: '/images/pricing/google-meet.svg' }
-            ].map((integration, i) => (
-              <tr key={i} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="p-4 text-gray-700 font-medium">
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 relative flex-shrink-0">
-                      <Image src={integration.icon} alt={integration.name} fill className="object-contain" />
-                    </div>
-                    {integration.name}
-                  </div>
-                </td>
-                <td className="p-4 text-center"><CrossIcon /></td>
-                <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
-                <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
-                <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
-                <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                {/* Supported Integrations */}
+                <tr className="bg-gray-50 border-b border-gray-200">
+                  <td colSpan={plans.length + 1} className="p-4 font-bold text-gray-900 text-lg">Supported Integrations</td>
+                </tr>
+                {INTEGRATIONS.map((integration) => (
+                  <tr key={integration.key} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                    <td className="p-4 text-gray-700 font-medium">
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 relative flex-shrink-0">
+                          <Image src={integration.icon} alt={integration.name} fill className="object-contain" />
+                        </div>
+                        {integration.name}
+                      </div>
+                    </td>
+                    {plans.map((plan) => (
+                      <td key={plan._id} className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">
+                        {plan.features?.[integration.key] ? (plan.plan_type === 'free' ? <CrossIcon /> : '₹1,000') : <CrossIcon />}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
 
       <FreeTrial isOpen={isFreeTrialOpen} onClose={() => setIsFreeTrialOpen(false)} />
     </section>
   );
 }
-

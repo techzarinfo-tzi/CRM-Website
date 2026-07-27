@@ -2,6 +2,11 @@ import { BlogHeader } from "@/src/components/blog/BlogHeader";
 import { BlogGrid } from "@/src/components/blog/BlogGrid";
 import { getPublishedBlogs } from "@/src/lib/api";
 
+// Fetch at request time rather than build time, since the admin API isn't
+// guaranteed to be reachable during `next build` (e.g. local builds without
+// the backend running).
+export const dynamic = "force-dynamic";
+
 export default async function BlogPage() {
   const { blogs } = await getPublishedBlogs();
 
