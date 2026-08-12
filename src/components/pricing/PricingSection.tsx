@@ -110,34 +110,53 @@ const INCLUDES_PANEL_KEYS = [
   ...INTEGRATIONS.map((i) => i.key),
 ];
 
-const usersLabel = (plan: ApiPlan) => {
-  if (plan.plan_type === "free") return "All users";
-  if (!plan.max_users_per_tenant) return "Unlimited users";
-  return `Up to ${plan.max_users_per_tenant} users`;
+// Free Trial and Enterprise are fixed offerings that don't come from the
+// plan-management backend — only the paid tiers in between are configured
+// there and fetched dynamically.
+const FREE_PLAN = {
+  name: "Free Trial",
+  usersLabel: "All users",
+  tag: "14 Days",
+  features: [
+    "14-day full access",
+    "No card required",
+    "Leads management",
+    "Deals management",
+    "Drag-and-drop pipeline view",
+    "Smart proposals",
+    "Digital invoicing",
+    "Meetings scheduler",
+    "Team analytics",
+    "Users & roles (RBAC)",
+    "Email chat",
+    "Deal analysis (pricing recommendation)",
+    "Target & task management",
+  ],
 };
+
+const ENTERPRISE_PLAN = {
+  name: "Enterprise",
+  usersLabel: "20+ users",
+  tag: "Unlimited",
+  features: [
+    "Identical feature set to Cruise/Accelerate",
+    "White-label option",
+    "Custom user limits",
+  ],
+};
+
+const usersLabel = (plan: ApiPlan) => (!plan.max_users_per_tenant ? "Unlimited users" : `Up to ${plan.max_users_per_tenant} users`);
 
 const getTier = (plan: ApiPlan, cycle: ApiBillingCycle) =>
   plan.tiers?.find((t) => t.billing_cycle === cycle);
 
-// The slider represents team size ("Up to N users"), so plans are ordered
-// by max_users_per_tenant ascending — free plans first, "unlimited" (0 or
-// enterprise) last — regardless of price.
-const sortUsersFor = (plan: ApiPlan) => {
-  if (plan.plan_type === "free") return -1;
-  if (plan.plan_type === "enterprise" || !plan.max_users_per_tenant) return Infinity;
-  return plan.max_users_per_tenant;
-};
-
-const tagForPlan = (plan: ApiPlan) => {
-  if (plan.plan_type === "free") return "Free Trial";
-  if (plan.plan_type === "enterprise") return "Unlimited";
-  return plan.is_recommended ? "Recommended" : undefined;
-};
+const tagForPlan = (plan: ApiPlan) => (plan.is_recommended ? "Recommended" : undefined);
 
 export function PricingSection() {
   const [plans, setPlans] = useState<ApiPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [sliderIndex, setSliderIndex] = useState(0);
+  const [selection, setSelection] = useState<"free" | "enterprise" | "paid">("free");
   const [billing, setBilling] = useState<UiBillingCycle>("yearly");
   const [isFreeTrialOpen, setIsFreeTrialOpen] = useState(false);
 
@@ -148,12 +167,10 @@ export function PricingSection() {
       .then((json) => {
         if (cancelled) return;
         if (json.success && Array.isArray(json.data)) {
-          const sorted = [...json.data].sort((a, b) => {
-            if (a.plan_type === "free" && b.plan_type !== "free") return -1;
-            if (b.plan_type === "free" && a.plan_type !== "free") return 1;
-            return a.sort_order - b.sort_order;
-          });
-          setPlans(sorted);
+          const paid = json.data
+            .filter((p: ApiPlan) => p.plan_type === "paid")
+            .sort((a: ApiPlan, b: ApiPlan) => a.sort_order - b.sort_order);
+          setPlans(paid);
         }
       })
       .catch((err) => console.error("Failed to load subscription plans:", err))
@@ -167,45 +184,34 @@ export function PricingSection() {
 
   const displayedPlans = plans
     .filter((p) => {
-      if (p.plan_type === "free" || p.plan_type === "enterprise") return true;
       const cycle: ApiBillingCycle = billing === "6_months" ? "half_yearly" : "yearly";
       return !!getTier(p, cycle);
     })
-    .sort((a, b) => sortUsersFor(a) - sortUsersFor(b));
+    .sort((a, b) => (a.max_users_per_tenant || Infinity) - (b.max_users_per_tenant || Infinity));
 
   const maxSliderIndex = Math.max(displayedPlans.length - 1, 0);
   const safeSliderIndex = Math.min(sliderIndex, maxSliderIndex);
   const selectedPlan = displayedPlans[safeSliderIndex];
 
+  // The slider spans Free Trial -> each paid plan -> Enterprise, so position
+  // 0 is Free, the last position is Enterprise, and the paid plans (fetched
+  // dynamically) sit in between.
+  const maxPos = displayedPlans.length + 1;
+  const currentPos = selection === "free" ? 0 : selection === "enterprise" ? maxPos : 1 + safeSliderIndex;
+
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderIndex(parseInt(e.target.value, 10));
+    const pos = parseInt(e.target.value, 10);
+    if (pos === 0) {
+      setSelection("free");
+    } else if (pos === maxPos) {
+      setSelection("enterprise");
+    } else {
+      setSliderIndex(pos - 1);
+      setSelection("paid");
+    }
   };
 
   const renderCardPrice = (plan: ApiPlan, isSelected: boolean) => {
-    if (plan.plan_type === "free") {
-      return (
-        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? "bg-white text-blue-600 border-white" : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"}`}>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsFreeTrialOpen(true);
-            }}
-          >
-            Free
-          </button>
-        </div>
-      );
-    }
-
-    if (plan.plan_type === "enterprise") {
-      return (
-        <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${isSelected ? "bg-white text-blue-600 border-white" : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"}`}>
-          <Link href="/contact-us">Custom pricing</Link>
-        </div>
-      );
-    }
-
     const primaryCycle: ApiBillingCycle = billing === "6_months" ? "half_yearly" : "yearly";
     const altCycle: ApiBillingCycle = billing === "6_months" ? "yearly" : "half_yearly";
     const primaryTier = getTier(plan, primaryCycle) || getTier(plan, "monthly");
@@ -304,8 +310,6 @@ export function PricingSection() {
 
       {loading ? (
         <div className="text-center text-gray-500 py-16">Loading plans...</div>
-      ) : plans.length === 0 ? (
-        <div className="text-center text-gray-500 py-16">No plans are currently available.</div>
       ) : (
         <>
           {/* Slider */}
@@ -313,111 +317,153 @@ export function PricingSection() {
             <div className="relative w-full bg-gray-100 rounded-full flex items-center" style={{ height: '13.166px' }}>
               <div
                 className="absolute h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
-                style={{ width: `${maxSliderIndex === 0 ? 0 : (safeSliderIndex / maxSliderIndex) * 100}%` }}
+                style={{ width: `${maxPos === 0 ? 0 : (currentPos / maxPos) * 100}%` }}
               />
               <input
                 type="range"
                 min="0"
-                max={maxSliderIndex}
+                max={maxPos}
                 step="1"
-                value={safeSliderIndex}
+                value={currentPos}
                 onChange={handleSliderChange}
                 className="absolute w-full h-full opacity-0 cursor-pointer z-10"
               />
               <div
                 className="absolute w-6 h-6 bg-white border-[3px] border-blue-500 rounded-full shadow-md transform -translate-x-1/2 pointer-events-none z-20 transition-all duration-300 ease-in-out"
-                style={{ left: `${maxSliderIndex === 0 ? 0 : (safeSliderIndex / maxSliderIndex) * 100}%` }}
+                style={{ left: `${maxPos === 0 ? 0 : (currentPos / maxPos) * 100}%` }}
               />
             </div>
-            {selectedPlan && (
-              <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${maxSliderIndex === 0 ? 0 : (safeSliderIndex / maxSliderIndex) * 100}% - 24px)` }}>
-                {usersLabel(selectedPlan)}
-              </div>
-            )}
+            <div className="text-sm font-bold text-gray-900 mt-4 whitespace-nowrap" style={{ marginLeft: `calc(${maxPos === 0 ? 0 : (currentPos / maxPos) * 100}% - 24px)` }}>
+              {selection === 'free' ? FREE_PLAN.usersLabel : selection === 'enterprise' ? ENTERPRISE_PLAN.usersLabel : selectedPlan ? usersLabel(selectedPlan) : ''}
+            </div>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto mb-20">
             {/* Plans List */}
             <div className="flex-1 space-y-4">
-              {displayedPlans.length === 0 ? (
-                <div className="bg-blue-50 border border-blue-200 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center justify-center gap-4">
-                  <svg className="w-12 h-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  <h3 className="text-lg font-bold text-blue-900">No plans on 6-month billing</h3>
-                  <p className="text-blue-700 text-sm sm:text-base max-w-md">
-                    Switch to our yearly plan to see pricing and unlock advanced team features.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setBilling('yearly')}
-                    className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold transition-colors shadow-sm cursor-pointer"
-                  >
-                    Switch to Yearly Billing
-                  </button>
+              {/* Free Trial — static, not part of the slider */}
+              <div
+                onClick={() => setSelection('free')}
+                className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${selection === 'free'
+                  ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
+                  : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
+                  } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
+                style={selection === 'free' ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+              >
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                  <h3 className="text-lg sm:text-xl font-semibold">{FREE_PLAN.name}</h3>
+                  <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${selection === 'free' ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]'}`}>
+                    {FREE_PLAN.tag}
+                  </span>
                 </div>
-              ) : (
-                <>
-                  {displayedPlans.map((plan, idx) => {
-                    const isSelected = selectedPlan?._id === plan._id;
-                    const tag = tagForPlan(plan);
-                    return (
-                      <div
-                        key={plan._id}
-                        onClick={() => setSliderIndex(idx)}
-                        className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
-                          ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
-                          : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
-                          } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
-                        style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
-                      >
-                        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                          <h3 className="text-lg sm:text-xl font-semibold">{plan.plan_name}</h3>
-                          {tag && (
-                            <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.plan_type === 'free'
-                              ? (isSelected ? 'bg-white text-[#7c5ef2]' : 'bg-[#f0f5ff] text-[#7c5ef2]')
-                              : plan.is_recommended
-                                ? 'bg-[#fae8ff] text-[#c026d3]'
-                                : 'bg-gray-100 text-gray-600'
-                              }`}>
-                              {tag}
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
-                          {renderCardPrice(plan, isSelected)}
-                        </div>
-                      </div>
-                    );
-                  })}
-
-                  <div className="pt-4">
+                <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
+                  <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${selection === 'free' ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
                     <button
-                      onClick={() => {
-                        if (selectedPlan?.plan_type === 'free') {
-                          setIsFreeTrialOpen(true);
-                        }
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsFreeTrialOpen(true);
                       }}
-                      className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm"
                     >
-                      {selectedPlan?.plan_type === 'free' ? 'Start Free Trial' : 'Choose Plan'}
+                      Free
                     </button>
                   </div>
-                </>
-              )}
+                </div>
+              </div>
+
+              {displayedPlans.map((plan, idx) => {
+                  const isSelected = selection === 'paid' && safeSliderIndex === idx;
+                  const tag = tagForPlan(plan);
+                  return (
+                    <div
+                      key={plan._id}
+                      onClick={() => {
+                        setSliderIndex(idx);
+                        setSelection('paid');
+                      }}
+                      className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${isSelected
+                        ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
+                        : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm text-gray-900'
+                        } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
+                      style={isSelected ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+                    >
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                        <h3 className="text-lg sm:text-xl font-semibold">{plan.plan_name}</h3>
+                        {tag && (
+                          <span className={`text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium ${plan.is_recommended ? 'bg-[#fae8ff] text-[#c026d3]' : 'bg-gray-100 text-gray-600'}`}>
+                            {tag}
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
+                        {renderCardPrice(plan, isSelected)}
+                      </div>
+                    </div>
+                  );
+              })}
+
+              {/* Enterprise — static, not part of the slider */}
+              <div
+                onClick={() => setSelection('enterprise')}
+                className={`cursor-pointer rounded-4xl p-5 sm:p-6 transition-all border ${selection === 'enterprise'
+                  ? 'border-transparent shadow-lg text-white transform md:scale-[1.02]'
+                  : 'bg-transparent border-gray-200 hover:border-blue-300 hover:bg-white text-gray-900'
+                  } flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}
+                style={selection === 'enterprise' ? { background: 'linear-gradient(80.47deg, #38BDF8 -14.05%, #3B82F6 55.68%, #38BDF8 81.9%)' } : undefined}
+              >
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                  <h3 className="text-lg sm:text-xl font-semibold">{ENTERPRISE_PLAN.name}</h3>
+                  <span className="text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium bg-gray-100 text-gray-600">
+                    {ENTERPRISE_PLAN.tag}
+                  </span>
+                </div>
+                <div className="text-left sm:text-right flex flex-col items-start sm:items-end justify-center">
+                  <div className={`px-5 py-2 rounded-lg text-sm font-semibold border ${selection === 'enterprise' ? 'bg-white text-blue-600 border-white' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`}>
+                    <Link href="/contact-us">Custom pricing</Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                {selection === 'free' ? (
+                  <button
+                    onClick={() => setIsFreeTrialOpen(true)}
+                    className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm"
+                  >
+                    Start Free Trial
+                  </button>
+                ) : selection === 'enterprise' ? (
+                  <Link
+                    href="/contact-us"
+                    className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm"
+                  >
+                    Contact Sales
+                  </Link>
+                ) : (
+                  <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-sm">
+                    Choose Plan
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* Features Box */}
             <div className="w-full lg:w-[400px] bg-white border border-gray-200 rounded-[28px] p-9 shadow-sm flex flex-col min-h-[400px]">
               <h3 className="text-xl font-medium text-gray-900 mb-6">Includes:</h3>
               <ul className="flex flex-col gap-4 flex-1">
-                {selectedPlan &&
-                  INCLUDES_PANEL_KEYS.filter((key) => selectedPlan.features?.[key]).map((key) => (
-                    <li key={key} className="flex items-start justify-between gap-3 text-sm text-gray-600">
-                      <span className="flex-1 mt-0.5">{FEATURE_LABELS[key] ?? key}</span>
-                      <div className="shrink-0"><CheckIcon /></div>
-                    </li>
-                  ))}
+                {(selection === 'free'
+                  ? FREE_PLAN.features
+                  : selection === 'enterprise'
+                    ? ENTERPRISE_PLAN.features
+                    : selectedPlan
+                      ? INCLUDES_PANEL_KEYS.filter((key) => selectedPlan.features?.[key]).map((key) => FEATURE_LABELS[key] ?? key)
+                      : []
+                ).map((label, idx) => (
+                  <li key={idx} className="flex items-start justify-between gap-3 text-sm text-gray-600">
+                    <span className="flex-1 mt-0.5">{label}</span>
+                    <div className="shrink-0"><CheckIcon /></div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -429,34 +475,40 @@ export function PricingSection() {
               <thead>
                 <tr>
                   <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold w-1/4">Feature</th>
+                  <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center">{FREE_PLAN.name}</th>
                   {plans.map((plan) => (
                     <th key={plan._id} className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center">
                       {plan.plan_name}
                     </th>
                   ))}
+                  <th className="p-4 border-b-2 border-gray-200 bg-gray-50 text-gray-900 font-semibold text-center">{ENTERPRISE_PLAN.name}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-gray-200 bg-white">
                   <td className="p-4 text-gray-900 font-bold">Users Allowed</td>
+                  <td className="p-4 text-gray-600 text-center font-medium">{FREE_PLAN.usersLabel}</td>
                   {plans.map((plan) => (
                     <td key={plan._id} className="p-4 text-gray-600 text-center font-medium">{usersLabel(plan)}</td>
                   ))}
+                  <td className="p-4 text-gray-600 text-center font-medium">{ENTERPRISE_PLAN.usersLabel}</td>
                 </tr>
 
                 {FEATURE_SECTIONS.map((section) => (
                   <Fragment key={section.title}>
                     <tr className="bg-gray-50 border-b border-gray-200">
-                      <td colSpan={plans.length + 1} className="p-4 font-bold text-gray-900 text-lg">{section.title}</td>
+                      <td colSpan={plans.length + 3} className="p-4 font-bold text-gray-900 text-lg">{section.title}</td>
                     </tr>
                     {section.keys.map((key) => (
                       <tr key={key} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                         <td className="p-4 text-gray-700 font-medium">{FEATURE_LABELS[key] ?? key}</td>
+                        <td className="p-4 text-center"><CheckIcon /></td>
                         {plans.map((plan) => (
                           <td key={plan._id} className="p-4 text-center">
                             {plan.features?.[key] ? <CheckIcon /> : <CrossIcon />}
                           </td>
                         ))}
+                        <td className="p-4 text-center"><CheckIcon /></td>
                       </tr>
                     ))}
                   </Fragment>
@@ -464,7 +516,7 @@ export function PricingSection() {
 
                 {/* Supported Integrations */}
                 <tr className="bg-gray-50 border-b border-gray-200">
-                  <td colSpan={plans.length + 1} className="p-4 font-bold text-gray-900 text-lg">Supported Integrations</td>
+                  <td colSpan={plans.length + 3} className="p-4 font-bold text-gray-900 text-lg">Supported Integrations</td>
                 </tr>
                 {INTEGRATIONS.map((integration) => (
                   <tr key={integration.key} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
@@ -476,11 +528,13 @@ export function PricingSection() {
                         {integration.name}
                       </div>
                     </td>
+                    <td className="p-4 text-center"><CrossIcon /></td>
                     {plans.map((plan) => (
                       <td key={plan._id} className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">
-                        {plan.features?.[integration.key] ? (plan.plan_type === 'free' ? <CrossIcon /> : '₹1,000') : <CrossIcon />}
+                        {plan.features?.[integration.key] ? '₹1,000' : <CrossIcon />}
                       </td>
                     ))}
+                    <td className="p-4 text-center text-sm font-semibold text-gray-600 whitespace-nowrap">₹1,000</td>
                   </tr>
                 ))}
               </tbody>
