@@ -203,7 +203,7 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
             {/* Logo */}
             <div className="flex items-center justify-center gap-2 mb-2">
               <Image
-                src="/images/TZI.png"
+                src="/images/TZI-Logo.svg"
                 alt="TZI"
                 width={44}
                 height={44}
