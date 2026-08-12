@@ -18,7 +18,7 @@ export default function AnimatedOrbits() {
       <div className="absolute bottom-0 left-1/2 w-0 h-0 z-10 flex items-center justify-center">
 
         {/* Inner Orbit (Meta, LinkedIn) */}
-        <div className="absolute w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] rounded-full border-[4px] border-white/40">
+        <div className="absolute w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full border-[4px] border-white/40">
 
           {/* Meta wrapper */}
           <div className="absolute inset-0 animate-[sweep_10s_linear_infinite]">
@@ -41,7 +41,7 @@ export default function AnimatedOrbits() {
         </div>
 
         {/* Outer Orbit (Phone, WhatsApp) */}
-        <div className="absolute w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] rounded-full border-[4px] border-white/40">
+        <div className="absolute w-[500px] h-[500px] sm:w-[620px] sm:h-[620px] rounded-full border-[4px] border-white/40">
 
           {/* Phone wrapper */}
           <div className="absolute inset-0 animate-[sweep_14s_linear_infinite]">
@@ -64,7 +64,7 @@ export default function AnimatedOrbits() {
         </div>
 
         {/* Extra Decorative Orbits */}
-        <div className="absolute w-[800px] h-[800px] sm:w-[1100px] sm:h-[1100px] rounded-full border-[4px] border-white/20 animate-[sweep_20s_linear_infinite]"></div>
+        <div className="absolute w-[700px] h-[700px] sm:w-[850px] sm:h-[850px] rounded-full border-[4px] border-white/20 animate-[sweep_20s_linear_infinite]"></div>
       </div>
     </div>
   );
