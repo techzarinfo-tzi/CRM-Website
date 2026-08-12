@@ -25,7 +25,7 @@ export function AboutDNA() {
 
             {/* The original background base image, keeping the exact layout size */}
             <Image
-              src="/images/about us/image2.png"
+              src="/images/about us/DNA-background.svg"
               alt="TZI CRM DNA Graphic Base"
               width={480}
               height={480}

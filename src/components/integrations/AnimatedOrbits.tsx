@@ -6,7 +6,7 @@ export default function AnimatedOrbits() {
       {/* TZI Logo in the center bottom */}
       <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20">
         <Image
-          src="/images/footer logo.png"
+          src="/images/favicon (2).svg"
           alt="TZI Logo"
           width={150}
           height={60}

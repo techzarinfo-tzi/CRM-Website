@@ -1,5 +1,5 @@
 import Image from "next/image";
-import tziLogo from "@/src/assets/images/TZI.png";
+import tziLogo from "@/src/assets/images/TZI-Logo.svg";
 import robot from "@/src/assets/images/robot.png";
 
 type Testimonial = {
