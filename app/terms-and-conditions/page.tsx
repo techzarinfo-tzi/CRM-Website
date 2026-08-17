@@ -220,9 +220,7 @@ export default function TermsAndConditionsPage() {
             <br />
             No.3D, M.S Tower, 4th Floor, Convent Rd, Cantonment, Tiruchirappalli – 620001, Tamil Nadu, India
             <br />
-            General/support inquiries: <a href="mailto:support@techzarinfo.com">support@techzarinfo.com</a>
-            <br />
-            Sales inquiries: <a href="mailto:sales@techzarinfo.com">sales@techzarinfo.com</a>
+         General/support inquiries &    Sales inquiries: <a href="mailto:sales@techzarinfo.com">sales@techzarinfo.com</a>
           </p>
         </div>
       </main>

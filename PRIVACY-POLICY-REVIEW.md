@@ -24,7 +24,7 @@ Meta requires apps using the Graph API / WhatsApp Cloud API to have a privacy po
 - A **Data Deletion Instructions URL or callback** (required for Meta app review — the current policy has neither)
 
 **Required addition — "Meta Platform Data":**
-> "When you connect a WhatsApp Business, Instagram, or Facebook Page account, the Service accesses and stores messages, comments, contact details, and media exchanged through those channels, and business tokens necessary to maintain the connection, solely to provide messaging and CRM features within your account. This data is not shared with third parties beyond what's necessary to operate the integration. You may request deletion of this data by [contacting support@techzarinfo.com / via account settings]."
+> "When you connect a WhatsApp Business, Instagram, or Facebook Page account, the Service accesses and stores messages, comments, contact details, and media exchanged through those channels, and business tokens necessary to maintain the connection, solely to provide messaging and CRM features within your account. This data is not shared with third parties beyond what's necessary to operate the integration. You may request deletion of this data by [contacting sales@techzarinfo.com / via account settings]."
 
 Also add a **Data Deletion Instructions** page/URL if one doesn't exist — required for Meta app review to remain active.
 
@@ -98,7 +98,7 @@ The policy should list (or link to) the third parties that process personal data
 
 | Issue | Location | Fix |
 |---|---|---|
-| Support email mismatch | Privacy Policy uses `service@techzarinfo.com` (line 55); `Footer.tsx`/`ContactInfo.tsx` use `sales@techzarinfo.com` | Pick one support address (recommend a distinct `support@techzarinfo.com`, separate from `sales@`) and use it consistently |
+| Support email mismatch | Privacy Policy uses `service@techzarinfo.com` (line 55); `Footer.tsx`/`ContactInfo.tsx` use `sales@techzarinfo.com` | Pick one support address (recommend a distinct `sales@techzarinfo.com`, separate from `sales@`) and use it consistently |
 | No physical address in the document | Only in `Footer.tsx`: "No.3D, M.S Tower, 4th Floor, Convent Rd, Cantonment, Tiruchirappalli - 620001" | Add company legal address (typically required for DPDP grievance officer contact) |
 
 ---

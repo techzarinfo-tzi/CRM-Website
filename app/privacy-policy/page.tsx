@@ -287,7 +287,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <ul>
             <li>
-              Emailing <a href="mailto:support@techzarinfo.com">support@techzarinfo.com</a> with the subject line
+              Emailing <a href="mailto:sales@techzarinfo.com">sales@techzarinfo.com</a> with the subject line
               &ldquo;Data Deletion Request&rdquo;; or
             </li>
             <li>If you are a Tenant Admin, using the relevant deletion controls in your account settings (where available).</li>
@@ -342,7 +342,7 @@ export default function PrivacyPolicyPage() {
             No.3D, M.S Tower, 4th Floor, Convent Rd, Cantonment, Tiruchirappalli – 620001, Tamil Nadu, India
             <br />
 
-            Sales inquiries: <a href="mailto:sales@techzarinfo.com">sales@techzarinfo.com</a>
+            Sales inquiries &  General/support inquiries:  <a href="mailto:sales@techzarinfo.com">sales@techzarinfo.com</a>
           </p>
         
         </div>
