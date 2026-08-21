@@ -210,7 +210,7 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
                 className="object-contain"
                 style={{ width: "auto", height: "44px" }}
               />
-              <span className="text-2xl font-bold text-gray-900">CRM</span>
+              {/* <span className="text-2xl font-bold text-gray-900">CRM</span> */}
             </div>
 
             {/* Subtitle */}
