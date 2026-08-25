@@ -23,7 +23,7 @@ const INDUSTRIES = [
   "Other",
 ];
 
-const SUBSCRIPTION_PACKAGES = ["Starter", "Professional", "Enterprise"];
+
 
 interface FreeTrialProps {
   isOpen: boolean;
@@ -51,6 +51,24 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
     return getCountries()
       .map((code) => ({ code, name: en[code] || code }))
       .sort((a, b) => a.name.localeCompare(b.name));
+  }, []);
+
+  const [plans, setPlans] = useState<{ plan_name: string }[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${BACKEND_URL}/api/superadmin/subscription-plans/public/landing`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (cancelled) return;
+        if (json.success && Array.isArray(json.data)) {
+          setPlans(json.data);
+        }
+      })
+      .catch((err) => console.error("Failed to load subscription plans:", err));
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -99,6 +117,10 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
 
     if (!String(data.businessName || "").trim()) {
       errors.businessName = "Business name is required";
+    }
+
+    if (!String(data.phonenumber || "").trim()) {
+      errors.phonenumber = "Phone number is required";
     }
 
     return errors;
@@ -210,7 +232,6 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
                 className="object-contain"
                 style={{ width: "auto", height: "44px" }}
               />
-              {/* <span className="text-2xl font-bold text-gray-900">CRM</span> */}
             </div>
 
             {/* Subtitle */}
@@ -223,6 +244,54 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
               noValidate
               className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5"
             >
+
+               <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-gray-800">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  onChange={() => clearFieldError("name")}
+                  className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
+                    fieldErrors.name ? "border-red-400" : "border-transparent"
+                  }`}
+                />
+                {fieldErrors.name && (
+                  <span className="text-xs text-red-500">{fieldErrors.name}</span>
+                )}
+              </div>
+
+
+              
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-gray-800">Business Name</label>
+                <input
+                  type="text"
+                  name="businessName"
+                  onChange={() => clearFieldError("businessName")}
+                  className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
+                    fieldErrors.businessName ? "border-red-400" : "border-transparent"
+                  }`}
+                />
+                {fieldErrors.businessName && (
+                  <span className="text-xs text-red-500">{fieldErrors.businessName}</span>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-gray-800">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phonenumber"
+                  onChange={() => clearFieldError("phonenumber")}
+                  className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
+                    fieldErrors.phonenumber ? "border-red-400" : "border-transparent"
+                  }`}
+                />
+                {fieldErrors.phonenumber && (
+                  <span className="text-xs text-red-500">{fieldErrors.phonenumber}</span>
+                )}
+              </div>
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-gray-800">Business Email</label>
                 <input
@@ -237,25 +306,6 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
                 {fieldErrors.email && (
                   <span className="text-xs text-red-500">{fieldErrors.email}</span>
                 )}
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Industry</label>
-                <div className="relative">
-                  <select
-                    name="industry"
-                    defaultValue=""
-                    className="w-full bg-[#f0f2f5] border-none rounded-lg px-4 py-3 appearance-none focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all cursor-pointer text-gray-800"
-                  >
-                    <option value="" disabled>Select Industry</option>
-                    {INDUSTRIES.map((industry) => (
-                      <option key={industry} value={industry}>{industry}</option>
-                    ))}
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
-                  </div>
-                </div>
               </div>
 
               <div className="flex flex-col gap-2">
@@ -297,6 +347,27 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
                   </span>
                 )}
               </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-gray-800">Industry</label>
+                <div className="relative">
+                  <select
+                    name="industry"
+                    defaultValue=""
+                    className="w-full bg-[#f0f2f5] border-none rounded-lg px-4 py-3 appearance-none focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all cursor-pointer text-gray-800"
+                  >
+                    <option value="" disabled>Select Industry</option>
+                    {INDUSTRIES.map((industry) => (
+                      <option key={industry} value={industry}>{industry}</option>
+                    ))}
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              
 
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-gray-800">Country</label>
@@ -352,53 +423,25 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={() => clearFieldError("name")}
-                  className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
-                    fieldErrors.name ? "border-red-400" : "border-transparent"
-                  }`}
-                />
-                {fieldErrors.name && (
-                  <span className="text-xs text-red-500">{fieldErrors.name}</span>
-                )}
-              </div>
+             
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Subscription Package</label>
+                <label className="text-sm font-medium text-gray-800">Interested Package</label>
                 <div className="relative">
                   <select
-                    name="subscriptionPackage"
+                    name="interestedPackage"
                     defaultValue=""
-                    className="w-full bg-[#f0f2f5] border-none rounded-lg px-4 py-3 appearance-none focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all cursor-pointer text-gray-800"
+                    className="w-full bg-[#f0f2f5] border-none rounded-lg px-4 py-3 appearance-none focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all cursor-pointer text-gray-800 max-h-60 overflow-y-auto"
                   >
                     <option value="" disabled>Select Package</option>
-                    {SUBSCRIPTION_PACKAGES.map((pkg) => (
-                      <option key={pkg} value={pkg}>{pkg}</option>
+                    {plans.map((pkg, idx) => (
+                      <option key={idx} value={pkg.plan_name}>{pkg.plan_name}</option>
                     ))}
                   </select>
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
                   </div>
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Business Name</label>
-                <input
-                  type="text"
-                  name="businessName"
-                  onChange={() => clearFieldError("businessName")}
-                  className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
-                    fieldErrors.businessName ? "border-red-400" : "border-transparent"
-                  }`}
-                />
-                {fieldErrors.businessName && (
-                  <span className="text-xs text-red-500">{fieldErrors.businessName}</span>
-                )}
               </div>
 
               {error && (
