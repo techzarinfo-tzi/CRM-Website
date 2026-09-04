@@ -4,6 +4,8 @@ import { ComponentType, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { getCountries, Country } from "react-phone-number-input";
 import rawFlags from "react-phone-number-input/flags";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 type FlagComponent = ComponentType<{ title?: string; className?: string }>;
 const flags = rawFlags as Partial<Record<Country, FlagComponent>>;
@@ -36,11 +38,34 @@ const PASSWORD_RULE = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 const EMAIL_RULE =
   /^[a-zA-Z0-9_%+-]+(?:\.[a-zA-Z0-9_%+-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 
+  // Phone number validation function - stricter validation
+const validatePhoneNumber = (phone: string) => {
+  if (!phone) return true; 
+  
+  const cleaned = phone.replace(/[\s\-\(\)\.]/g, '');
+  
+  if (!/^[\+]?[0-9]/.test(cleaned)) return false;
+  
+  const withoutPlus = cleaned.startsWith('+') ? cleaned.slice(1) : cleaned;
+  
+  if (withoutPlus.length < 7 || withoutPlus.length > 15) return false;
+  
+  if (!/^\d+$/.test(withoutPlus)) return false;
+  
+  if (/^(\d)\1+$/.test(withoutPlus)) return false;
+  
+  if (withoutPlus.length < 10 && withoutPlus.startsWith('0')) return false;
+  
+  return true;
+};
+
+
 export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [countryOpen, setCountryOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<{ code: Country; name: string } | null>(null);
@@ -115,13 +140,13 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
       errors.name = "Name is required";
     }
 
-    if (!String(data.businessName || "").trim()) {
-      errors.businessName = "Business name is required";
+        const phoneStr = String(data.phonenumber || "").trim();
+    if (!phoneStr) {
+      errors.phonenumber = "Phone number is required";
+    } else if (!validatePhoneNumber(phoneStr)) {
+      errors.phonenumber = "Please enter a valid phone number";
     }
 
-    if (!String(data.phonenumber || "").trim()) {
-      errors.phonenumber = "Phone number is required";
-    }
 
     return errors;
   };
@@ -246,10 +271,13 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
             >
 
                <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Name</label>
+                <label className="text-sm font-medium text-gray-800">
+                  Name <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
                   name="name"
+                  required
                   onChange={() => clearFieldError("name")}
                   className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
                     fieldErrors.name ? "border-red-400" : "border-transparent"
@@ -277,26 +305,42 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
                 )}
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Phone Number</label>
-                <input
-                  type="tel"
-                  name="phonenumber"
-                  onChange={() => clearFieldError("phonenumber")}
-                  className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
-                    fieldErrors.phonenumber ? "border-red-400" : "border-transparent"
-                  }`}
+               <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-gray-800">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <input type="hidden" name="phonenumber" value={phoneNumber} />
+                <PhoneInput
+                  country={"in"}
+                  value={phoneNumber}
+                  onChange={(phone) => {
+                    setPhoneNumber(phone);
+                    clearFieldError("phonenumber");
+                  }}
+                  inputProps={{
+                    required: true,
+                    className: `w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 pl-12 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 ${
+                      fieldErrors.phonenumber ? "border-red-400" : "border-transparent"
+                    }`
+                  }}
+                  buttonClass="!bg-transparent !border-none !left-1"
+                  dropdownClass="!z-50"
+                  containerClass="relative w-full"
                 />
                 {fieldErrors.phonenumber && (
                   <span className="text-xs text-red-500">{fieldErrors.phonenumber}</span>
                 )}
               </div>
 
+
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Business Email</label>
+                <label className="text-sm font-medium text-gray-800">
+                  Business Email <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="email"
                   name="email"
+                  required
                   placeholder="name@mail.com"
                   onChange={() => clearFieldError("email")}
                   className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 placeholder:text-gray-400 ${
@@ -309,11 +353,14 @@ export default function FreeTrial({ isOpen, onClose }: FreeTrialProps) {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-800">Password</label>
+                <label className="text-sm font-medium text-gray-800">
+                  Password <span className="text-red-500">*</span>
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    required
                     placeholder="Min. 8 characters"
                     onChange={() => clearFieldError("password")}
                     className={`w-full bg-[#f0f2f5] border rounded-lg px-4 py-3 pr-11 focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all text-gray-800 placeholder:text-gray-400 ${
